@@ -35,22 +35,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        final TextView textView = (TextView) findViewById(R.id.name);
-        textView.setText(R.string.listTitle);
+        final TextView textView = (TextView) findViewById(R.id.mobileNo);
 
         Retrofit instance = ApiClient.instance();
         apiInterface = instance.create(ApiInterface.class);
 
-        binding.submit.setOnClickListener(new View.OnClickListener() {
+        binding.loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                if (binding.name.getText().toString().isEmpty()){
-                    binding.name.setError("Name Required");
+                if (binding.mobileNo.getText().toString().isEmpty()){
+                    binding.mobileNo.setError("Mobile No Required");
                 } else {
+                    Toast.makeText(MainActivity.this, "Login User No: "+binding.mobileNo.getText(), Toast.LENGTH_LONG).show();
 //                    Person person = new Person();
 //                    person.setName(binding.name.getText().toString());
 //

@@ -9,14 +9,14 @@
     <include layout="@layout/activity_app_bar" />
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/mobileNo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="176dp"
         android:layout_marginEnd="64dp"
         android:ems="10"
-        android:hint="name"
+        android:hint="Mobile No"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -24,28 +24,42 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/submit"
+        android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/black"
-        android:text="@string/submit"
+        android:text="@string/login"
         android:textColor="@color/white"
         android:layout_marginTop="28dp"
-        app:layout_constraintEnd_toEndOf="@+id/name"
-        app:layout_constraintTop_toBottomOf="@+id/name"
-        app:layout_constraintStart_toStartOf="@id/name"/>
+        app:layout_constraintCircleRadius="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/mobileNo"
+        app:layout_constraintTop_toBottomOf="@+id/mobileNo"
+        app:layout_constraintStart_toStartOf="@id/mobileNo"/>
 
     <TextView
         android:id="@+id/showList"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:text="@string/listTitle"
+        android:layout_marginLeft="16px"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/submit"
+        app:layout_constraintEnd_toEndOf="@+id/loginButton"
         app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toStartOf="@+id/submit"
-        app:layout_constraintTop_toBottomOf="@+id/submit" />
+        app:layout_constraintStart_toStartOf="@+id/loginButton"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showList">
+        <include layout="@layout/activity_summary" />
 
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
