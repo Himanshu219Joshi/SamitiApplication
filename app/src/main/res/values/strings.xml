@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SamApp</string>
+    <string name="pageHeader">Samiti</string>
+    <string name="listTitle">Show List of Product</string>
+    <string name="title_activity_list">ListActivity</string>
+    <string name="submit">Submit</string>
+    <string name="title_activity_app_bar">AppBar</string>
+</resources>
