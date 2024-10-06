@@ -35,7 +35,7 @@
                 android:text="I'm a title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                 />
+                tools:ignore="MissingConstraints" />
 
             <TextView
                 android:id="@+id/memberName"
