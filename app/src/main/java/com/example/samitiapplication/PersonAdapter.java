@@ -46,7 +46,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
         return personList.size();
     }
 
-    public class PersonViewHolder extends RecyclerView.ViewHolder {
+    public static class PersonViewHolder extends RecyclerView.ViewHolder {
         TextView memberId, memberName, loanAmount, investedMoney;
         public PersonViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -13,12 +13,15 @@ import android.widget.Toast;
 
 import com.example.samitiapplication.databinding.ActivityListBinding;
 import com.example.samitiapplication.databinding.ActivityMainBinding;
+import com.example.samitiapplication.databinding.ActivitySummaryBinding;
 import com.example.samitiapplication.modal.ApiInterface;
 
 import com.example.samitiapplication.modal.Person;
+import com.example.samitiapplication.modal.Summary;
 import com.example.samitiapplication.networking.ApiClient;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
     ApiInterface apiInterface;
     ActivityMainBinding binding;
+
+    TextView totalAmount, lentAmount, balanceAmount, mobileNo;
+
+    ActivitySummaryBinding summaryBinding;
     private RecyclerView recyclerView;
 
     @Override
@@ -37,10 +44,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        final TextView textView = (TextView) findViewById(R.id.mobileNo);
+        mobileNo = findViewById(R.id.mobileNo);
+        totalAmount = findViewById(R.id.totalAmount);
+        lentAmount = findViewById(R.id.lentAmount);
+        balanceAmount = findViewById(R.id.balanceAmount);
 
         Retrofit instance = ApiClient.instance();
         apiInterface = instance.create(ApiInterface.class);
+
+        Call<Summary> summaryDetails = apiInterface.getSummary();
+
+
+        summaryDetails.enqueue(new Callback<Summary>() {
+            @Override
+            public void onResponse(@NonNull Call<Summary> call, @NonNull Response<Summary> response) {
+                if(response.body() != null ) {
+                    totalAmount.append(String.valueOf(" "+response.body().getTotalAmount()));
+                    lentAmount.append(String.valueOf(" "+response.body().getLentAmount()));
+                    balanceAmount.append(String.valueOf(" "+response.body().getBalanceAmount()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Summary> call, Throwable t) {
+                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -49,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 if (binding.mobileNo.getText().toString().isEmpty()){
                     binding.mobileNo.setError("Mobile No Required");
                 } else {
-                    Toast.makeText(MainActivity.this, "Login User No: "+binding.mobileNo.getText(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Login User No: "+mobileNo.getText(), Toast.LENGTH_LONG).show();
 //                    Person person = new Person();
 //                    person.setName(binding.name.getText().toString());
 //
@@ -74,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, ListActivity.class));
             }
         });
+
+
     }
 
 

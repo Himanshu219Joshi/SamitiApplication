@@ -11,4 +11,7 @@ public interface ApiInterface {
     @GET("data")
     Call<List<Person>> getPerson();
 
+    @GET("samitiSummary")
+    Call<Summary> getSummary();
+
 }
