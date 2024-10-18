@@ -22,16 +22,19 @@ public class ApiClient {
 
     public static synchronized Retrofit instance() {
         if (retrofit == null) {
+//            AuthInterceptor authInterceptor = new AuthInterceptor();
 
             int timeOut = 5 * 60;
-            OkHttpClient client = new OkHttpClient.Builder().connectTimeout(timeOut, TimeUnit.SECONDS)
+            OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                    .connectTimeout(timeOut, TimeUnit.SECONDS)
                     .writeTimeout(timeOut, TimeUnit.SECONDS)
                     .readTimeout(timeOut, TimeUnit.SECONDS)
                     .build();
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://c159-2409-40d4-304b-facd-f030-81b7-7a6c-63d0.ngrok-free.app/")
+                    .baseUrl("https://3057-2409-40d4-10c9-926-d0cc-86cb-3d59-3969.ngrok-free.app")
                     .addConverterFactory((GsonConverterFactory.create()))
+                    .client(okHttpClient)
                     .build();
 
         }

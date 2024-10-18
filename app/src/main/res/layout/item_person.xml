@@ -27,26 +27,27 @@
 <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
             <TextView
-                android:id="@+id/memberId"
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="I'm a title"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="MissingConstraints" />
-
-            <TextView
                 android:id="@+id/memberName"
-                style="@style/TextAppearance.MaterialComponents.Body1"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="@string/member_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/memberId" />
+                tools:ignore="MissingConstraints" />
+
+
+            <TextView
+                android:id="@+id/memberId"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="MemberId"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/memberName" />
 
             <TextView
                 android:id="@+id/loanAmount"
@@ -57,7 +58,7 @@
                 android:text="@string/loan_amount"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/memberName" />
+                app:layout_constraintTop_toBottomOf="@id/memberId" />
 
             <TextView
                 android:id="@+id/investedMoney"

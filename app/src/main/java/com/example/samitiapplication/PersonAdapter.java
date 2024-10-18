@@ -35,10 +35,10 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
     @Override
     public void onBindViewHolder(@NonNull PersonAdapter.PersonViewHolder holder, int position) {
         Person person = personList.get(position);
-        holder.memberId.setText("Member Id: "+ person.getId());
-        holder.memberName.setText("Member Name: "+ person.getMemberName());
-        holder.loanAmount.setText("Loan Amount: "+ person.getLoanAmount());
-        holder.investedMoney.setText("Invested Money: "+ person.getInvestedMoney());
+        holder.memberId.setText(context.getString(R.string.member_id).concat(person.getId()));
+        holder.memberName.setText(context.getString(R.string.name).concat(person.getMemberName()).concat(" ").concat(person.getFatherName()));
+        holder.loanAmount.setText(context.getString(R.string.loan_amount).concat(person.getLoanAmount()));
+        holder.investedMoney.setText(context.getString(R.string.invested_money).concat(person.getInvestedMoney()));
     }
 
     @Override

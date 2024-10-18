@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -19,6 +21,8 @@ import com.example.samitiapplication.modal.ApiInterface;
 import com.example.samitiapplication.modal.Person;
 import com.example.samitiapplication.modal.Summary;
 import com.example.samitiapplication.networking.ApiClient;
+import com.example.samitiapplication.networking.SessionManager;
+import com.example.samitiapplication.ui.login.LoginActivity;
 
 import java.util.List;
 import java.util.Objects;
@@ -33,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     ApiInterface apiInterface;
     ActivityMainBinding binding;
-
+    SharedPreferences sharedPreferences;
     TextView totalAmount, lentAmount, balanceAmount, mobileNo;
 
     ActivitySummaryBinding summaryBinding;
@@ -48,11 +52,13 @@ public class MainActivity extends AppCompatActivity {
         totalAmount = findViewById(R.id.totalAmount);
         lentAmount = findViewById(R.id.lentAmount);
         balanceAmount = findViewById(R.id.balanceAmount);
-
+        sharedPreferences = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
         Retrofit instance = ApiClient.instance();
         apiInterface = instance.create(ApiInterface.class);
 
-        Call<Summary> summaryDetails = apiInterface.getSummary();
+        String token = sharedPreferences.getString("token", null);
+
+        Call<Summary> summaryDetails = apiInterface.getSummary("Bearer "+token);
 
 
         summaryDetails.enqueue(new Callback<Summary>() {
@@ -71,14 +77,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        binding.loginButton.setOnClickListener(new View.OnClickListener() {
+//        binding.loginButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-                if (binding.mobileNo.getText().toString().isEmpty()){
-                    binding.mobileNo.setError("Mobile No Required");
-                } else {
-                    Toast.makeText(MainActivity.this, "Login User No: "+mobileNo.getText(), Toast.LENGTH_LONG).show();
+//            @Override
+//            public void onClick(View view) {
+//                if (binding.mobileNo.getText().toString().isEmpty()){
+//                    binding.mobileNo.setError("Mobile No Required");
+//                } else {
+//                    Toast.makeText(MainActivity.this, "Login User No: "+mobileNo.getText(), Toast.LENGTH_LONG).show();
 //                    Person person = new Person();
 //                    person.setName(binding.name.getText().toString());
 //
@@ -93,9 +99,9 @@ public class MainActivity extends AppCompatActivity {
 //                            Toast.makeText(MainActivity.this, "Insertion Failed", Toast.LENGTH_SHORT).show();
 //                        }
 //                    });
-                }
-            }
-        });
+//                }
+//            }
+//        });
 
         binding.showList.setOnClickListener(new View.OnClickListener() {
             @Override

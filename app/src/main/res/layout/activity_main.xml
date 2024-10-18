@@ -6,59 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <include layout="@layout/activity_app_bar" />
-
-    <EditText
-        android:id="@+id/mobileNo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="176dp"
-        android:layout_marginEnd="64dp"
-        android:ems="10"
-        android:hint="Mobile No"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/black"
-        android:text="@string/login"
-        android:textColor="@color/white"
-        android:layout_marginTop="28dp"
-        app:layout_constraintCircleRadius="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/mobileNo"
-        app:layout_constraintTop_toBottomOf="@+id/mobileNo"
-        app:layout_constraintStart_toStartOf="@id/mobileNo"/>
-
-    <TextView
-        android:id="@+id/showList"
-        style="@style/TextAppearance.MaterialComponents.Headline5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text="@string/listTitle"
-        android:layout_marginLeft="16px"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/loginButton"
-        app:layout_constraintHorizontal_bias="0.666"
-        app:layout_constraintStart_toStartOf="@+id/loginButton"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+    <include android:id="@+id/pageTitle" layout="@layout/activity_app_bar"
+        tools:ignore="InvalidId" />
 
     <LinearLayout
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/showList">
+        app:layout_constraintTop_toBottomOf="@+id/pageTitle">
+
+        <TextView
+            android:id="@+id/showList"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/listTitle"
+            android:textColor="@color/black" />
+
         <include layout="@layout/activity_summary" />
 
     </LinearLayout>
