@@ -1,15 +1,15 @@
 package com.example.samitiapplication.modal;
 
-public class Person {
+public class MemberDetail {
 
-    public Person(String memberName, String loanAmount, String investedMoney, String fatherName) {
+    public MemberDetail(String memberName, String loanAmount, String investedMoney, String fatherName) {
         this.memberName = memberName;
         this.loanAmount = loanAmount;
         this.investedMoney = investedMoney;
         this.fatherName = fatherName;
     }
 
-    private String memberName;
+    private final String memberName;
 
     public String getFatherName() {
         return fatherName;

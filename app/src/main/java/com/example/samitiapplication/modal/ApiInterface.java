@@ -12,11 +12,17 @@ public interface ApiInterface {
 
 
     @GET("samiti/memberList")
-    Call<List<Person>> getPerson(@Header ("Authorization") String token);
+    Call<List<MemberDetail>> getPerson(@Header ("Authorization") String token);
 
     @GET("samiti/getSummary")
     Call<Summary> getSummary(@Header ("Authorization") String token);
 
     @POST("/signIn")
     Call<LoginUser> signIn(@Body LoginUser loginUser);
+
+    @POST("/register")
+    Call<UserDetail> userRegistration(@Body UserDetail userDetails);
+
+    @GET("samiti/loanDetails")
+    Call<List<LoanDetail>> getLoanDetail(@Header ("Authorization") String token);
 }

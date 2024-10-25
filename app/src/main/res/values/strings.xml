@@ -11,6 +11,7 @@
     <string name="member_name">Member Name:</string>
     <string name="loan_amount">Loan Amount:</string>
     <string name="inverted_amount">Invested Amount:</string>
+    <string name="loan_date">Loan Date:</string>
     <string name="total_amount">Total Amount:</string>
     <string name="balance_amount">Balance Amount:</string>
     <string name="title_activity_login">LoginActivity</string>
@@ -31,7 +32,7 @@
     <string name="last_name">Last Name</string>
     <string name="password">Password</string>
     <string name="user_registration">User Registration</string>
-    <string name="aadhar_number">Aadhar Number</string>
+    <string name="aadhaar_number">Aadhaar Number</string>
     <string name="cancel">Cancel</string>
     <string name="title_registartion">Registration Activity</string>
 </resources>

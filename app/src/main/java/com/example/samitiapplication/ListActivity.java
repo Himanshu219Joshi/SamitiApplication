@@ -8,17 +8,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.samitiapplication.databinding.ActivityListBinding;
 import com.example.samitiapplication.modal.ApiInterface;
-import com.example.samitiapplication.modal.Person;
+import com.example.samitiapplication.modal.MemberDetail;
 import com.example.samitiapplication.networking.ApiClient;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import retrofit2.Call;
@@ -51,23 +47,23 @@ public class ListActivity extends AppCompatActivity {
 
         String token = sharedPreferences.getString("token", null);
 
-        Call<List<Person>> call = apiInterface.getPerson("Bearer "+token);
-        call.enqueue(new Callback<List<Person>>() {
+        Call<List<MemberDetail>> call = apiInterface.getPerson("Bearer "+token);
+        call.enqueue(new Callback<List<MemberDetail>>() {
             @Override
-            public void onResponse(Call<List<Person>> call, @NonNull Response<List<Person>> response) {
+            public void onResponse(Call<List<MemberDetail>> call, @NonNull Response<List<MemberDetail>> response) {
 
                 if(!response.isSuccessful()) {
                     Toast.makeText(ListActivity.this, response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                List<Person> personList = response.body();
+                List<MemberDetail> personList = response.body();
                 PersonAdapter PersonAdapter = new PersonAdapter(ListActivity.this, personList);
                 recyclerView.setAdapter(PersonAdapter);
             }
 
             @Override
-            public void onFailure(Call<List<Person>> call, Throwable t) {
+            public void onFailure(Call<List<MemberDetail>> call, Throwable t) {
                 Toast.makeText(ListActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

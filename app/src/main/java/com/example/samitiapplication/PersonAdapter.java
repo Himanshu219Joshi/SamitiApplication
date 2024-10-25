@@ -10,15 +10,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.samitiapplication.modal.Person;
+import com.example.samitiapplication.modal.MemberDetail;
 
 import java.util.List;
 
 public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonViewHolder> {
 
-    List<Person> personList;
+    List<MemberDetail> personList;
 
-    public PersonAdapter(Context context, List<Person> person) {
+    public PersonAdapter(Context context, List<MemberDetail> person) {
         personList = person;
         this.context = context;
     }
@@ -34,7 +34,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
 
     @Override
     public void onBindViewHolder(@NonNull PersonAdapter.PersonViewHolder holder, int position) {
-        Person person = personList.get(position);
+        MemberDetail person = personList.get(position);
         holder.memberId.setText(context.getString(R.string.member_id).concat(person.getId()));
         holder.memberName.setText(context.getString(R.string.name).concat(person.getMemberName()).concat(" ").concat(person.getFatherName()));
         holder.loanAmount.setText(context.getString(R.string.loan_amount).concat(person.getLoanAmount()));

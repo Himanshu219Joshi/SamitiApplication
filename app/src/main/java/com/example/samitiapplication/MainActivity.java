@@ -2,7 +2,6 @@ package com.example.samitiapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -13,25 +12,17 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.samitiapplication.databinding.ActivityListBinding;
 import com.example.samitiapplication.databinding.ActivityMainBinding;
 import com.example.samitiapplication.databinding.ActivitySummaryBinding;
 import com.example.samitiapplication.modal.ApiInterface;
 
-import com.example.samitiapplication.modal.Person;
 import com.example.samitiapplication.modal.Summary;
 import com.example.samitiapplication.networking.ApiClient;
-import com.example.samitiapplication.networking.SessionManager;
-import com.example.samitiapplication.ui.login.LoginActivity;
-
-import java.util.List;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -106,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         binding.showList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ListActivity.class));
+                startActivity(new Intent(MainActivity.this, LoanDetailActivity.class));
             }
         });
 

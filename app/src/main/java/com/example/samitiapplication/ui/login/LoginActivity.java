@@ -154,7 +154,7 @@ public class LoginActivity extends AppCompatActivity {
                 Retrofit instance = ApiClient.instance();
                 loginUser.setPassword(passwordEditText.getText().toString());
                 assert usernameEditText != null;
-                loginUser.setPhoneNumber(usernameEditText.getText().toString());
+                loginUser.setMobileNumber(usernameEditText.getText().toString());
                 ApiInterface apiInterface = instance.create(ApiInterface.class);
                 Call<LoginUser> loginUserCall = apiInterface.signIn(loginUser);
                 loginUserCall.enqueue(new Callback<LoginUser>() {

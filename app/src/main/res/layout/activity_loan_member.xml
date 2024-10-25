@@ -17,15 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-<!--            <ImageView-->
-<!--                android:id="@+id/header_image"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="200dp"-->
-<!--                android:src="@drawable/logo"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-
             <TextView
                 android:id="@+id/memberName"
                 style="@style/TextAppearance.MaterialComponents.Headline6"
@@ -44,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="MemberId"
+                android:text="@string/member_id"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/memberName" />
@@ -61,12 +52,12 @@
                 app:layout_constraintTop_toBottomOf="@id/memberId" />
 
             <TextView
-                android:id="@+id/investedMoney"
+                android:id="@+id/loanDate"
                 style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="@string/inverted_amount"
+                android:text="@string/loan_date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/loanAmount" />

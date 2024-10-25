@@ -2,15 +2,15 @@ package com.example.samitiapplication.modal;
 
 public class LoginUser {
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    String phoneNumber;
+    String mobileNumber;
     String password;
 
     public String getToken() {
