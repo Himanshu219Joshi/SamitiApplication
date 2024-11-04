@@ -3,4 +3,5 @@
     <color name="textPrimaryColor">#FF000000</color>
     <color name="textSecondaryColor">#FFFFFF</color>
     <color name="edit_text_border">#dcdcdc</color>
+    <color name="link_color">#3F51B5</color>
 </resources>

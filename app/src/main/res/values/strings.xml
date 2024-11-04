@@ -24,10 +24,10 @@
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed</string>
-    <string name="member_id">"Member Id: </string>
+    <string name="login_failed">Login failed</string>
+    <string name="member_id">Member Id: </string>
     <string name="name">"Name: "</string>
-    <string name="invested_money">"Invested Money: "</string>
+    <string name="invested_money">Invested Money: </string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="password">Password</string>
@@ -35,4 +35,7 @@
     <string name="aadhaar_number">Aadhaar Number</string>
     <string name="cancel">Cancel</string>
     <string name="title_registartion">Registration Activity</string>
+    <string name="view_detailed_summary">View Details</string>
+    <string name="last_loan_details">Last Loan</string>
+    <string name="last_loan_view_details">View Details</string>
 </resources>

@@ -15,7 +15,7 @@ public interface ApiInterface {
     Call<List<MemberDetail>> getPerson(@Header ("Authorization") String token);
 
     @GET("samiti/getSummary")
-    Call<Summary> getSummary(@Header ("Authorization") String token);
+    Call<SummaryDetails> getSummary(@Header ("Authorization") String token);
 
     @POST("/signIn")
     Call<LoginUser> signIn(@Body LoginUser loginUser);

@@ -16,7 +16,7 @@ import com.example.samitiapplication.databinding.ActivityMainBinding;
 import com.example.samitiapplication.databinding.ActivitySummaryBinding;
 import com.example.samitiapplication.modal.ApiInterface;
 
-import com.example.samitiapplication.modal.Summary;
+import com.example.samitiapplication.modal.SummaryDetails;
 import com.example.samitiapplication.networking.ApiClient;
 
 import retrofit2.Call;
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     ActivityMainBinding binding;
     SharedPreferences sharedPreferences;
-    TextView totalAmount, lentAmount, balanceAmount, mobileNo;
+    TextView totalAmount, lentAmount, balanceAmount, mobileNo, memberName, loanAmount, memberId, loanDate;
 
     ActivitySummaryBinding summaryBinding;
     private RecyclerView recyclerView;
@@ -43,27 +43,40 @@ public class MainActivity extends AppCompatActivity {
         totalAmount = findViewById(R.id.totalAmount);
         lentAmount = findViewById(R.id.lentAmount);
         balanceAmount = findViewById(R.id.balanceAmount);
+
+        memberName = findViewById(R.id.memberName);
+        loanAmount = findViewById(R.id.loanAmount);
+        memberId = findViewById(R.id.memberId);
+        loanDate = findViewById(R.id.loanDate);
+
+
+
         sharedPreferences = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
         Retrofit instance = ApiClient.instance();
         apiInterface = instance.create(ApiInterface.class);
 
         String token = sharedPreferences.getString("token", null);
 
-        Call<Summary> summaryDetails = apiInterface.getSummary("Bearer "+token);
+        Call<SummaryDetails> summaryDetails = apiInterface.getSummary("Bearer "+token);
 
 
-        summaryDetails.enqueue(new Callback<Summary>() {
+        summaryDetails.enqueue(new Callback<SummaryDetails>() {
             @Override
-            public void onResponse(@NonNull Call<Summary> call, @NonNull Response<Summary> response) {
+            public void onResponse(@NonNull Call<SummaryDetails> call, @NonNull Response<SummaryDetails> response) {
                 if(response.body() != null ) {
-                    totalAmount.append(String.valueOf(" "+response.body().getTotalAmount()));
-                    lentAmount.append(String.valueOf(" "+response.body().getLentAmount()));
-                    balanceAmount.append(String.valueOf(" "+response.body().getBalanceAmount()));
+                    totalAmount.append(String.valueOf(" "+response.body().getSummary().getTotalAmount()));
+                    lentAmount.append(String.valueOf(" "+response.body().getSummary().getLentAmount()));
+                    balanceAmount.append(String.valueOf(" "+response.body().getSummary().getBalanceAmount()));
+
+                    memberName.append(String.valueOf(" "+response.body().getLastLoan().getMemberName()));
+                    memberId.append(String.valueOf(" "+response.body().getLastLoan().getMemberId()));
+                    loanAmount.append(String.valueOf(" "+response.body().getLastLoan().getLoanAmount()));
+                    loanDate.append(String.valueOf(" "+response.body().getLastLoan().getDate()));
                 }
             }
 
             @Override
-            public void onFailure(Call<Summary> call, Throwable t) {
+            public void onFailure(Call<SummaryDetails> call, Throwable t) {
                 Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -94,7 +107,14 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        binding.showList.setOnClickListener(new View.OnClickListener() {
+        binding.showSummaryDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ListActivity.class));
+            }
+        });
+
+        binding.lastLoanDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, LoanDetailActivity.class));
