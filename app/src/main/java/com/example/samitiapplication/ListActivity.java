@@ -10,7 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.samitiapplication.databinding.ActivityListBinding;
+import com.example.samitiapplication.databinding.ActivityMemberListBinding;
 import com.example.samitiapplication.modal.ApiInterface;
 import com.example.samitiapplication.modal.MemberDetail;
 import com.example.samitiapplication.networking.ApiClient;
@@ -25,7 +25,7 @@ import retrofit2.Retrofit;
 public class ListActivity extends AppCompatActivity {
 
     ApiInterface apiInterface;
-    ActivityListBinding binding;
+    ActivityMemberListBinding binding;
     RecyclerView recyclerView;
 
     SharedPreferences sharedPreferences;
@@ -33,9 +33,9 @@ public class ListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityListBinding.inflate(getLayoutInflater());
+        binding = ActivityMemberListBinding.inflate(getLayoutInflater());
 //        binding.progressBar.setVisibility(View.GONE);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.activity_member_list);
 
         Retrofit instance = ApiClient.instance();
         apiInterface = instance.create(ApiInterface.class);
@@ -53,7 +53,7 @@ public class ListActivity extends AppCompatActivity {
             public void onResponse(Call<List<MemberDetail>> call, @NonNull Response<List<MemberDetail>> response) {
 
                 if(!response.isSuccessful()) {
-                    Toast.makeText(ListActivity.this, response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ListActivity.this, "Login Sucessfull", Toast.LENGTH_SHORT).show();
                     return;
                 }
 

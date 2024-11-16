@@ -2,6 +2,7 @@ package com.example.samitiapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -49,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
         memberId = findViewById(R.id.memberId);
         loanDate = findViewById(R.id.loanDate);
 
-
-
         sharedPreferences = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
         Retrofit instance = ApiClient.instance();
         apiInterface = instance.create(ApiInterface.class);
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SummaryDetails> call, Throwable t) {
-                Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Api Response Failed", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -162,7 +162,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(Call<LoginUser> call, @NonNull Response<LoginUser> response) {
                         String tokenValue = null;
                         if(response.body() != null) {
-                            Toast.makeText(LoginActivity.this, response.body().toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Logged In Sucessfull", Toast.LENGTH_SHORT).show();
                             tokenValue = response.body().getToken();
                         }
                         SharedPreferences.Editor editor = sharedPreferences.edit();

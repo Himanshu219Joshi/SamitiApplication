@@ -9,9 +9,10 @@
 
 
 <include android:id="@+id/appBar" layout="@layout/activity_app_bar" />
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_marginTop="72dp"
     app:layout_constraintTop_toBottomOf="parent"
     android:padding="16dp"
@@ -27,21 +28,20 @@
             app:layout_constraintStart_toEndOf="parent"
             tools:ignore="MissingConstraints" />
 
-        <EditText
-            android:id="@+id/firstName"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="48dp"
-            android:autofillHints="firstName"
-            android:hint="@string/first_name"
-            android:inputType="textPersonName"
-            android:textColorHint="@color/textPrimaryColor"
-            android:selectAllOnFocus="false"
-            android:background="@drawable/background_input_field"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/firstName"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="48dp"
+        android:autofillHints="firstName"
+        android:hint="@string/first_name"
+        android:inputType="textPersonName"
+        android:selectAllOnFocus="false"
+        android:textColor="@color/textPrimaryColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/lastName"
@@ -51,6 +51,7 @@
             android:autofillHints="mobile_no"
             android:hint="@string/last_name"
             android:inputType="textAutoComplete"
+            android:textColor="@color/textPrimaryColor"
             android:selectAllOnFocus="false"
             app:layout_constraintCircleRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -66,6 +67,7 @@
         android:autofillHints="mobile_no"
         android:hint="@string/mobileNo"
         android:inputType="number"
+        android:textColor="@color/textPrimaryColor"
         android:selectAllOnFocus="false"
         app:layout_constraintCircleRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,6 +83,7 @@
         android:autofillHints="mobile_no"
         android:hint="@string/password"
         android:inputType="numberPassword"
+        android:textColor="@color/textPrimaryColor"
         android:selectAllOnFocus="false"
         app:layout_constraintCircleRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -96,6 +99,7 @@
             android:autofillHints="mobile_no"
             android:hint="@string/aadhaar_number"
             android:inputType="numberPassword"
+            android:textColor="@color/textPrimaryColor"
             android:selectAllOnFocus="false"
             app:layout_constraintCircleRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -103,22 +107,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/password" />
 
-        <Button
-            android:id="@+id/submitBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="64dp"
-            android:enabled="true"
-            android:text="@string/submit"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/aadhaarNumber"
-            app:layout_constraintVertical_bias="0.193" />
+    <Button
+        android:id="@+id/submitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="64dp"
+        android:enabled="true"
+        android:text="@string/submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aadhaarNumber"
+        app:layout_constraintVertical_bias="0.189" />
 
-        <Button
+    <Button
             android:id="@+id/cancelBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
