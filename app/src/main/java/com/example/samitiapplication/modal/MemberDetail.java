@@ -25,10 +25,6 @@ public class MemberDetail {
         return memberName;
     }
 
-    public String getId() {
-        return id;
-    }
-
     public String getLoanAmount() {
         return loanAmount;
     }
@@ -37,7 +33,11 @@ public class MemberDetail {
         return investedMoney;
     }
 
-    private String id;
-    private String loanAmount;
-    private String investedMoney;
+    public String getMemberId() {
+        return memberId;
+    }
+
+    private String memberId;
+    private final String loanAmount;
+    private final String investedMoney;
 }
