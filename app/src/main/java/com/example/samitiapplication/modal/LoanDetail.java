@@ -4,6 +4,8 @@ public class LoanDetail {
 
     private String memberName;
 
+    private long emiAmount;
+
     public String getFatherName() {
         return fatherName;
     }
@@ -50,5 +52,13 @@ public class LoanDetail {
 
     String loanAmount;
     String date;
+
+    public long getEmiAmount() {
+        return emiAmount;
+    }
+
+    public void setEmiAmount(long emiAmount) {
+        this.emiAmount = emiAmount;
+    }
 }
 

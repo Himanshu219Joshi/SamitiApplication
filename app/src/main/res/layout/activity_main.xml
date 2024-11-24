@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:fitsSystemWindows="true">
 
     <include
         layout="@layout/activity_app_bar"
@@ -35,10 +35,11 @@
                 android:id="@+id/showSummaryDetails"
                 style="@style/TextAppearance.MaterialComponents.Headline5"
                 android:layout_width="170dp"
-                android:textAlignment="textEnd"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
+                android:paddingEnd="24dp"
                 android:text="@string/view_detailed_summary"
+                android:textAlignment="textEnd"
                 android:textColor="@color/link_color"
                 android:textSize="12sp" />
 
@@ -66,6 +67,7 @@
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
+                android:paddingEnd="24dp"
                 android:text="@string/last_loan_view_details"
                 android:textAlignment="textEnd"
                 android:textColor="@color/link_color"
@@ -76,4 +78,14 @@
         <include layout="@layout/activity_loan_member" />
     </LinearLayout>
 
-</RelativeLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginBottom="16dp"
+        app:srcCompat="@drawable/baseline_add_circle_24"
+        />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

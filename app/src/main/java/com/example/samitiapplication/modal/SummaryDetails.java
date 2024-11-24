@@ -20,4 +20,5 @@ public class SummaryDetails {
 
     private Summary summary;
     private LoanDetail lastLoan;
+
 }

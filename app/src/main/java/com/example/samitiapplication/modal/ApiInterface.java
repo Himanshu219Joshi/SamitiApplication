@@ -25,4 +25,7 @@ public interface ApiInterface {
 
     @GET("samiti/loanDetails")
     Call<List<LoanDetail>> getLoanDetail(@Header ("Authorization") String token);
+
+    @POST("/samiti/updateSummary")
+    Call<NewLoanDetail> updateSummary(@Header ("Authorization") String token, @Body NewLoanDetail newLoanDetail);
 }

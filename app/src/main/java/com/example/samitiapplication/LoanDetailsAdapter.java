@@ -36,10 +36,11 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
     @Override
     public void onBindViewHolder(@NonNull LoanDetailsAdapter.LoanDetailsViewHolder holder, int position) {
         LoanDetail loanDetail = loans.get(position);
-        holder.memberId.setText(context.getString(R.string.member_id).concat(loanDetail.getMemberId()));
-        holder.memberName.setText(context.getString(R.string.member_name).concat(loanDetail.getMemberName()));
-        holder.loanAmount.setText(context.getString(R.string.loan_amount).concat(loanDetail.getLoanAmount()));
-        holder.loanDate.setText(context.getString(R.string.loan_date).concat(loanDetail.getDate()));
+        holder.memberId.setText(context.getString(R.string.member_id).concat(" ").concat(loanDetail.getMemberId()));
+        holder.memberName.setText(context.getString(R.string.member_name).concat(" ").concat(loanDetail.getMemberName()));
+        holder.loanAmount.setText(context.getString(R.string.loan_amount).concat(" ").concat(loanDetail.getLoanAmount()));
+        holder.loanDate.setText(context.getString(R.string.loan_date).concat(" ").concat(loanDetail.getDate()));
+        holder.loanEmi.setText(context.getString(R.string.loan_emi).concat(" ").concat(String.valueOf(loanDetail.getEmiAmount())));
     }
 
     @Override
@@ -48,7 +49,7 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
     }
 
     public static class LoanDetailsViewHolder extends RecyclerView.ViewHolder {
-        TextView memberId, memberName, loanAmount, loanDate;
+        TextView memberId, memberName, loanAmount, loanDate, loanEmi;
         public LoanDetailsViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -56,6 +57,8 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
             memberName = itemView.findViewById(R.id.memberName);
             loanAmount = itemView.findViewById(R.id.loanAmount);
             loanDate = itemView.findViewById(R.id.loanDate);
+            loanEmi = itemView.findViewById(R.id.loanEmi);
+
         }
     }
 }

@@ -19,6 +19,7 @@ import com.example.samitiapplication.modal.ApiInterface;
 
 import com.example.samitiapplication.modal.SummaryDetails;
 import com.example.samitiapplication.networking.ApiClient;
+import com.google.android.material.snackbar.Snackbar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     ActivityMainBinding binding;
     SharedPreferences sharedPreferences;
-    TextView totalAmount, lentAmount, balanceAmount, mobileNo, memberName, loanAmount, memberId, loanDate;
+    TextView totalAmount, lentAmount, balanceAmount, mobileNo, memberName, loanAmount, memberId, loanDate, loanEmi;
 
     ActivitySummaryBinding summaryBinding;
     private RecyclerView recyclerView;
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         loanAmount = findViewById(R.id.loanAmount);
         memberId = findViewById(R.id.memberId);
         loanDate = findViewById(R.id.loanDate);
+        loanEmi = findViewById(R.id.loanEmi);
+
 
         sharedPreferences = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
         Retrofit instance = ApiClient.instance();
@@ -71,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     memberId.append(String.valueOf(" "+response.body().getLastLoan().getMemberId()));
                     loanAmount.append(String.valueOf(" "+response.body().getLastLoan().getLoanAmount()));
                     loanDate.append(String.valueOf(" "+response.body().getLastLoan().getDate()));
+                    loanEmi.append((String.valueOf(" "+response.body().getLastLoan().getEmiAmount())));
                 }
             }
 
@@ -117,6 +121,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, LoanDetailActivity.class));
+            }
+        });
+
+        binding.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, AddNewLoan.class));
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAnchorView(R.id.fab)
+//                        .setAction("Action", null).show();
             }
         });
 

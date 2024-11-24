@@ -58,8 +58,8 @@ public class ListActivity extends AppCompatActivity {
                 }
 
                 List<MemberDetail> personList = response.body();
-                PersonAdapter PersonAdapter = new PersonAdapter(ListActivity.this, personList);
-                recyclerView.setAdapter(PersonAdapter);
+                MemberAdapter MemberAdapter = new MemberAdapter(ListActivity.this, personList);
+                recyclerView.setAdapter(MemberAdapter);
             }
 
             @Override
