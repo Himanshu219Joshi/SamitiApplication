@@ -6,6 +6,26 @@ public class LoanDetail {
 
     private long emiAmount;
 
+    private long finalAmountWithInterest;
+
+    public long getFinalAmountWithInterest() {
+        return finalAmountWithInterest;
+    }
+
+    public void setFinalAmountWithInterest(long finalAmountWithInterest) {
+        this.finalAmountWithInterest = finalAmountWithInterest;
+    }
+
+    public long getTotalInterest() {
+        return totalInterest;
+    }
+
+    public void setTotalInterest(long totalInterest) {
+        this.totalInterest = totalInterest;
+    }
+
+    private long totalInterest;
+
     public String getFatherName() {
         return fatherName;
     }

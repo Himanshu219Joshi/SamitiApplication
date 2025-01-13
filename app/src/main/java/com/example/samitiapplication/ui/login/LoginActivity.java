@@ -30,6 +30,7 @@ import com.example.samitiapplication.modal.LoginUser;
 import com.example.samitiapplication.networking.ApiClient;
 import com.example.samitiapplication.databinding.ActivityLoginBinding;
 import com.example.samitiapplication.networking.SessionManager;
+import com.google.android.material.textfield.TextInputEditText;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,8 +58,8 @@ public class LoginActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
 
-        final EditText usernameEditText = binding.mobileNo;
-        final EditText passwordEditText = binding.password;
+        final TextInputEditText usernameEditText = binding.mobileNo;
+        final TextInputEditText passwordEditText = (TextInputEditText) binding.password;
         final Button loginButton = binding.login;
         final ProgressBar loadingProgressBar = binding.loading;
         final Button registerBtn = binding.register;
