@@ -37,6 +37,10 @@ public class MemberDetail {
         return memberId;
     }
 
+    public String getIdAndMemberList() {
+        return this.memberId +" "+this.getMemberName();
+    }
+
     private String memberId;
     private final String loanAmount;
     private final String investedMoney;

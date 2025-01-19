@@ -17,7 +17,8 @@
             android:padding="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/card_color">
+            android:background="@color/textSecondaryColor"
+            >
 
             <TextView
                 android:id="@+id/memberName"

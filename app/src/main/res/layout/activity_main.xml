@@ -40,6 +40,7 @@
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
+                android:paddingStart="24dp"
                 android:paddingEnd="24dp"
                 android:text="@string/view_detailed_summary"
                 android:textAlignment="textEnd"
@@ -82,7 +83,17 @@
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/addNewLoan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:layout_marginBottom="96dp"
+        app:srcCompat="@drawable/baseline_add_circle_24"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/samitiBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"

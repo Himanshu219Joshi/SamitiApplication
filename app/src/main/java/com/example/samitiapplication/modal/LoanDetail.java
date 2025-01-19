@@ -8,6 +8,26 @@ public class LoanDetail {
 
     private long finalAmountWithInterest;
 
+    public MemberDetail getMemberDetails() {
+        return memberDetails;
+    }
+
+    public void setMemberDetail(MemberDetail memberDetails) {
+        this.memberDetails = memberDetails;
+    }
+
+    private MemberDetail memberDetails;
+
+    public LoanDetail getLoanDetail() {
+        return loanDetail;
+    }
+
+    public void setLoanDetail(LoanDetail loanDetail) {
+        this.loanDetail = loanDetail;
+    }
+
+    private LoanDetail loanDetail;
+
     public long getFinalAmountWithInterest() {
         return finalAmountWithInterest;
     }

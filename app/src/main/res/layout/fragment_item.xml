@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="20dp"
+    android:orientation="horizontal"
+    >
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/memberId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:maxEms="3"
+            android:text="1" />
+
+        <TextView
+            android:id="@+id/memberName"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:maxEms="10"
+            android:text="Himanshu Joshi" />
+    </GridLayout>
+
+    <GridLayout
+        android:layout_column="2">
+        <Button
+            android:id="@+id/paidBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/success_btn"
+            android:text="@string/paid" />
+
+        <Button
+            android:id="@+id/notPaidBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/reject_btn"
+        android:text="@string/notPaid" />
+    </GridLayout>
+
+</GridLayout>

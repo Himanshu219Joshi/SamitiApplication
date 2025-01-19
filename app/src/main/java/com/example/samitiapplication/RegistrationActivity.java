@@ -48,6 +48,7 @@ public class RegistrationActivity extends AppCompatActivity {
         EditText aadhaarNumberEditText = findViewById(R.id.aadhaarNumber);
         ProgressBar loadingProgressBar = findViewById(R.id.loading);
         Button submitBtn = findViewById(R.id.submitBtn);
+        Button cancelBtn = findViewById(R.id.cancelBtn);
 
 
 //        final EditText firstNameEditText = binding.firstName;
@@ -93,5 +94,11 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
 
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
+            }
+        });
     }
 }

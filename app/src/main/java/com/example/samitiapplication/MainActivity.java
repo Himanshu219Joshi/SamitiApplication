@@ -124,13 +124,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
+        binding.addNewLoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, AddNewLoan.class));
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAnchorView(R.id.fab)
-//                        .setAction("Action", null).show();
+            }
+        });
+
+        binding.samitiBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ItemFragment.class));
             }
         });
 

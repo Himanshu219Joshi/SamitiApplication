@@ -47,6 +47,11 @@
             android:label="@string/title_activity_list"
             android:theme="@style/Theme.SamitiApplication" />
         <activity
+            android:name=".ItemFragment"
+            android:exported="false"
+            android:label="@string/title_activity_list"
+            android:theme="@style/Theme.SamitiApplication" />
+        <activity
             android:name=".ui.login.LoginActivity"
             android:exported="true">
             <intent-filter>
