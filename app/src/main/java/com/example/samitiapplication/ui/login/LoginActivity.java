@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         final TextInputEditText usernameEditText = binding.mobileNo;
         final TextInputEditText passwordEditText = (TextInputEditText) binding.password;
         final Button loginButton = binding.login;
-        final ProgressBar loadingProgressBar = binding.loading;
+        final FrameLayout loadingProgressBar = (FrameLayout) binding.loading;
         final Button registerBtn = binding.register;
 
         registerBtn.setOnClickListener(new View.OnClickListener() {

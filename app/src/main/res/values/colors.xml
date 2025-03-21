@@ -7,5 +7,6 @@
     <color name="card_color">#808080</color>
     <color name="success_btn">#008000</color>
     <color name="reject_btn">#cd1c18</color>
+    <color name="primaryColor">#FF5722</color>
     <color name="mtrl_textinput_default_box_stroke_color">#000000</color>
 </resources>

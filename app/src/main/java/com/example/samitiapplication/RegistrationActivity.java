@@ -41,11 +41,11 @@ public class RegistrationActivity extends AppCompatActivity {
             return insets;
         });
 
-        EditText firstNameEditText = findViewById(R.id.firstName);
-        EditText lastNameEditText =  findViewById(R.id.lastName);
-        EditText mobileNumberEditText =  findViewById(R.id.mobileNo);
-        EditText passwordEditText =  findViewById(R.id.password);;
-        EditText aadhaarNumberEditText = findViewById(R.id.aadhaarNumber);
+        EditText firstNameEditText = findViewById(R.id.firstNameTextField);
+        EditText lastNameEditText =  findViewById(R.id.lastNameTextField);
+        EditText mobileNumberEditText =  findViewById(R.id.mobileNoTextField);
+        EditText passwordEditText =  findViewById(R.id.passwordTextField);;
+        EditText aadhaarNumberEditText = findViewById(R.id.aadhaarNumberTextField);
         ProgressBar loadingProgressBar = findViewById(R.id.loading);
         Button submitBtn = findViewById(R.id.submitBtn);
         Button cancelBtn = findViewById(R.id.cancelBtn);
