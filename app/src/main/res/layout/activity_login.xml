@@ -23,7 +23,6 @@
             android:layout_height="150dp"
             android:importantForAccessibility="no"
             app:circularflow_radiusInDP="20dp"
-            android:src="@drawable/ic_profile_circle"
             />
     </LinearLayout>
 
@@ -104,6 +103,7 @@
         app:layout_constraintEnd_toEndOf="@+id/password"
         app:layout_constraintStart_toStartOf="@+id/password"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintVertical_bias="0.3"
+        tools:ignore="NotSibling" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
