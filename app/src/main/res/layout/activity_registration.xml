@@ -39,7 +39,6 @@
             android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@id/activity_title"
             tools:ignore="MissingConstraints"
-            app:boxStrokeColor="@color/primaryColor"
             app:cursorColor="@color/primaryColor"
             tools:layout_editor_absoluteX="16dp">
 

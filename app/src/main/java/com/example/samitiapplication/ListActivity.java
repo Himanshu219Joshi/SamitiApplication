@@ -47,7 +47,7 @@ public class ListActivity extends AppCompatActivity {
 
         String token = sharedPreferences.getString("token", null);
 
-        Call<List<MemberDetail>> call = apiInterface.getPerson("Bearer "+token);
+        Call<List<MemberDetail>> call = apiInterface.getMembersInfo("Bearer "+token);
         call.enqueue(new Callback<List<MemberDetail>>() {
             @Override
             public void onResponse(Call<List<MemberDetail>> call, @NonNull Response<List<MemberDetail>> response) {

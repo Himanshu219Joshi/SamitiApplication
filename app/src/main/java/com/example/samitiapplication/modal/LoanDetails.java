@@ -1,36 +1,38 @@
 package com.example.samitiapplication.modal;
 
 public class LoanDetails {
-    public LoanDetails(String name, String date, int amount) {
-        this.name = name;
-        this.date = date;
-        this.amount = amount;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    private String loanAmount;
 
     public String getDate() {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public String getLoanAmount() {
+        return loanAmount;
     }
 
-    public int getAmount() {
-        return amount;
+    public String getEmiAmount() {
+        return emiAmount;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public String getFinalAmountWithInterest() {
+        return finalAmountWithInterest;
     }
 
-    private String name, date, id;
-    private int amount;
+    public String getTotalInterest() {
+        return totalInterest;
+    }
+
+    public String getMemberDetails() {
+        return memberDetails;
+    }
+
+    private String date;
+    private String emiAmount;
+    private String finalAmountWithInterest;
+    private String totalInterest;
+
+    private String memberDetails;
+
 }

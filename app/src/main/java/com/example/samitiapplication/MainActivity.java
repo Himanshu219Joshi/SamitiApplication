@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     ActivityMainBinding binding;
     SharedPreferences sharedPreferences;
-    TextView totalAmount, lentAmount, balanceAmount, mobileNo, memberName, loanAmount, memberId, loanDate, loanEmi;
+    TextView totalAmount, lentAmount, balanceAmount, interestAmount, mobileNo, memberName, loanAmount, memberId, loanDate, loanEmi;
 
     ActivitySummaryBinding summaryBinding;
     private RecyclerView recyclerView;
@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         totalAmount = findViewById(R.id.totalAmount);
         lentAmount = findViewById(R.id.lentAmount);
         balanceAmount = findViewById(R.id.balanceAmount);
+        interestAmount = findViewById(R.id.interestAmount);
 
         memberName = findViewById(R.id.memberName);
         loanAmount = findViewById(R.id.loanAmount);
@@ -69,12 +70,16 @@ public class MainActivity extends AppCompatActivity {
                     totalAmount.append(String.valueOf(" "+response.body().getSummary().getTotalAmount()));
                     lentAmount.append(String.valueOf(" "+response.body().getSummary().getLentAmount()));
                     balanceAmount.append(String.valueOf(" "+response.body().getSummary().getBalanceAmount()));
+                    interestAmount.append(String.valueOf(" "+response.body().getSummary().getInterestAccrued()));
+
 
                     memberName.append(String.valueOf(" "+response.body().getLastLoan().getMemberName()));
                     memberId.append(String.valueOf(" "+response.body().getLastLoan().getMemberId()));
-                    loanAmount.append(String.valueOf(" "+response.body().getLastLoan().getLoanAmount()));
-                    loanDate.append(String.valueOf(" "+response.body().getLastLoan().getDate()));
-                    loanEmi.append((String.valueOf(" "+response.body().getLastLoan().getEmiAmount())));
+                    if(response.body().getLastLoan().getLoanDetails() != null) {
+                        loanAmount.append(String.valueOf(" " + response.body().getLastLoan().getLoanDetails().getLoanAmount()));
+                        loanDate.append(String.valueOf(" " + response.body().getLastLoan().getLoanDetails().getDate()));
+                        loanEmi.append((String.valueOf(" " + response.body().getLastLoan().getLoanDetails().getEmiAmount())));
+                    }
                 }
             }
 

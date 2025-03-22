@@ -2,23 +2,15 @@ package com.example.samitiapplication.modal;
 
 public class SummaryDetails {
 
+   private Summary summary;
+
+    public LastLoanDetails getLastLoan() {
+        return lastLoan;
+    }
+
     public Summary getSummary() {
         return summary;
     }
 
-    public void setSummary(Summary summary) {
-        this.summary = summary;
-    }
-
-    public LoanDetail getLastLoan() {
-        return lastLoan;
-    }
-
-    public void setLastLoan(LoanDetail lastLoan) {
-        this.lastLoan = lastLoan;
-    }
-
-    private Summary summary;
-    private LoanDetail lastLoan;
-
+    private LastLoanDetails lastLoan;
 }

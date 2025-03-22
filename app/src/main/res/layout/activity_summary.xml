@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#E0F7FA"
     tools:context=".SummaryDetails">
 
     <androidx.cardview.widget.CardView
@@ -18,8 +19,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="15dp"
-            android:splitMotionEvents="true"
-            android:background="@color/textSecondaryColor">
+            android:splitMotionEvents="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -85,6 +85,27 @@
                 android:paddingStart="2dp"
                 android:paddingEnd="0dp"/>
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/interestAmountLabel"
+                style="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/interest_amount"/>
+            <TextView
+                android:id="@+id/interestAmount"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="2dp"
+                android:paddingEnd="0dp"/>
+        </LinearLayout>
+
+
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

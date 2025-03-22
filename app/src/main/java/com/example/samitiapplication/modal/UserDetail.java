@@ -40,6 +40,16 @@ public class UserDetail {
     String firstName;
     String lastName;
     String mobileNumber;
+
+    public String getAadharNumber() {
+        return aadharNumber;
+    }
+
+    public void setAadharNumber(String aadharNumber) {
+        this.aadharNumber = aadharNumber;
+    }
+
+    String aadharNumber;;
     String hash_key;
     String created_on;
 

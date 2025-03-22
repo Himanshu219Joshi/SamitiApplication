@@ -30,6 +30,31 @@
             tools:ignore="MissingConstraints" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/memberIdTextLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="@string/member_id_hint"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/activity_title"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                android:id="@+id/memberIdAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textPrimaryColor"
+                android:inputType="none"/>
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/memberIdTextField"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:inputType="textPersonName"-->
+<!--                android:textColor="@color/textPrimaryColor" />-->
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/totalAmountTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
@@ -37,8 +62,7 @@
             android:layout_margin="16dp"
             android:hint="@string/total_amount_placeholder"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/activity_title"
-            tools:ignore="MissingConstraints"
+            app:layout_constraintTop_toBottomOf="@id/memberIdTextLayout"
             tools:layout_editor_absoluteX="16dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -109,7 +133,7 @@
                 android:id="@+id/loanDateTextField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberPassword"
+                android:inputType="date"
                 android:textColor="@color/textPrimaryColor" />
 
         </com.google.android.material.textfield.TextInputLayout>

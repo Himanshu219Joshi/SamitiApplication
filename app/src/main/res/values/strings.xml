@@ -14,11 +14,12 @@
     <string name="penalty_amount">Penalty Amount</string>
     <string name="inverted_amount">Invested Amount:</string>
     <string name="loan_date">Loan Date:</string>
-    <string name="loan_date_placeholder">Loan Date</string>
+    <string name="loan_date_placeholder">Loan Date (MM/DD/YY)</string>
     <string name="loan_emi">Loan EMI: </string>
     <string name="total_amount">Total Amount:</string>
     <string name="total_amount_placeholder">Total Amount</string>
     <string name="balance_amount">Balance Amount:</string>
+    <string name="interest_amount">Interest Amount:</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -93,4 +94,5 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="title_activity_menu">menu</string>
 </resources>

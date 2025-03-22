@@ -18,16 +18,6 @@ public class LoanDetail {
 
     private MemberDetail memberDetails;
 
-    public LoanDetail getLoanDetail() {
-        return loanDetail;
-    }
-
-    public void setLoanDetail(LoanDetail loanDetail) {
-        this.loanDetail = loanDetail;
-    }
-
-    private LoanDetail loanDetail;
-
     public long getFinalAmountWithInterest() {
         return finalAmountWithInterest;
     }
@@ -66,6 +56,8 @@ public class LoanDetail {
         this.loanAmount = loanAmount;
     }
 
+    private LoanDetail loanDetails;
+
     public String getMemberId() {
         return memberId;
     }
@@ -99,6 +91,10 @@ public class LoanDetail {
 
     public void setEmiAmount(long emiAmount) {
         this.emiAmount = emiAmount;
+    }
+
+    public LoanDetail getLoanDetails() {
+        return loanDetails;
     }
 }
 

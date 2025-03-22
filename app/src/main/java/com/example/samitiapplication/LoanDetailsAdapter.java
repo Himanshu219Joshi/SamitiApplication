@@ -37,7 +37,7 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
     public void onBindViewHolder(@NonNull LoanDetailsAdapter.LoanDetailsViewHolder holder, int position) {
         LoanDetail loanDetail = loans.get(position);
         holder.memberId.setText(context.getString(R.string.member_id).concat(" ").concat(loanDetail.getMemberDetails().getMemberId()));
-        holder.memberName.setText(context.getString(R.string.member_name).concat(" ").concat(loanDetail.getMemberDetails().getMemberName()));
+        holder.memberName.setText(context.getString(R.string.member_name).concat(" ").concat(loanDetail.getMemberDetails().getMemberName()).concat(" ").concat(loanDetail.getMemberDetails().getFatherName()));
         holder.loanAmount.setText(context.getString(R.string.loan_amount).concat(" ").concat(loanDetail.getLoanAmount()));
         holder.loanDate.setText(context.getString(R.string.loan_date).concat(" ").concat(loanDetail.getDate()));
         holder.loanEmi.setText(context.getString(R.string.loan_emi).concat(" ").concat(String.valueOf(loanDetail.getEmiAmount())));

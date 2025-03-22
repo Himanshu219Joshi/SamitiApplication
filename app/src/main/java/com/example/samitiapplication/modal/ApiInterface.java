@@ -11,8 +11,8 @@ import retrofit2.http.POST;
 public interface ApiInterface {
 
 
-    @GET("samiti/memberList")
-    Call<List<MemberDetail>> getPerson(@Header ("Authorization") String token);
+    @GET("samiti/getMembers")
+    Call<List<MemberDetail>> getMembersInfo(@Header ("Authorization") String token);
 
     @GET("samiti/getSummary")
     Call<SummaryDetails> getSummary(@Header ("Authorization") String token);
@@ -23,9 +23,9 @@ public interface ApiInterface {
     @POST("/register")
     Call<UserDetail> userRegistration(@Body UserDetail userDetails);
 
-    @GET("samiti/loanDetails")
+    @GET("samiti/getLoans")
     Call<List<LoanDetail>> getLoanDetail(@Header ("Authorization") String token);
 
     @POST("/samiti/updateSummary")
-    Call<NewLoanDetail> updateSummary(@Header ("Authorization") String token, @Body NewLoanDetail newLoanDetail);
+    Call<NewLoanDetail> addNewLoan(@Header ("Authorization") String token, @Body NewLoanDetail newLoanDetail);
 }
