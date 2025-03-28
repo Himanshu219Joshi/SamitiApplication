@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.samitiapplication.R;
+import com.example.samitiapplication.data.DatabaseHelper;
+import com.example.samitiapplication.data.model.UserInfo;
 import com.example.samitiapplication.databinding.ActivityMemberListBinding;
 import com.example.samitiapplication.modal.ApiInterface;
 import com.example.samitiapplication.modal.MemberDetail;
@@ -24,7 +26,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class ItemFragment extends AppCompatActivity {
+public class ItemFragment extends AppCompatActivity implements MyItemRecyclerViewAdapter.buttonClickListener {
 
 
     ApiInterface apiInterface;
@@ -33,13 +35,14 @@ public class ItemFragment extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
 
+    DatabaseHelper db;
+
+    List<MemberDetail> personList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_item_list);
-
-//        Button paitBtn = findViewById(R.id.paidBtn);
-//        Button notPaidBtn = findViewById(R.id.notPaidBtn);
 
         binding = ActivityMemberListBinding.inflate(getLayoutInflater());
 //        binding.progressBar.setVisibility(View.GONE);
@@ -67,8 +70,8 @@ public class ItemFragment extends AppCompatActivity {
                     return;
                 }
 
-                List<MemberDetail> personList = response.body();
-                MyItemRecyclerViewAdapter MemberAdapter = new MyItemRecyclerViewAdapter(ItemFragment.this, personList );
+                personList = response.body();
+                MyItemRecyclerViewAdapter MemberAdapter = new MyItemRecyclerViewAdapter(ItemFragment.this, personList, ItemFragment.this );
                 recyclerViewItemFragment.setAdapter(MemberAdapter);
             }
 
@@ -81,4 +84,16 @@ public class ItemFragment extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onButtonClick(int position) {
+        db = new DatabaseHelper(this);
+        UserInfo userInfo = new UserInfo();
+        userInfo.setMemberName(personList.get(position).getMemberName());
+        userInfo.setMemeberId(Integer.parseInt(personList.get(position).getMemberId()));
+        userInfo.setInstallmentStatus("PAID");
+
+        long result = db.insetData(userInfo);
+        int p = position;
+        Toast.makeText(ItemFragment.this, "Item Clicked "+ result, Toast.LENGTH_SHORT ).show();
+    }
 }

@@ -23,28 +23,30 @@
         <TextView
             android:id="@+id/memberName"
             android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:layout_height="match_parent"
             android:maxEms="10"
+            android:padding="10dp"
             android:text="Himanshu Joshi" />
     </GridLayout>
 
     <GridLayout
         android:layout_column="2">
         <Button
+            style="@style/Widget.AppCompat.Button.Colored"
             android:id="@+id/paidBtn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textColor="@color/success_btn"
+            android:textColor="@color/textSecondaryColor"
             android:text="@string/paid" />
 
         <Button
+            style="@style/Widget.AppCompat.Button.Colored"
             android:id="@+id/notPaidBtn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="10dp"
-            android:textColor="@color/reject_btn"
-        android:text="@string/notPaid" />
+            android:textColor="@color/textSecondaryColor"
+            android:text="@string/notPaid" />
     </GridLayout>
 
 </GridLayout>

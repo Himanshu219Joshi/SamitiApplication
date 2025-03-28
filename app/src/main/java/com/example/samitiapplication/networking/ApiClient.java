@@ -32,7 +32,7 @@ public class ApiClient {
                     .build();
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://fbeb-2409-40d4-110e-a6f0-29d6-979f-8d93-8ff3.ngrok-free.app")
+                    .baseUrl("https://3e80-2409-40d4-10b3-9f44-f818-17c5-2eaf-1226.ngrok-free.app")
                     .addConverterFactory((GsonConverterFactory.create()))
                     .client(okHttpClient)
                     .build();
