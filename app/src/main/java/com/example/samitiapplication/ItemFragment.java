@@ -1,15 +1,22 @@
 package com.example.samitiapplication;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.EmojiCompatConfigurationView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.emoji2.bundled.BundledEmojiCompatConfig;
+import androidx.emoji2.text.EmojiCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +30,8 @@ import com.example.samitiapplication.modal.Employee;
 import com.example.samitiapplication.modal.MemberDetail;
 import com.example.samitiapplication.networking.ApiClient;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,11 +57,9 @@ public class ItemFragment extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiple_selection);
-//        this.btnGetSelected = (AppCompatButton) findViewById(R.id.btnGetSelected);
+        EmojiCompat.init(new BundledEmojiCompatConfig(this));
+        this.btnGetSelected = (AppCompatButton) findViewById(R.id.btnGetSelected);
         this.recyclerView = (RecyclerView) findViewById(R.id.recyclerViewMultiSelect);
-
-
-        getSupportActionBar();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         adapter = new MultiAdapter(this, memberDetails);
@@ -99,22 +106,37 @@ public class ItemFragment extends AppCompatActivity {
 
         createList();
 
-//        btnGetSelected.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (!adapter.getSelected().isEmpty()) {
-//                    StringBuilder stringBuilder = new StringBuilder();
-//                    for (int i = 0; i < adapter.getSelected().size(); i++) {
-//                        stringBuilder.append(adapter.getSelected().get(i).getMemberName());
-//                        stringBuilder.append("\n");
-//
-//                    }
-//                    showToast(stringBuilder.toString().trim());
+        btnGetSelected.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                if(intent.getPackage() != null){
+//                    startActivity(intent);
 //                } else {
-//                    showToast("No Selection");
+                    Toast.makeText(ItemFragment.this, "Package Not Found", Toast.LENGTH_SHORT).show();
 //                }
-//            }
-//        });
+//                TextView textView = findViewById(R.id.listUse);
+                if (!adapter.getSelected().isEmpty()) {
+                    StringBuilder stringBuilder = new StringBuilder();
+
+                    stringBuilder.append("श्री गौड़ दमावत समिति मार्च 2025   \n 500/- \n\n");
+                    for (int i = 0; i < adapter.getSelected().size(); i++) {
+                        stringBuilder.append(adapter.getSelected().get(i).getMemberId()).append(" ");
+                        stringBuilder.append(adapter.getSelected().get(i).getMemberName().concat(" ").concat(adapter.getSelected().get(i).getFatherName()));
+                        stringBuilder.append(adapter.getSelected().get(i).isPaid() ?" ✅ " : "");
+                        stringBuilder.append("\n");
+                    }
+
+                    String whatsappUrl = "http://api.whatsapp.com/send?text=" + stringBuilder;
+
+                    showMessage("Adapter Information", stringBuilder);
+                    intent.setData(Uri.parse(whatsappUrl));
+                    startActivity(intent);
+                } else {
+                    showToast("No Selection");
+                }
+            }
+        });
     }
 
     private void createList() {
@@ -146,5 +168,14 @@ public class ItemFragment extends AppCompatActivity {
 
     private void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    public void showMessage(String title, StringBuilder message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
+
     }
 }

@@ -5,7 +5,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="ItemFragment">
-    <include layout="@layout/activity_app_bar" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnGetSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_gravity="center"
+        android:text="@string/open_whats_app" />
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewMultiSelect"
         android:layout_width="match_parent"

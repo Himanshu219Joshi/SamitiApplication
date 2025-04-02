@@ -101,4 +101,5 @@
     <string name="action_logout">Logout</string>
     <string name="paid_tick">Paid Tick</string>
     <string name="not_paid">Not Paid</string>
+    <string name="open_whats_app">Open Whats App</string>
 </resources>
