@@ -102,4 +102,6 @@
     <string name="paid_tick">Paid Tick</string>
     <string name="not_paid">Not Paid</string>
     <string name="open_whats_app">Open Whats App</string>
+    <string name="ruppes_white_icon">Ruppes White Icon</string>
+    <string name="rupees_orange_icon">Rupees Orange Icon</string>
 </resources>
