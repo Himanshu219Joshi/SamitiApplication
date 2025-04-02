@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".RegistrationActivity">
 
-    <include android:id="@+id/appBar" layout="@layout/activity_app_bar" />
+    <include layout="@layout/activity_app_bar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

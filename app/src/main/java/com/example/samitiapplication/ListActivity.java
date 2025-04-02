@@ -2,6 +2,7 @@ package com.example.samitiapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -59,6 +60,9 @@ public class ListActivity extends AppCompatActivity {
 
                 List<MemberDetail> personList = response.body();
                 MemberAdapter MemberAdapter = new MemberAdapter(ListActivity.this, personList);
+                recyclerView.setLayoutManager(new LinearLayoutManager(ListActivity.this));
+                recyclerView.addItemDecoration(new DividerItemDecoration(ListActivity.this, LinearLayoutManager.VERTICAL));
+
                 recyclerView.setAdapter(MemberAdapter);
             }
 

@@ -95,4 +95,10 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="title_activity_menu">menu</string>
+    <string name="action_setting">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="search">Search</string>
+    <string name="action_logout">Logout</string>
+    <string name="paid_tick">Paid Tick</string>
+    <string name="not_paid">Not Paid</string>
 </resources>

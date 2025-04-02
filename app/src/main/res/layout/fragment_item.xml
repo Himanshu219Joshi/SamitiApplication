@@ -18,19 +18,32 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:maxEms="3"
+            android:textSize="20dp"
             android:text="1" />
 
         <TextView
             android:id="@+id/memberName"
-            android:layout_width="160dp"
+            android:layout_width="310dp"
             android:layout_height="match_parent"
             android:maxEms="10"
             android:padding="10dp"
-            android:text="Himanshu Joshi" />
+            android:text="Himanshu Joshi"
+            android:textSize="20dp" />
+
+
     </GridLayout>
 
     <GridLayout
-        android:layout_column="2">
+        android:layout_column="2"
+        android:layout_gravity="center">
+        <ImageView
+            android:id="@+id/paidTick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/paid_tick"
+            android:src="@drawable/tick_icon"
+            android:visibility="gone"/>
         <Button
             style="@style/Widget.AppCompat.Button.Colored"
             android:id="@+id/paidBtn"
@@ -38,7 +51,14 @@
             android:layout_height="match_parent"
             android:textColor="@color/textSecondaryColor"
             android:text="@string/paid" />
-
+        <ImageView
+            android:id="@+id/notPaidCross"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:contentDescription="@string/not_paid"
+            android:src="@drawable/cross_icon"
+            android:visibility="gone"/>
         <Button
             style="@style/Widget.AppCompat.Button.Colored"
             android:id="@+id/notPaidBtn"

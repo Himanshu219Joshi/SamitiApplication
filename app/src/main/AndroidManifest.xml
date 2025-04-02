@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SamitiApplication"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
             android:name=".AddNewLoan"
@@ -31,7 +31,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:label="@string/title_activity_login" />
+            android:theme="@style/Theme.SamitiApplication"/>
         <activity
             android:name=".SummaryDetails"
             android:exported="false"
@@ -52,8 +52,9 @@
             android:label="@string/title_activity_list"
             android:theme="@style/Theme.SamitiApplication" />
         <activity
-            android:name=".ui.login.LoginActivity"
-            android:exported="true">
+            android:name=".LoginActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SamitiApplication">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

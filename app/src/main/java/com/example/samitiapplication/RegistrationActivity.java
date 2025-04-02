@@ -2,6 +2,7 @@ package com.example.samitiapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -18,7 +20,6 @@ import com.example.samitiapplication.databinding.ActivityRegistrationBinding;
 import com.example.samitiapplication.modal.ApiInterface;
 import com.example.samitiapplication.modal.UserDetail;
 import com.example.samitiapplication.networking.ApiClient;
-import com.example.samitiapplication.ui.login.LoginActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,13 +34,11 @@ public class RegistrationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+//        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_registration);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.header_appbar);
+        setSupportActionBar(toolbar);
 
         EditText firstNameEditText = findViewById(R.id.firstNameTextField);
         EditText lastNameEditText =  findViewById(R.id.lastNameTextField);
@@ -100,5 +99,12 @@ public class RegistrationActivity extends AppCompatActivity {
                 startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater menuInflater = inflater.inflate(R.menu.menu_items, menu);
+        getMenuInflater().inflate(R.menu.menu_items, menu);
+        return true;
     }
 }

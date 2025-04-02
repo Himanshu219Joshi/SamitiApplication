@@ -1,15 +1,56 @@
 package com.example.samitiapplication.modal;
 
-public class MemberDetail {
+import java.io.Serializable;
 
-    public MemberDetail(String memberName, String loanAmount, String investedMoney, String fatherName) {
-        this.memberName = memberName;
-        this.loanAmount = loanAmount;
-        this.investedMoney = investedMoney;
-        this.fatherName = fatherName;
+public class MemberDetail implements Serializable {
+
+    private boolean isPaid = false;
+
+    public boolean isNotPaid() {
+        return isNotPaid;
     }
 
-    private final String memberName;
+    public void setNotPaid(boolean notPaid) {
+        isNotPaid = notPaid;
+    }
+
+    private boolean isNotPaid = false;
+
+    public boolean isPaid() {
+        return isPaid;
+    }
+
+    public void setPaid(boolean checked) {
+        isPaid = checked;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
+
+    public MemberDetail() {
+        this.memberName = "";
+        this.loanAmount = "";
+        this.investedMoney = "";
+        this.fatherName = "";
+        this.isSelected = false;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
+    private boolean isSelected;
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
+
+    private String memberName;
 
     public String getFatherName() {
         return fatherName;
@@ -43,5 +84,6 @@ public class MemberDetail {
 
     private String memberId;
     private final String loanAmount;
+
     private final String investedMoney;
 }

@@ -20,13 +20,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL3 = "Installment_Status";
 
     public DatabaseHelper(@Nullable Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, 2);
     }
 
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " ("+COL1+" INTEGER PRIMARY KEY AUTOINCREMENT,"+COL2+" TEXT,"+ COL3 +" TEXT)");
+        db.execSQL("create table " + TABLE_NAME + " ("+COL1+" INTEGER,"+COL2+" TEXT,"+ COL3 +" TEXT)");
 
     }
 

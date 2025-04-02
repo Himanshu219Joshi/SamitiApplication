@@ -2,6 +2,7 @@ package com.example.samitiapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +43,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        Toolbar toolbar = findViewById(R.id.header_appbar);
+        setSupportActionBar(toolbar);
+
         mobileNo = findViewById(R.id.mobileNo);
         totalAmount = findViewById(R.id.totalAmount);
         lentAmount = findViewById(R.id.lentAmount);
@@ -144,6 +150,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater menuInflater = inflater.inflate(R.menu.menu_items, menu);
+        getMenuInflater().inflate(R.menu.menu_items, menu);
+        return true;
     }
 
 

@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,7 +47,9 @@ public class LoanDetailActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(LoanDetailActivity.this));
+        recyclerView.addItemDecoration(new DividerItemDecoration(LoanDetailActivity.this, LinearLayoutManager.VERTICAL));
+
         sharedPreferences = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
 
         Retrofit instance = ApiClient.instance();

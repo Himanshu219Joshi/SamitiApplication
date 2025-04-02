@@ -8,9 +8,7 @@
     android:background="#E0F7FA"
    >
 
-    <include
-        layout="@layout/activity_app_bar"
-        tools:ignore="InvalidId" />
+    <include layout="@layout/activity_app_bar" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -89,7 +87,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="96dp"
-        />
+        android:contentDescription="TODO" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/samitiBtn"
@@ -98,6 +96,6 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
-        />
+        android:contentDescription="TODO" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
