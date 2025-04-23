@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.samitiapplication.networking.SessionManager;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -22,7 +24,7 @@ public class AuthInterceptor extends AppCompatActivity implements Interceptor  {
 
         Request requestBuilder = chain.request();
 
-        String token = sessionManager.fetchToken();
+        String token = sessionManager.getToken();
         requestBuilder.newBuilder().addHeader("Authorization", "Bearer "+token);
 
         return chain.proceed(requestBuilder.newBuilder().build());

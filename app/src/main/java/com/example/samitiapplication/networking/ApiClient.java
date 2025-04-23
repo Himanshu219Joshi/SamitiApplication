@@ -15,10 +15,8 @@ public class ApiClient {
 
     private static Retrofit retrofit = null;
 
-    private static Gson gson = new GsonBuilder().setLenient().create();
 
-    private ApiClient() {
-    }
+    private static Gson gson = new GsonBuilder().setLenient().create();
 
     public static synchronized Retrofit instance() {
         if (retrofit == null) {
@@ -31,8 +29,9 @@ public class ApiClient {
                     .readTimeout(timeOut, TimeUnit.SECONDS)
                     .build();
 
+
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://bc83-2409-40d4-10b3-9f44-893f-cca1-1453-cee6.ngrok-free.app")
+                    .baseUrl("https://multiply-wondrous-marmoset.ngrok-free.app")
                     .addConverterFactory((GsonConverterFactory.create()))
                     .client(okHttpClient)
                     .build();

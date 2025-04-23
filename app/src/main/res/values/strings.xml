@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SamApp</string>
+    <string name="app_name">Samiti</string>
     <string name="pageHeader">Samiti</string>
     <string name="listTitle">Summary</string>
     <string name="mobileNumber">123456789</string>
@@ -104,4 +104,7 @@
     <string name="open_whats_app">Open Whats App</string>
     <string name="ruppes_white_icon">Ruppes White Icon</string>
     <string name="rupees_orange_icon">Rupees Orange Icon</string>
+    <string name="todo">TODO</string>
+    <string name="channel_name">Samiti Channel</string>channel_description
+    <string name="channel_description">Samiti Notification Channel</string>
 </resources>

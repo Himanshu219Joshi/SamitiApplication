@@ -22,6 +22,7 @@ import android.widget.Toast;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import com.example.samitiapplication.databinding.ActivityAddNewLoanBinding;
+import com.example.samitiapplication.networking.SessionManager;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class AddNewLoan extends AppCompatActivity {
 
     ArrayAdapter arrayAdapterItem;
 
-    SharedPreferences sharedPreferences;
+    SessionManager sessionManager;
     NewLoanDetail newLoanDetail;
 
     @Override
@@ -76,10 +77,11 @@ public class AddNewLoan extends AppCompatActivity {
             }
         });
 
-        sharedPreferences = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+        sessionManager = new SessionManager(getApplicationContext());
+        String token = sessionManager.getToken();
         Retrofit instance = ApiClient.instance();
         apiInterface = instance.create(ApiInterface.class);
-        String token = sharedPreferences.getString("token", null);
+
 
         Call<List<MemberDetail>> memberDetailCall = apiInterface.getMembersInfo("Bearer " + token);
 

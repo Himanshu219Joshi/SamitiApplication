@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.samitiapplication.modal.ApiInterface;
 import com.example.samitiapplication.modal.LoanDetail;
 import com.example.samitiapplication.networking.ApiClient;
+import com.example.samitiapplication.networking.SessionManager;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ import retrofit2.Retrofit;
 
 public class LoanDetailActivity extends AppCompatActivity {
 
-    SharedPreferences sharedPreferences;
+    SessionManager sessionManager;
 
     RecyclerView recyclerView;
 
@@ -50,12 +51,12 @@ public class LoanDetailActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(LoanDetailActivity.this));
         recyclerView.addItemDecoration(new DividerItemDecoration(LoanDetailActivity.this, LinearLayoutManager.VERTICAL));
 
-        sharedPreferences = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+        sessionManager = new SessionManager(getApplicationContext());
 
         Retrofit instance = ApiClient.instance();
         ApiInterface apiInterface = instance.create(ApiInterface.class);
 
-        String token = sharedPreferences.getString("token", null);
+        String token = sessionManager.getToken();
         Call<List<LoanDetail>> loanDetailCall = apiInterface.getLoanDetail("Bearer "+token);
 
         loanDetailCall.enqueue(new Callback<List<LoanDetail>>() {

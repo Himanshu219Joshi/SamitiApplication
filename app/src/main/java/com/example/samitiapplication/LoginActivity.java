@@ -5,7 +5,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +19,7 @@ import com.example.samitiapplication.modal.ApiInterface;
 import com.example.samitiapplication.modal.LoginUser;
 import com.example.samitiapplication.networking.ApiClient;
 import com.example.samitiapplication.databinding.ActivityLoginBinding;
+import com.example.samitiapplication.networking.SessionManager;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Objects;
@@ -32,7 +32,7 @@ import retrofit2.Retrofit;
 public class LoginActivity extends AppCompatActivity {
     protected ActivityLoginBinding binding;
     LoginUser loginUser;
-    SharedPreferences sharedPreferences;
+    SessionManager sessionManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
         loginUser = new LoginUser();
 
-        sharedPreferences = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+        sessionManager = new SessionManager(getApplicationContext());
 
         final TextInputEditText usernameEditText = binding.mobileNo;
         final TextInputEditText passwordEditText = (TextInputEditText) binding.password;
@@ -75,11 +75,9 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Logged In Successfully", Toast.LENGTH_SHORT).show();
                         tokenValue = response.body().getToken();
                     }
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
                     if (response.body() != null) {
-                        editor.putString("token", tokenValue);
+                       sessionManager.setToken(tokenValue);
                     }
-                    editor.apply();
                     if (tokenValue != null) {
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     } else {

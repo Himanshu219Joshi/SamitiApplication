@@ -6,6 +6,8 @@
     android:orientation="vertical"
     tools:context="ItemFragment">
 
+    <include layout="@layout/activity_app_bar" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnGetSelected"
         android:layout_width="wrap_content"

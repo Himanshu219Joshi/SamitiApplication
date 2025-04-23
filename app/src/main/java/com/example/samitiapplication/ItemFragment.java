@@ -29,6 +29,7 @@ import com.example.samitiapplication.modal.ApiInterface;
 import com.example.samitiapplication.modal.Employee;
 import com.example.samitiapplication.modal.MemberDetail;
 import com.example.samitiapplication.networking.ApiClient;
+import com.example.samitiapplication.networking.SessionManager;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -50,7 +51,7 @@ public class ItemFragment extends AppCompatActivity {
     ApiInterface apiInterface;
     RecyclerView recyclerViewItemFragment;
 
-    SharedPreferences sharedPreferences;
+    SessionManager sessionManager;
 
 
     @Override
@@ -73,9 +74,9 @@ public class ItemFragment extends AppCompatActivity {
 //        recyclerViewItemFragment.setHasFixedSize(true);
 //
 //        recyclerViewItemFragment.setLayoutManager(new LinearLayoutManager(this));
-        sharedPreferences = getSharedPreferences("userDetails", Context.MODE_PRIVATE);
+        sessionManager = new SessionManager(getApplicationContext());
 
-        String token = sharedPreferences.getString("token", null);
+        String token = sessionManager.getToken();
 
         Call<List<MemberDetail>> call = apiInterface.getMembersInfo("Bearer " + token);
         call.enqueue(new Callback<List<MemberDetail>>() {

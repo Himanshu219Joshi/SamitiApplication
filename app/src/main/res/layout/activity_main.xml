@@ -6,28 +6,21 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
    >
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp">
-        <TextView
-            android:id="@+id/listUse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello" />
-    </LinearLayout>
-
     <include layout="@layout/activity_app_bar" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="60dp"
         android:orientation="vertical"
         android:background="@drawable/background_input_field">
 
+        <Button
+            android:id="@+id/notifyBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notify" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -89,7 +82,6 @@
                 android:textColor="@color/link_color"
                 android:textSize="12sp" />
 
-
         </LinearLayout>
         <include layout="@layout/activity_loan_member" />
     </LinearLayout>
@@ -98,18 +90,26 @@
         android:id="@+id/addNewLoan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/add_new_loan"
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
+        android:backgroundTint="@color/primaryColor"
         android:layout_marginBottom="96dp"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/todo">
+
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/samitiBtn"
+        android:id="@+id/monthlyInstallment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@drawable/payment_icon"
+        android:tint="@color/textPrimaryColor"
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
+        android:backgroundTint="@color/primaryColor"
         android:layout_marginBottom="16dp"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/todo" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
