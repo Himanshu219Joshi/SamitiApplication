@@ -43,12 +43,44 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/textPrimaryColor"
                 android:inputType="none"/>
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:id="@+id/memberIdTextField"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:inputType="textPersonName"-->
-<!--                android:textColor="@color/textPrimaryColor" />-->
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/firstGuarantorTextLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="@string/guarantor_one"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/memberIdTextLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                android:id="@+id/firstGuarantorTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textPrimaryColor"
+                android:inputType="none"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/secondGuarantorTextLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="@string/guarantor_two"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/firstGuarantorTextLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                android:id="@+id/secondGuarantorTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textPrimaryColor"
+                android:inputType="none"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,7 +92,7 @@
             android:layout_margin="16dp"
             android:hint="@string/total_amount_placeholder"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/memberIdTextLayout"
+            app:layout_constraintTop_toBottomOf="@id/secondGuarantorTextLayout"
             tools:layout_editor_absoluteX="16dp">
 
             <com.google.android.material.textfield.TextInputEditText

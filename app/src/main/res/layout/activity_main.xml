@@ -16,11 +16,11 @@
         android:orientation="vertical"
         android:background="@drawable/background_input_field">
 
-        <Button
-            android:id="@+id/notifyBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Notify" />
+<!--        <Button-->
+<!--            android:id="@+id/notifyBtn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Notify" />-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,7 +31,9 @@
                 style="@style/TextAppearance.MaterialComponents.Headline5"
                 android:layout_width="186dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
                 android:text="@string/listTitle"
                 android:textColor="@color/textPrimaryColor" />
 
@@ -66,7 +68,9 @@
                 style="@style/TextAppearance.MaterialComponents.Headline5"
                 android:layout_width="186dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
                 android:text="@string/last_loan_details"
                 android:textColor="@color/textPrimaryColor" />
 

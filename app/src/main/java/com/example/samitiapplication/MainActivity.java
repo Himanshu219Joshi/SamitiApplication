@@ -2,6 +2,7 @@ package com.example.samitiapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     ActivityMainBinding binding;
     SessionManager sessionManager;
-    TextView totalAmount, lentAmount, balanceAmount, interestAmount, mobileNo, memberName, loanAmount, memberId, loanDate, loanEmi;
+    TextView totalAmount, lentAmount, balanceAmount, interestAmount, mobileNo, memberName, loanAmount, memberId, loanDate, loanEmi, guarantorNames;
 
     ActivitySummaryBinding summaryBinding;
     private RecyclerView recyclerView;
@@ -53,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         createNotificationChannel();
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -126,15 +129,17 @@ public class MainActivity extends AppCompatActivity {
         memberId = findViewById(R.id.memberId);
         loanDate = findViewById(R.id.loanDate);
         loanEmi = findViewById(R.id.loanEmi);
+        guarantorNames = findViewById(R.id.guarantorNames);
 
 
-        binding.notifyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                nm.notify(NOTIFICATION_ID, notification);
-            }
-        });
+
+//        binding.notifyBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+//                nm.notify(NOTIFICATION_ID, notification);
+//            }
+//        });
 
 
         sessionManager = new SessionManager(getApplicationContext());
@@ -163,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
                         loanAmount.append(String.valueOf(" " + response.body().getLastLoan().getLoanDetails().getLoanAmount()));
                         loanDate.append(String.valueOf(" " + response.body().getLastLoan().getLoanDetails().getDate()));
                         loanEmi.append((String.valueOf(" " + response.body().getLastLoan().getLoanDetails().getEmiAmount())));
+                        guarantorNames.append(" "+ response.body().getLastLoan().getLoanDetails().getGuarantors().get(0).getMemberName().concat(", ").concat(response.body().getLastLoan().getLoanDetails().getGuarantors().get(1).getMemberName()));
                     }
                 }
             }

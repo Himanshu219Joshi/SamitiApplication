@@ -45,7 +45,7 @@ public class AddNewLoan extends AppCompatActivity {
 
     String[] item = {"Himanshu", "Joshi", "Rajendra"};
 
-    AutoCompleteTextView autoCompleteTextView;
+    AutoCompleteTextView autoCompleteTextView, autoCompleteTextView2, autoCompleteTextView3;
 
     ArrayAdapter arrayAdapterItem;
 
@@ -60,6 +60,8 @@ public class AddNewLoan extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         autoCompleteTextView = findViewById(R.id.memberIdAutoCompleteTextView);
+        autoCompleteTextView2 = findViewById(R.id.firstGuarantorTextView);
+        autoCompleteTextView3 = findViewById(R.id.secondGuarantorTextView);
         TextInputEditText totalAmount = findViewById(R.id.totalAmountTextField);
         TextInputEditText loanAmount = findViewById(R.id.loanAmountTextField);
         TextInputEditText penaltyAmount = findViewById(R.id.penaltyAmountTextField);
@@ -73,6 +75,25 @@ public class AddNewLoan extends AppCompatActivity {
                 String item = adapterView.getItemAtPosition(position).toString();
                 int memberId = Integer.parseInt(item.split(" ")[0]);
                 newLoanDetail.setMemberId(memberId);
+                Toast.makeText(AddNewLoan.this, "Item :" + item, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        autoCompleteTextView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                String item = adapterView.getItemAtPosition(position).toString();
+                int memberId = Integer.parseInt(item.split(" ")[0]);
+                newLoanDetail.setFirstGuarantor(memberId);
+                Toast.makeText(AddNewLoan.this, "Item :" + item, Toast.LENGTH_SHORT).show();
+            }
+        });
+        autoCompleteTextView3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                String item = adapterView.getItemAtPosition(position).toString();
+                int memberId = Integer.parseInt(item.split(" ")[0]);
+                newLoanDetail.setSecondGuarantor(memberId);
                 Toast.makeText(AddNewLoan.this, "Item :" + item, Toast.LENGTH_SHORT).show();
             }
         });
@@ -98,6 +119,8 @@ public class AddNewLoan extends AppCompatActivity {
 
                     arrayAdapterItem = new ArrayAdapter<>(AddNewLoan.this, R.layout.list_item, newMemberList);
                     autoCompleteTextView.setAdapter(arrayAdapterItem);
+                    autoCompleteTextView2.setAdapter(arrayAdapterItem);
+                    autoCompleteTextView3.setAdapter(arrayAdapterItem);
                 }
             }
 

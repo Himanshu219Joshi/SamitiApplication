@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.samitiapplication.modal.ApiInterface;
 import com.example.samitiapplication.modal.LoanDetail;
+import com.example.samitiapplication.modal.MemberDetail;
 import com.example.samitiapplication.networking.ApiClient;
 import com.example.samitiapplication.networking.SessionManager;
 

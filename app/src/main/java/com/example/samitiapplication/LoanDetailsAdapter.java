@@ -41,6 +41,7 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
         holder.loanAmount.setText(context.getString(R.string.loan_amount).concat(" ").concat(loanDetail.getLoanAmount()));
         holder.loanDate.setText(context.getString(R.string.loan_date).concat(" ").concat(loanDetail.getDate()));
         holder.loanEmi.setText(context.getString(R.string.loan_emi).concat(" ").concat(String.valueOf(loanDetail.getEmiAmount())));
+        holder.guarantorNames.setText(context.getString(R.string.guarantor_names).concat(" ").concat(loanDetail.getGuarantors().get(0).getMemberName()).concat(", ").concat(loanDetail.getGuarantors().get(1).getMemberName()));
     }
 
     @Override
@@ -49,7 +50,7 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
     }
 
     public static class LoanDetailsViewHolder extends RecyclerView.ViewHolder {
-        TextView memberId, memberName, loanAmount, loanDate, loanEmi;
+        TextView memberId, memberName, loanAmount, loanDate, loanEmi, guarantorNames;
         public LoanDetailsViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -58,6 +59,8 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
             loanAmount = itemView.findViewById(R.id.loanAmount);
             loanDate = itemView.findViewById(R.id.loanDate);
             loanEmi = itemView.findViewById(R.id.loanEmi);
+            guarantorNames = itemView.findViewById(R.id.guarantorNames);
+
 
         }
     }

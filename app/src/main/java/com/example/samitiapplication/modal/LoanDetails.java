@@ -1,5 +1,7 @@
 package com.example.samitiapplication.modal;
 
+import java.util.List;
+
 public class LoanDetails {
 
     private String loanAmount;
@@ -34,5 +36,15 @@ public class LoanDetails {
     private String totalInterest;
 
     private String memberDetails;
+
+    public List<MemberDetail> getGuarantors() {
+        return guarantors;
+    }
+
+    public void setGuarantors(List<MemberDetail> guarantors) {
+        this.guarantors = guarantors;
+    }
+
+    private List<MemberDetail> guarantors;
 
 }

@@ -3,6 +3,25 @@ package com.example.samitiapplication.modal;
 public class NewLoanDetail {
     private long totalAmount;
 
+    public int getFirstGuarantor() {
+        return firstGuarantor;
+    }
+
+    public void setFirstGuarantor(int firstGuarantor) {
+        this.firstGuarantor = firstGuarantor;
+    }
+
+    public int getSecondGuarantor() {
+        return secondGuarantor;
+    }
+
+    public void setSecondGuarantor(int secondGuarantor) {
+        this.secondGuarantor = secondGuarantor;
+    }
+
+    private int firstGuarantor;
+    private int secondGuarantor;
+
     public String getLoanDate() {
         return loanDate;
     }
