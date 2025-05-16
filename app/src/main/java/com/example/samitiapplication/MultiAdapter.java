@@ -1,24 +1,33 @@
 package com.example.samitiapplication;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.samitiapplication.data.DatabaseHelper;
+import com.example.samitiapplication.data.model.UserInfo;
 import com.example.samitiapplication.modal.Employee;
 import com.example.samitiapplication.modal.MemberDetail;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MultiAdapter extends RecyclerView.Adapter<MultiAdapter.MultiViewHolder> {
 
     private Context context;
+    DatabaseHelper db;
+
+    UserInfo userInfo;
+
     private ArrayList<MemberDetail> memberDetails;
 
     public MultiAdapter(Context context, ArrayList<MemberDetail> memberDetails) {
@@ -49,6 +58,7 @@ public class MultiAdapter extends RecyclerView.Adapter<MultiAdapter.MultiViewHol
         return memberDetails.size();
     }
 
+
     class MultiViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView memberName, memberId;
@@ -67,6 +77,8 @@ public class MultiAdapter extends RecyclerView.Adapter<MultiAdapter.MultiViewHol
         }
 
         void bind(final MemberDetail memberDetail) {
+            db = new DatabaseHelper(itemView.getContext());
+            Cursor cursor = db.getAllData();
             paidTickIcon.setVisibility(memberDetail.isPaid() ? View.VISIBLE : View.GONE);
             notPaidCrossIcon.setVisibility(memberDetail.isNotPaid() ? View.VISIBLE : View.GONE);
             memberId.setText(memberDetail.getMemberId());
@@ -74,10 +86,29 @@ public class MultiAdapter extends RecyclerView.Adapter<MultiAdapter.MultiViewHol
             paidBtn.setVisibility(View.GONE);
             notPaidBtn.setVisibility(View.GONE);
 
+            List<Integer> paidMemberIds = new ArrayList<Integer>();
+
+            while (cursor.moveToNext()) {
+                paidMemberIds.add(cursor.getInt(0));
+            }
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    memberDetail.setPaid(!memberDetail.isPaid());
+                    if (paidMemberIds.contains(Integer.parseInt(memberDetail.getMemberId()))){
+                        db.updateRecord(Integer.parseInt(memberDetail.getMemberId()), String.valueOf(!memberDetail.isPaid()));
+                        memberDetail.setPaid(!memberDetail.isPaid());
+                    } else {
+                        userInfo = new UserInfo();
+
+                        userInfo.setMemeberId(Integer.parseInt(memberDetail.getMemberId()));
+                        userInfo.setMemberName(memberDetail.getMemberName());
+                        userInfo.setInstallmentStatus(String.valueOf(!memberDetail.isPaid()));
+                        memberDetail.setPaid(!memberDetail.isPaid());
+                        db.insetData(userInfo);
+                    }
+
+//
                     paidTickIcon.setVisibility(memberDetail.isPaid() ? View.VISIBLE : View.GONE);
                     notifyItemChanged(getAbsoluteAdapterPosition());
                 }
@@ -128,127 +159,7 @@ public class MultiAdapter extends RecyclerView.Adapter<MultiAdapter.MultiViewHol
         }
         return selected;
     }
-}
 
-//package com.example.samitiapplication;
-//
-//import android.content.Context;
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
-//import android.widget.Button;
-//import android.widget.ImageView;
-//import android.widget.TextView;
-//import android.widget.Toast;
-//
-//import androidx.annotation.NonNull;
-//import androidx.recyclerview.widget.RecyclerView;
-//
-//import com.example.samitiapplication.modal.MemberDetail;
-//
-//import java.util.ArrayList;
-//
-//public class MultiAdapter extends RecyclerView.Adapter<MultiAdapter.MultiViewHolder> {
-//
-//    private Context context;
-//    private ArrayList<MemberDetail> memberDetails;
-//
-//    public MultiAdapter(Context context, ArrayList<MemberDetail> memberDetails) {
-//        this.context = context;
-//        this.memberDetails = memberDetails;
-//    }
-//
-//    public void setmemberDetails(ArrayList<MemberDetail> memberDetails) {
-//        this.memberDetails = new ArrayList<>();
-//        this.memberDetails = memberDetails;
-//        notifyDataSetChanged();
-//    }
-//
-//    @NonNull
-//    @Override
-//    public MultiViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-//        View view = LayoutInflater.from(context).inflate(R.layout.fragment_item, viewGroup, false);
-//        return new MultiViewHolder(view);
-//    }
-//
-//    @Override
-//    public void onBindViewHolder(@NonNull MultiViewHolder multiViewHolder, int position) {
-//        multiViewHolder.paidBtn.setOnClickListener(view-> {
-//                memberDetails.get(position).setSelected(true);
-//                boolean isSelected = memberDetails.get(position).isSelected();
-//
-//                multiViewHolder.paidBtn.setVisibility(isSelected ? View.GONE:View.VISIBLE);
-//                multiViewHolder.paidBtnTick.setVisibility(isSelected ? View.VISIBLE : View.GONE);
-//
-//
-//        });
-//
-//        multiViewHolder.notPaidBtn.setOnClickListener(view->{
-//            multiViewHolder.notPaidBtn.setVisibility(View.GONE);
-//            multiViewHolder.notPaidCrossBtn.setVisibility(View.VISIBLE);
-//        });
-//
-//        multiViewHolder.bind(memberDetails.get(position));
-//
-//    }
-//
-//    @Override
-//    public int getItemCount() {
-//        return memberDetails.size();
-//    }
-//
-//    class MultiViewHolder extends RecyclerView.ViewHolder {
-//
-//        private TextView memberId, memberName;
-//
-//        private Button paidBtn, notPaidBtn;
-//        private ImageView paidBtnTick, notPaidCrossBtn;
-//
-//        MultiViewHolder(@NonNull View itemView) {
-//            super(itemView);
-//            memberId = itemView.findViewById(R.id.memberId);
-//            memberName = itemView.findViewById(R.id.memberName);
-//            paidBtn = itemView.findViewById(R.id.paidBtn);
-//            notPaidBtn = itemView.findViewById(R.id.notPaidBtn);
-//            paidBtnTick = itemView.findViewById(R.id.paidTick);
-//            notPaidCrossBtn = itemView.findViewById(R.id.notPaidCross);
-//        }
-//
-//
-//        void bind(final MemberDetail memberDetail) {
-//            paidBtn.setVisibility(memberDetail.isSelected() ? View.GONE : View.VISIBLE);
-//            notPaidBtn.setVisibility(memberDetail.isSelected() ? View.GONE : View.VISIBLE);
-//            memberName.setText(memberDetail.getMemberName());
-//            memberId.setText(memberDetail.getMemberId());
-//
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//
-//                        if (!getSelected().isEmpty()) {
-//                            for (int i = 0; i < getSelected().size(); i++) {
-//
-//                                getSelected().get(i).setSelected(true);
-//                            }
-////
-//                        }
-//
-//                }
-//            });
-//        }
-//    }
-//
-//    public ArrayList<MemberDetail> getAll() {
-//        return memberDetails;
-//    }
-//
-//    public ArrayList<MemberDetail> getSelected() {
-//        ArrayList<MemberDetail> selected = new ArrayList<>();
-//        for (int i = 0; i < memberDetails.size(); i++) {
-//            if (memberDetails.get(i).isSelected()) {
-//                selected.add(memberDetails.get(i));
-//            }
-//        }
-//        return selected;
-//    }
-//}
+
+
+}

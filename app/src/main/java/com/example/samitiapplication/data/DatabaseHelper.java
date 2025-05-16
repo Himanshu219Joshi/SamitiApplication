@@ -49,4 +49,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getWritableDatabase();
         return database.rawQuery("select * from " + TABLE_NAME, null);
     }
+
+    public void resetTable() {
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.execSQL("delete from "+TABLE_NAME);
+    }
+
+    public void updateRecord(int memberId, String value) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.execSQL("update "+TABLE_NAME+" set "+COL3+"="+value+" where "+COL1+"="+memberId);
+    }
 }

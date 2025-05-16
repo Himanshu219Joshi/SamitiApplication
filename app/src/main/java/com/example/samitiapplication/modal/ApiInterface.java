@@ -7,6 +7,8 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
+import retrofit2.http.QueryName;
 
 public interface ApiInterface {
 
@@ -25,6 +27,9 @@ public interface ApiInterface {
 
     @GET("samiti/getLoans")
     Call<List<LoanDetail>> getLoanDetail(@Header ("Authorization") String token);
+
+    @GET("samiti/getLoans/{loanId}")
+    Call<LoanDetail> getLoanInfo(@Path("loanId") String loanId, @Header("Authorization") String token);
 
     @POST("/samiti/updateSummary")
     Call<NewLoanDetail> addNewLoan(@Header ("Authorization") String token, @Body NewLoanDetail newLoanDetail);

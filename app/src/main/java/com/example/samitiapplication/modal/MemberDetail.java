@@ -33,6 +33,7 @@ public class MemberDetail implements Serializable {
         this.loanAmount = "";
         this.investedMoney = "";
         this.fatherName = "";
+        this.memberStatus = "";
         this.isSelected = false;
     }
 
@@ -86,4 +87,20 @@ public class MemberDetail implements Serializable {
     private final String loanAmount;
 
     private final String investedMoney;
+
+    public String getMemberStatus() {
+        return memberStatus;
+    }
+
+    private final String memberStatus;
+
+//    public LoanDetails getLoanDetails() {
+//        return loanDetails;
+//    }
+//
+//    public void setLoanDetails(LoanDetails loanDetails) {
+//        this.loanDetails = loanDetails;
+//    }
+//
+//    private LoanDetails loanDetails;
 }

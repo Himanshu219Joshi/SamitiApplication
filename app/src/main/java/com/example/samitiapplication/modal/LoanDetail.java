@@ -4,7 +4,28 @@ import java.util.List;
 
 public class LoanDetail {
 
+    private String _id;
     private String memberName;
+
+    public long getLoanAmountRecovered() {
+        return loanAmountRecovered;
+    }
+
+    public void setLoanAmountRecovered(long loanAmountRecovered) {
+        this.loanAmountRecovered = loanAmountRecovered;
+    }
+
+    public long getInterestAccrued() {
+        return interestAccrued;
+    }
+
+    public void setInterestAccrued(long interestAccrued) {
+        this.interestAccrued = interestAccrued;
+    }
+
+    private long loanAmountRecovered;
+
+    private long interestAccrued;
 
     private long emiAmount;
 
@@ -50,6 +71,16 @@ public class LoanDetail {
     private String fatherName;
 
     private String memberId;
+
+    public String getLoanStatus() {
+        return loanStatus;
+    }
+
+    public void setLoanStatus(String loanStatus) {
+        this.loanStatus = loanStatus;
+    }
+
+    private String loanStatus;
 
     public String getLoanAmount() {
         return loanAmount;
@@ -106,6 +137,14 @@ public class LoanDetail {
 
     public void setGuarantors(List<MemberDetail> guarantors) {
         this.guarantors = guarantors;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 }
 

@@ -21,6 +21,7 @@
             android:layout_gravity="center"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:src="@drawable/baseline_account_circle_24"
             android:importantForAccessibility="no"
             app:circularflow_radiusInDP="20dp"
             />
@@ -65,31 +66,67 @@
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/login"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="64dp"
-        android:enabled="true"
-        android:text="@string/action_login"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textField2"/>
-
-    <Button
-        android:id="@+id/register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="16dp"
-        android:enabled="true"
-        android:text="@string/action_register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.267"
+        android:orientation="horizontal"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/textField2"
-        app:layout_constraintStart_toEndOf="@id/login" />
+        app:layout_constraintStart_toEndOf="parent">
+
+        <Button
+            android:id="@+id/login"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_border"
+            android:text="@string/action_login"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+        <Button
+            android:id="@+id/register"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/action_register"
+            android:background="@color/card_color"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/login"
+            />
+    </LinearLayout>
+
+<!--    <Button-->
+<!--        android:id="@+id/login"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="start"-->
+<!--        android:layout_marginStart="56dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginBottom="64dp"-->
+<!--        android:enabled="true"-->
+<!--        android:text="@string/action_login"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/textField2"/>-->
+
+<!--    <Button-->
+<!--        android:id="@+id/register"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="start"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:enabled="true"-->
+<!--        android:text="@string/action_register"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.267"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/textField2"-->
+<!--        app:layout_constraintStart_toEndOf="@id/login" />-->
 
     <FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"

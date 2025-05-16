@@ -39,6 +39,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.PersonView
         holder.memberName.setText(context.getString(R.string.name).concat(person.getMemberName()).concat(" ").concat(person.getFatherName()));
         holder.loanAmount.setText(context.getString(R.string.loan_amount).concat(" ").concat(person.getLoanAmount()));
         holder.investedMoney.setText(context.getString(R.string.invested_money).concat(" ").concat(person.getInvestedMoney()));
+        holder.memberStatus.setText(context.getString(R.string.member_status).concat(" ").concat(person.getMemberStatus()));
     }
 
     @Override
@@ -47,7 +48,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.PersonView
     }
 
     public static class PersonViewHolder extends RecyclerView.ViewHolder {
-        TextView memberId, memberName, loanAmount, investedMoney;
+        TextView memberId, memberName, loanAmount, investedMoney, memberStatus;
         public PersonViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -55,6 +56,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.PersonView
             memberName = itemView.findViewById(R.id.memberName);
             loanAmount = itemView.findViewById(R.id.loanAmount);
             investedMoney = itemView.findViewById(R.id.investedMoney);
+            memberStatus = itemView.findViewById(R.id.memberStatus);
         }
     }
 }

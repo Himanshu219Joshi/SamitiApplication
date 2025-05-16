@@ -2,6 +2,7 @@ package com.example.samitiapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -24,6 +25,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.samitiapplication.MultiAdapter;
 import com.example.samitiapplication.R;
+import com.example.samitiapplication.data.DatabaseHelper;
+import com.example.samitiapplication.data.model.UserInfo;
 import com.example.samitiapplication.databinding.ActivityLoginBinding;
 import com.example.samitiapplication.modal.ApiInterface;
 import com.example.samitiapplication.modal.Employee;
@@ -34,22 +37,27 @@ import com.example.samitiapplication.networking.SessionManager;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
+import java.util.logging.Logger;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class ItemFragment extends AppCompatActivity {
+public class ItemFragment extends AppCompatActivity implements MonthlyPaymentAdapter.buttonClickListener {
 
     private RecyclerView recyclerView;
     private ArrayList<MemberDetail> memberDetails = new ArrayList<>();
     private MultiAdapter adapter;
-    private AppCompatButton btnGetSelected;
+    private AppCompatButton btnGetSelected, resetDatabase;
 
     ApiInterface apiInterface;
     RecyclerView recyclerViewItemFragment;
+    DatabaseHelper db;
 
     SessionManager sessionManager;
 
@@ -57,9 +65,11 @@ public class ItemFragment extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_multiple_selection);
         EmojiCompat.init(new BundledEmojiCompatConfig(this));
         this.btnGetSelected = (AppCompatButton) findViewById(R.id.btnGetSelected);
+        resetDatabase = findViewById(R.id.resetBtn);
         this.recyclerView = (RecyclerView) findViewById(R.id.recyclerViewMultiSelect);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
@@ -84,11 +94,36 @@ public class ItemFragment extends AppCompatActivity {
             public void onResponse(Call<List<MemberDetail>> call, @NonNull Response<List<MemberDetail>> response) {
 
                 if (!response.isSuccessful()) {
-                    Toast.makeText(com.example.samitiapplication.ItemFragment.this, "Login Sucessfull", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ItemFragment.this, "Login Sucessfull", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+
+                Cursor cursor = db.getAllData();
+
+                List<Integer> paidArray = new ArrayList<Integer>();
+
+                while (cursor.moveToNext()) {
+                    String installmentValue = cursor.getString(2);
+                    boolean isPaid = installmentValue.equalsIgnoreCase("true") || installmentValue.equalsIgnoreCase("1");
+                    if (isPaid){
+                        paidArray.add(cursor.getInt(0));
+                    }
+                }
+
                 memberDetails = (ArrayList<MemberDetail>) response.body();
+
+                assert memberDetails != null;
+                for (MemberDetail memberDetailData : memberDetails) {
+                    boolean isPaid = paidArray.contains(Integer.parseInt(memberDetailData.getMemberId()));
+                    if (isPaid) {
+                        memberDetailData.setPaid(true);
+                    } else {
+                        memberDetailData.setPaid(false);
+                    }
+                }
+
                 recyclerView.setLayoutManager(new LinearLayoutManager(ItemFragment.this));
                 recyclerView.addItemDecoration(new DividerItemDecoration(ItemFragment.this, LinearLayoutManager.VERTICAL));
                 adapter = new MultiAdapter(ItemFragment.this, memberDetails);
@@ -106,6 +141,16 @@ public class ItemFragment extends AppCompatActivity {
         });
 
         createList();
+
+
+        resetDatabase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db = new DatabaseHelper(getApplicationContext());
+                db.resetTable();
+            }
+        });
+
 
         btnGetSelected.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,5 +223,10 @@ public class ItemFragment extends AppCompatActivity {
         builder.setMessage(message);
         builder.show();
 
+    }
+
+    @Override
+    public void onButtonClick(View view, int position, String text) {
+        Toast.makeText(ItemFragment.this, "Item Clicked ", Toast.LENGTH_SHORT ).show();
     }
 }

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.samitiapplication.data.DatabaseHelper;
 import com.example.samitiapplication.data.model.UserInfo;
@@ -127,8 +128,8 @@ public class MonthlyPaymentAdapter extends RecyclerView.Adapter<MonthlyPaymentAd
             paidTickBtn = itemView.findViewById(R.id.paidTick);
             notPaidCrossBtn = itemView.findViewById(R.id.notPaidCross);
 
-            paidBtn.setOnClickListener(this);
-            notPaidBtn.setOnClickListener(this);
+//            paidBtn.setOnClickListener(this);
+//            notPaidBtn.setOnClickListener(this);
             this.buttonClickListener = itemClickListener;
 
         }
@@ -144,6 +145,7 @@ public class MonthlyPaymentAdapter extends RecyclerView.Adapter<MonthlyPaymentAd
             String textView = String.valueOf(v.getId());
             Button b = (Button) v;
             String text = b.getText().toString();
+            Toast.makeText(b.getContext(),"Text Clicked", Toast.LENGTH_SHORT).show();
             if(text.equals("Paid")) {
                 itemView.findViewById(R.id.paidTick).setVisibility(View.VISIBLE);
                 itemView.findViewById(R.id.paidBtn).setVisibility(View.GONE);

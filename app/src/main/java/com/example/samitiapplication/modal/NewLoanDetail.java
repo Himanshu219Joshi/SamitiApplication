@@ -54,6 +54,16 @@ public class NewLoanDetail {
     private long penaltyAmount;
     private int memberId;
 
+    public String getLoanStatus() {
+        return loanStatus;
+    }
+
+    public void setLoanStatus(String loanStatus) {
+        this.loanStatus = loanStatus;
+    }
+
+    private String loanStatus;
+
     public long getTotalAmount() {
         return totalAmount;
     }

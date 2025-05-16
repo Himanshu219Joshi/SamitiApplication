@@ -47,4 +47,14 @@ public class LoanDetails {
 
     private List<MemberDetail> guarantors;
 
+    public String getLoanStatus() {
+        return loanStatus;
+    }
+
+    public void setLoanStatus(String loanStatus) {
+        this.loanStatus = loanStatus;
+    }
+
+    private String loanStatus;
+
 }

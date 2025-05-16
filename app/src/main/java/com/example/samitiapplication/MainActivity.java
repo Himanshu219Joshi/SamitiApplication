@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     ActivityMainBinding binding;
     SessionManager sessionManager;
-    TextView totalAmount, lentAmount, balanceAmount, interestAmount, mobileNo, memberName, loanAmount, memberId, loanDate, loanEmi, guarantorNames;
+    TextView totalAmount, lentAmount, balanceAmount, interestAmount, mobileNo, memberName, loanAmount, memberId, loanDate, loanEmi, guarantorNames, loanStatus;
 
     ActivitySummaryBinding summaryBinding;
     private RecyclerView recyclerView;
@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
         loanDate = findViewById(R.id.loanDate);
         loanEmi = findViewById(R.id.loanEmi);
         guarantorNames = findViewById(R.id.guarantorNames);
+        loanStatus = findViewById(R.id.loanStatus);
 
 
 
@@ -169,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
                         loanDate.append(String.valueOf(" " + response.body().getLastLoan().getLoanDetails().getDate()));
                         loanEmi.append((String.valueOf(" " + response.body().getLastLoan().getLoanDetails().getEmiAmount())));
                         guarantorNames.append(" "+ response.body().getLastLoan().getLoanDetails().getGuarantors().get(0).getMemberName().concat(", ").concat(response.body().getLastLoan().getLoanDetails().getGuarantors().get(1).getMemberName()));
+                        loanStatus.append(" "+ response.body().getLastLoan().getLoanDetails().getLoanStatus());
                     }
                 }
             }

@@ -1,12 +1,14 @@
 package com.example.samitiapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,11 +27,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class LoanDetailActivity extends AppCompatActivity {
+public class LoanDetailActivity extends AppCompatActivity implements LoanDetailsAdapter.OnLoanItemClickListener{
 
     SessionManager sessionManager;
 
     RecyclerView recyclerView;
+
+    List<LoanDetail> loanDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +79,8 @@ public class LoanDetailActivity extends AppCompatActivity {
                     return;
                 }
 
-                List<LoanDetail> loanDetail = response.body();
-                LoanDetailsAdapter loanDetailsAdapter = new LoanDetailsAdapter(LoanDetailActivity.this, loanDetail);
+                loanDetail = response.body();
+                LoanDetailsAdapter loanDetailsAdapter = new LoanDetailsAdapter(LoanDetailActivity.this, loanDetail, LoanDetailActivity.this);
                 recyclerView.setAdapter(loanDetailsAdapter);
 
 
@@ -88,5 +92,13 @@ public class LoanDetailActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onLoanItemClick(int position) {
+        LoanDetail loanDetails = loanDetail.get(position);
+        Intent intent = new Intent(this, FullLoanDetails.class);
+        intent.putExtra("loanId", loanDetails.get_id());
+        startActivity(intent);
     }
 }

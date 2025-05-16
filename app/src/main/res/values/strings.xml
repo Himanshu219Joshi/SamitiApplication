@@ -13,6 +13,7 @@
     <string name="loan_amount_placeholder">Loan Amount</string>
     <string name="penalty_amount">Penalty Amount</string>
     <string name="inverted_amount">Invested Amount:</string>
+    <string name="member_status">Member Status: </string>
     <string name="loan_date">Loan Date:</string>
     <string name="loan_date_placeholder">Loan Date (MM/DD/YY)</string>
     <string name="loan_emi">Loan EMI: </string>
@@ -20,6 +21,8 @@
     <string name="total_amount_placeholder">Total Amount</string>
     <string name="balance_amount">Balance Amount:</string>
     <string name="interest_amount">Interest Amount:</string>
+    <string name="amount_recovered">Amount Recovered: </string>
+    <string name="interest_recovered">Interest Recovered: </string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -109,5 +112,12 @@
     <string name="channel_description">Samiti Notification Channel</string>
     <string name="guarantor_one">First Guarantor</string>
     <string name="guarantor_two">Second Guarantor</string>
+    <string name="guarantor_one_label">First Guarantor: </string>
+    <string name="guarantor_two_label">Second Guarantor: </string>
     <string name="guarantor_names">Guarantor Names: </string>
+    <string name="loan_status">Loan Status: </string>
+
+    <string name="back">Back</string>
+    <string name="settle">Settle</string>
+    <string name="reset_database">Reset Database</string>
 </resources>
