@@ -45,14 +45,14 @@
             android:label="@string/title_activity_app_bar"
             android:theme="@style/Theme.SamitiApplication" />
         <activity
-            android:name=".ListActivity"
+            android:name=".MemberActivity"
             android:exported="false"
-            android:label="@string/title_activity_list"
+            android:label="@string/title_activity_member"
             android:theme="@style/Theme.SamitiApplication" />
         <activity
             android:name=".ItemFragment"
             android:exported="false"
-            android:label="@string/title_activity_list"
+            android:label="@string/title_activity_member"
             android:theme="@style/Theme.SamitiApplication" />
         <activity
             android:name=".LoginActivity"

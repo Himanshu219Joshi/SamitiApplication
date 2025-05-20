@@ -6,8 +6,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -24,7 +22,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class ListActivity extends AppCompatActivity {
+public class MemberActivity extends AppCompatActivity {
 
     ApiInterface apiInterface;
     ActivityMemberListBinding binding;
@@ -55,21 +53,21 @@ public class ListActivity extends AppCompatActivity {
             public void onResponse(Call<List<MemberDetail>> call, @NonNull Response<List<MemberDetail>> response) {
 
                 if(!response.isSuccessful()) {
-                    Toast.makeText(ListActivity.this, "Login Sucessfull", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MemberActivity.this, "Login Sucessfull", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 List<MemberDetail> personList = response.body();
-                MemberAdapter MemberAdapter = new MemberAdapter(ListActivity.this, personList);
-                recyclerView.setLayoutManager(new LinearLayoutManager(ListActivity.this));
-                recyclerView.addItemDecoration(new DividerItemDecoration(ListActivity.this, LinearLayoutManager.VERTICAL));
+                MemberAdapter MemberAdapter = new MemberAdapter(MemberActivity.this, personList);
+                recyclerView.setLayoutManager(new LinearLayoutManager(MemberActivity.this));
+                recyclerView.addItemDecoration(new DividerItemDecoration(MemberActivity.this, LinearLayoutManager.VERTICAL));
 
                 recyclerView.setAdapter(MemberAdapter);
             }
 
             @Override
             public void onFailure(Call<List<MemberDetail>> call, Throwable t) {
-                Toast.makeText(ListActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MemberActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

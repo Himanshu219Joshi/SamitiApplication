@@ -18,6 +18,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.samitiapplication.modal.ApiInterface;
 import com.example.samitiapplication.modal.LoanDetail;
+import com.example.samitiapplication.modal.SettleLoan;
+import com.example.samitiapplication.modal.UserDetail;
 import com.example.samitiapplication.networking.ApiClient;
 import com.example.samitiapplication.networking.SessionManager;
 
@@ -35,7 +37,7 @@ public class FullLoanDetails extends AppCompatActivity {
     SessionManager sessionManager;
 
     TextView memberNameValue, loanAmountValue, loanDateValue, totalInterestValue, emiAmountValue,
-            interestRecoveredValue, amountRecoveredValue, firstGuarantorValue, secondGuarantorValue;
+            interestRecoveredValue, amountRecoveredValue, firstGuarantorValue, secondGuarantorValue, loanStatusValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,7 @@ public class FullLoanDetails extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         Button backBtn = findViewById(R.id.backBtn);
+        Button settleBtn = findViewById(R.id.settleBtn);
 
         Intent intent = getIntent();
         String loanId = intent.getStringExtra("loanId");
@@ -59,7 +62,7 @@ public class FullLoanDetails extends AppCompatActivity {
         interestRecoveredValue = findViewById(R.id.interestRecoveredValue);
         firstGuarantorValue = findViewById(R.id.firstGuarantorValue);
         secondGuarantorValue = findViewById(R.id.secondGuarantorValue);
-
+        loanStatusValue = findViewById(R.id.loanStatusValue);
 
         sessionManager = new SessionManager(getApplicationContext());
 
@@ -67,9 +70,9 @@ public class FullLoanDetails extends AppCompatActivity {
         ApiInterface apiInterface = instance.create(ApiInterface.class);
 
         String token = sessionManager.getToken();
-        Call<LoanDetail> getLoanInnfo = apiInterface.getLoanInfo(loanId, "Bearer "+token);
+        Call<LoanDetail> getLoanInfo = apiInterface.getLoanInfo(loanId, "Bearer "+token);
 
-        getLoanInnfo.enqueue(new Callback<LoanDetail>() {
+        getLoanInfo.enqueue(new Callback<LoanDetail>() {
             @Override
             public void onResponse(Call<LoanDetail> call, Response<LoanDetail> response) {
                 if(response.body() != null) {
@@ -83,6 +86,7 @@ public class FullLoanDetails extends AppCompatActivity {
                     amountRecoveredValue.setText(String.valueOf(loanDetail.getLoanAmountRecovered()));
                     firstGuarantorValue.setText(loanDetail.getGuarantors().get(0).getMemberName().concat(" ").concat(loanDetail.getGuarantors().get(0).getFatherName()));
                     secondGuarantorValue.setText(loanDetail.getGuarantors().get(1).getMemberName().concat(" ").concat(loanDetail.getGuarantors().get(1).getFatherName()));
+                    loanStatusValue.setText(loanDetail.getLoanStatus());
                 }
 
                 Toast.makeText(FullLoanDetails.this, "Response"+response.isSuccessful(), Toast.LENGTH_SHORT ).show();
@@ -90,6 +94,29 @@ public class FullLoanDetails extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<LoanDetail> call, Throwable t) {
+
+            }
+        });
+
+        settleBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Call<SettleLoan> loanStatusUpdated  = apiInterface.settleLoan(loanId,"Bearer "+token);
+                System.out.println(loanStatusUpdated);
+                loanStatusUpdated.enqueue(new Callback<SettleLoan>() {
+                    @Override
+                    public void onResponse(Call<SettleLoan> call, Response<SettleLoan> response) {
+                        assert response.body() != null;
+                        loanStatusValue.setText(R.string.closed);
+                        Toast.makeText(FullLoanDetails.this, response.body().getMessage(), Toast.LENGTH_SHORT ).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<SettleLoan> call, Throwable t) {
+                        Toast.makeText(FullLoanDetails.this, "Response Failed", Toast.LENGTH_SHORT ).show();
+                    }
+                });
+
 
             }
         });

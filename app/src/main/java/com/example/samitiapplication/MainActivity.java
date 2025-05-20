@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     ActivityMainBinding binding;
     SessionManager sessionManager;
-    TextView totalAmount, lentAmount, balanceAmount, interestAmount, mobileNo, memberName, loanAmount, memberId, loanDate, loanEmi, guarantorNames, loanStatus;
+    TextView totalAmount, lentAmount, balanceAmount, interestAmount, mobileNo, memberName, loanAmount, memberId, loanDate, loanEmi, guarantorNames, loanStatus, penaltyAmount;
 
     ActivitySummaryBinding summaryBinding;
     private RecyclerView recyclerView;
@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
         lentAmount = findViewById(R.id.lentAmount);
         balanceAmount = findViewById(R.id.balanceAmount);
         interestAmount = findViewById(R.id.interestAmount);
+        penaltyAmount = findViewById(R.id.penaltyAmount);
 
         memberName = findViewById(R.id.memberName);
         loanAmount = findViewById(R.id.loanAmount);
@@ -161,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                     lentAmount.append(String.valueOf(" "+response.body().getSummary().getLentAmount()));
                     balanceAmount.append(String.valueOf(" "+response.body().getSummary().getBalanceAmount()));
                     interestAmount.append(String.valueOf(" "+response.body().getSummary().getInterestAccrued()));
-
+                    penaltyAmount.append(String.valueOf(" "+response.body().getSummary().getPenaltyAmount()));
 
                     memberName.append(String.valueOf(" "+response.body().getLastLoan().getMemberName()));
                     memberId.append(String.valueOf(" "+response.body().getLastLoan().getMemberId()));
@@ -210,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
         binding.showSummaryDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ListActivity.class));
+                startActivity(new Intent(MainActivity.this, MemberActivity.class));
             }
         });
 

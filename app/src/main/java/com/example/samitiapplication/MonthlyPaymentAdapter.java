@@ -123,8 +123,8 @@ public class MonthlyPaymentAdapter extends RecyclerView.Adapter<MonthlyPaymentAd
             super(itemView);;
             memberId = itemView.findViewById(R.id.memberId);
             memberName = itemView.findViewById(R.id.memberName);
-            paidBtn = itemView.findViewById(R.id.paidBtn);
-            notPaidBtn = itemView.findViewById(R.id.notPaidBtn);
+//            paidBtn = itemView.findViewById(R.id.paidBtn);
+//            notPaidBtn = itemView.findViewById(R.id.notPaidBtn);
             paidTickBtn = itemView.findViewById(R.id.paidTick);
             notPaidCrossBtn = itemView.findViewById(R.id.notPaidCross);
 
@@ -148,12 +148,12 @@ public class MonthlyPaymentAdapter extends RecyclerView.Adapter<MonthlyPaymentAd
             Toast.makeText(b.getContext(),"Text Clicked", Toast.LENGTH_SHORT).show();
             if(text.equals("Paid")) {
                 itemView.findViewById(R.id.paidTick).setVisibility(View.VISIBLE);
-                itemView.findViewById(R.id.paidBtn).setVisibility(View.GONE);
-                itemView.findViewById(R.id.notPaidBtn).setVisibility(View.GONE);
+//                itemView.findViewById(R.id.paidBtn).setVisibility(View.GONE);
+//                itemView.findViewById(R.id.notPaidBtn).setVisibility(View.GONE);
                 buttonClickListener.onButtonClick(v, getAbsoluteAdapterPosition(), "PAID");
             } else if(text.equals("Not Paid")) {
-                itemView.findViewById(R.id.paidBtn).setVisibility(View.GONE);
-                itemView.findViewById(R.id.notPaidBtn).setVisibility(View.GONE);
+//                itemView.findViewById(R.id.paidBtn).setVisibility(View.GONE);
+//                itemView.findViewById(R.id.notPaidBtn).setVisibility(View.GONE);
                 itemView.findViewById(R.id.notPaidCross).setVisibility(View.VISIBLE);
                 buttonClickListener.onButtonClick(v, getAbsoluteAdapterPosition(), "NOT PAID");
             }

@@ -61,10 +61,10 @@ public class MultiAdapter extends RecyclerView.Adapter<MultiAdapter.MultiViewHol
 
     class MultiViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView memberName, memberId;
+        private final TextView memberName, memberId, memberAmount;
         private final ImageView paidTickIcon, notPaidCrossIcon;
 
-        private final Button paidBtn, notPaidBtn;
+//        private final Button paidBtn, notPaidBtn;
 
         MultiViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,8 +72,9 @@ public class MultiAdapter extends RecyclerView.Adapter<MultiAdapter.MultiViewHol
             memberId = itemView.findViewById(R.id.memberId);
             paidTickIcon = itemView.findViewById(R.id.paidTick);
             notPaidCrossIcon = itemView.findViewById(R.id.notPaidCross);
-            paidBtn = itemView.findViewById(R.id.paidBtn);
-            notPaidBtn = itemView.findViewById(R.id.notPaidBtn);
+            memberAmount = itemView.findViewById(R.id.memberAmount);
+//            paidBtn = itemView.findViewById(R.id.paidBtn);
+//            notPaidBtn = itemView.findViewById(R.id.notPaidBtn);
         }
 
         void bind(final MemberDetail memberDetail) {
@@ -83,8 +84,9 @@ public class MultiAdapter extends RecyclerView.Adapter<MultiAdapter.MultiViewHol
             notPaidCrossIcon.setVisibility(memberDetail.isNotPaid() ? View.VISIBLE : View.GONE);
             memberId.setText(memberDetail.getMemberId());
             memberName.setText(memberDetail.getMemberName().concat(" ").concat(memberDetail.getFatherName()));
-            paidBtn.setVisibility(View.GONE);
-            notPaidBtn.setVisibility(View.GONE);
+            memberAmount.setText("EMI: ".concat("500"));
+//            paidBtn.setVisibility(View.GONE);
+//            notPaidBtn.setVisibility(View.GONE);
 
             List<Integer> paidMemberIds = new ArrayList<Integer>();
 

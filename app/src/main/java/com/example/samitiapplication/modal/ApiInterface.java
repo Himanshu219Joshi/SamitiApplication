@@ -8,7 +8,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import retrofit2.http.QueryName;
 
 public interface ApiInterface {
 
@@ -33,4 +32,9 @@ public interface ApiInterface {
 
     @POST("/samiti/updateSummary")
     Call<NewLoanDetail> addNewLoan(@Header ("Authorization") String token, @Body NewLoanDetail newLoanDetail);
+
+    @POST("/samiti/settleLoan/{loanId}")
+    Call<SettleLoan> settleLoan(@Path("loanId") String loanId, @Header ("Authorization") String token);
+
+
 }

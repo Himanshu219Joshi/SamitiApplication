@@ -4,7 +4,7 @@
     <string name="listTitle">Summary</string>
     <string name="mobileNumber">123456789</string>
     <string name="mobileNo">Mobile No</string>
-    <string name="title_activity_list">ListActivity</string>
+    <string name="title_activity_member">MemberActivity</string>
     <string name="submit">Submit</string>
     <string name="login">Login</string>
     <string name="title_activity_app_bar">AppBar</string>
@@ -12,6 +12,7 @@
     <string name="loan_amount">Loan Amount:</string>
     <string name="loan_amount_placeholder">Loan Amount</string>
     <string name="penalty_amount">Penalty Amount</string>
+    <string name="penalty_amount_label">Penalty Amount:</string>
     <string name="inverted_amount">Invested Amount:</string>
     <string name="member_status">Member Status: </string>
     <string name="loan_date">Loan Date:</string>
@@ -120,4 +121,5 @@
     <string name="back">Back</string>
     <string name="settle">Settle</string>
     <string name="reset_database">Reset Database</string>
+    <string name="closed">CLOSED</string>
 </resources>
