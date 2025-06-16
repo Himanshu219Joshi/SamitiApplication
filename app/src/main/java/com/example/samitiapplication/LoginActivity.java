@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         Toolbar toolbar = findViewById(R.id.header_appbar);
-        setSupportActionBar(toolbar);
+//        setSupportActionBar(toolbar);
         toolbar.setTitle("hr");
 
 

@@ -21,4 +21,10 @@ public class SessionManager {
     public String getToken() {
         return sharedPreferences.getString("token", "");
     }
+
+    public void sessionLogOut() {
+        editor.clear();
+        editor.apply();
+        editor.commit();
+    }
 }

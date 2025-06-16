@@ -11,6 +11,13 @@ public class AppBar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_bar);
+
+
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -19,4 +26,6 @@ public class AppBar extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_items, menu);
         return true;
     }
+
+
 }

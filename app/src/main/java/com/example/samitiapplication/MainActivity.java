@@ -20,6 +20,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -244,6 +245,18 @@ public class MainActivity extends AppCompatActivity {
 //        MenuInflater menuInflater = inflater.inflate(R.menu.menu_items, menu);
         getMenuInflater().inflate(R.menu.menu_items, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_logout) {
+            Toast.makeText(MainActivity.this, "Logout Action", Toast.LENGTH_SHORT).show();
+            sessionManager.sessionLogOut();
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void createNotificationChannel() {
