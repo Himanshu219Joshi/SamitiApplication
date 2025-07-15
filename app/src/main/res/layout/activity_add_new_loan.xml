@@ -163,7 +163,7 @@
                 android:id="@+id/loanDateTextField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="date"
+                android:inputType="text"
                 android:textColor="@color/textPrimaryColor" />
 
         </com.google.android.material.textfield.TextInputLayout>

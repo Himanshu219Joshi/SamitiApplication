@@ -33,15 +33,23 @@ import com.example.samitiapplication.modal.Employee;
 import com.example.samitiapplication.modal.MemberDetail;
 import com.example.samitiapplication.networking.ApiClient;
 import com.example.samitiapplication.networking.SessionManager;
+import com.example.samitiapplication.utils.CustomDate;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.logging.Logger;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,6 +63,7 @@ public class ItemFragment extends AppCompatActivity implements MonthlyPaymentAda
     private MultiAdapter adapter;
     private AppCompatButton btnGetSelected, resetDatabase;
 
+    private CustomDate customDate;
     ApiInterface apiInterface;
     RecyclerView recyclerViewItemFragment;
     DatabaseHelper db;
@@ -78,6 +87,7 @@ public class ItemFragment extends AppCompatActivity implements MonthlyPaymentAda
 
         Retrofit instance = ApiClient.instance();
         apiInterface = instance.create(ApiInterface.class);
+        customDate = new CustomDate()
 
 //        recyclerViewItemFragment = findViewById(R.id.list);
         ;
@@ -165,9 +175,17 @@ public class ItemFragment extends AppCompatActivity implements MonthlyPaymentAda
                 if (!adapter.getSelected().isEmpty()) {
                     StringBuilder stringBuilder = new StringBuilder();
 
-                    stringBuilder.append("श्री गौड़ दमावत समिति मार्च 2025   \n 500/- \n\n");
+                    Calendar calendar = Calendar.getInstance();
+                    int month = calendar.get(Calendar.MONTH);
+                    String monthName = customDate.getMonthNameHindi(month);
+
+                    List<String> fatherArray = new ArrayList<>();
+
+                    stringBuilder.append("श्री गौड़ दमावत समिति ").append(monthName).append(" 2025   \n 500/- \n\n");
                     for (int i = 0; i < adapter.getSelected().size(); i++) {
+                        fatherArray.add(adapter.getSelected().get(i).getFatherName());
                         stringBuilder.append(adapter.getSelected().get(i).getMemberId()).append(" ");
+                        System.out.println(Arrays.toString(fatherArray.toArray()));
                         stringBuilder.append(adapter.getSelected().get(i).getMemberName().concat(" ").concat(adapter.getSelected().get(i).getFatherName()));
                         stringBuilder.append(adapter.getSelected().get(i).isPaid() ?" ✅ " : "");
                         stringBuilder.append("\n");

@@ -3,6 +3,7 @@ package com.example.samitiapplication.modal;
 public class NewLoanDetail {
     private long totalAmount;
 
+    private String loanDate;
     public int getFirstGuarantor() {
         return firstGuarantor;
     }
@@ -29,8 +30,6 @@ public class NewLoanDetail {
     public void setLoanDate(String loanDate) {
         this.loanDate = loanDate;
     }
-
-    private String loanDate;
 
     public long getEmiAmount() {
         return emiAmount;

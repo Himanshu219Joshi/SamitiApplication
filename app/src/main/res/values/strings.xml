@@ -16,7 +16,7 @@
     <string name="inverted_amount">Invested Amount:</string>
     <string name="member_status">Member Status: </string>
     <string name="loan_date">Loan Date:</string>
-    <string name="loan_date_placeholder">Loan Date (MM/DD/YY)</string>
+    <string name="loan_date_placeholder">Loan Date (MM/DD/YYYY)</string>
     <string name="loan_emi">Loan EMI: </string>
     <string name="total_amount">Total Amount:</string>
     <string name="total_amount_placeholder">Total Amount</string>
