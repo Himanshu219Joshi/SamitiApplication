@@ -15,10 +15,10 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.example.samitiapplication.databinding.ActivityLoginBinding;
 import com.example.samitiapplication.modal.ApiInterface;
 import com.example.samitiapplication.modal.LoginUser;
 import com.example.samitiapplication.networking.ApiClient;
-import com.example.samitiapplication.databinding.ActivityLoginBinding;
 import com.example.samitiapplication.networking.SessionManager;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.header_appbar);
 //        setSupportActionBar(toolbar);
-        toolbar.setTitle("hr");
+//        toolbar.setTitle("hr");
 
 
         loginUser = new LoginUser();

@@ -57,14 +57,5 @@ public class LoanDetails {
 
     private String loanStatus;
 
-    public LoanDetails getLoanDetails() {
-        return loanDetails;
-    }
-
-    public void setLoanDetails(LoanDetails loanDetails) {
-        this.loanDetails = loanDetails;
-    }
-
-    private LoanDetails loanDetails;
 
 }

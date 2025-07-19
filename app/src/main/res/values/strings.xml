@@ -122,4 +122,5 @@
     <string name="settle">Settle</string>
     <string name="reset_database">Reset Database</string>
     <string name="closed">CLOSED</string>
+    <string name="total">total</string>
 </resources>

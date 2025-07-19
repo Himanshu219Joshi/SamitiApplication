@@ -11,7 +11,10 @@ import android.widget.Toast;
 
 import com.example.samitiapplication.databinding.ActivityMemberListBinding;
 import com.example.samitiapplication.modal.ApiInterface;
+import com.example.samitiapplication.modal.LastMemberDetails;
 import com.example.samitiapplication.modal.MemberDetail;
+import com.example.samitiapplication.modal.MemberDetail;
+import com.example.samitiapplication.modal.members.MemberModal;
 import com.example.samitiapplication.networking.ApiClient;
 import com.example.samitiapplication.networking.SessionManager;
 
@@ -47,17 +50,18 @@ public class MemberActivity extends AppCompatActivity {
 
         String token = sessionManager.getToken();
 
-        Call<List<MemberDetail>> call = apiInterface.getMembersInfo("Bearer "+token);
-        call.enqueue(new Callback<List<MemberDetail>>() {
+        Call<List<MemberModal>> call = apiInterface.getMembersInfoV2("Bearer "+token);
+        call.enqueue(new Callback<List<MemberModal>>() {
             @Override
-            public void onResponse(Call<List<MemberDetail>> call, @NonNull Response<List<MemberDetail>> response) {
+            public void onResponse(Call<List<MemberModal>> call, @NonNull Response<List<MemberModal>> response) {
 
                 if(!response.isSuccessful()) {
-                    Toast.makeText(MemberActivity.this, "Login Sucessfull", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MemberActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                List<MemberDetail> personList = response.body();
+                List<MemberModal> personList = response.body();
+                System.out.println("Memeber Activity"+ personList.get(0));
                 MemberAdapter MemberAdapter = new MemberAdapter(MemberActivity.this, personList);
                 recyclerView.setLayoutManager(new LinearLayoutManager(MemberActivity.this));
                 recyclerView.addItemDecoration(new DividerItemDecoration(MemberActivity.this, LinearLayoutManager.VERTICAL));
@@ -66,7 +70,7 @@ public class MemberActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<MemberDetail>> call, Throwable t) {
+            public void onFailure(Call<List<MemberModal>> call, Throwable t) {
                 Toast.makeText(MemberActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

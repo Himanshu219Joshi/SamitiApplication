@@ -28,4 +28,14 @@ public class UserInfo {
     private int memeberId;
     private String memberName;
     private String installmentStatus;
+
+    public long getEmiAmount() {
+        return emiAmount;
+    }
+
+    public void setEmiAmount(long emiAmount) {
+        this.emiAmount = emiAmount;
+    }
+
+    private long emiAmount;
 }

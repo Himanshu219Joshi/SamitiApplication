@@ -19,6 +19,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,10 +30,15 @@ import com.example.samitiapplication.databinding.ActivityMainBinding;
 import com.example.samitiapplication.databinding.ActivitySummaryBinding;
 import com.example.samitiapplication.modal.ApiInterface;
 
+import com.example.samitiapplication.modal.LastLoanDetails;
+import com.example.samitiapplication.modal.Summary;
 import com.example.samitiapplication.modal.SummaryDetails;
 import com.example.samitiapplication.networking.ApiClient;
 import com.example.samitiapplication.networking.SessionManager;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -134,13 +140,17 @@ public class MainActivity extends AppCompatActivity {
         guarantorNames = findViewById(R.id.guarantorNames);
         loanStatus = findViewById(R.id.loanStatus);
 
-
-
 //        binding.notifyBtn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-//                nm.notify(NOTIFICATION_ID, notification);
+//        NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        Calendar c = Calendar.getInstance();
+
+
+        int dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
+        if(dayOfMonth == 15) {
+            nm.notify(NOTIFICATION_ID, notification);
+        }
 //            }
 //        });
 
@@ -157,22 +167,26 @@ public class MainActivity extends AppCompatActivity {
 
         summaryDetails.enqueue(new Callback<SummaryDetails>() {
             @Override
-            public void onResponse(@NonNull Call<SummaryDetails> call, @NonNull Response<SummaryDetails> response) {
+            public void onResponse(@NonNull Call<SummaryDetails> call,@NonNull Response<SummaryDetails> response) {
                 if(response.body() != null ) {
+                    Summary summaryDetails = response.body().getSummary();
+                    System.out.println("Response BOdy::::"+response.body());
                     totalAmount.append(String.valueOf(" "+response.body().getSummary().getTotalAmount()));
-                    lentAmount.append(String.valueOf(" "+response.body().getSummary().getLentAmount()));
-                    balanceAmount.append(String.valueOf(" "+response.body().getSummary().getBalanceAmount()));
-                    interestAmount.append(String.valueOf(" "+response.body().getSummary().getInterestAccrued()));
-                    penaltyAmount.append(String.valueOf(" "+response.body().getSummary().getPenaltyAmount()));
+                    lentAmount.append(String.valueOf(" "+summaryDetails.getLentAmount()));
+                    balanceAmount.append(String.valueOf(" "+summaryDetails.getBalanceAmount()));
+                    interestAmount.append(String.valueOf(" "+summaryDetails.getInterestAccrued()));
+                    penaltyAmount.append(String.valueOf(" "+summaryDetails.getPenaltyAmount()));
 
-                    memberName.append(String.valueOf(" "+response.body().getLastLoan().getMemberName()));
-                    memberId.append(String.valueOf(" "+response.body().getLastLoan().getMemberId()));
-                    if(response.body().getLastLoan().getLoanDetails() != null) {
-                        loanAmount.append(String.valueOf(" " + response.body().getLastLoan().getLoanDetails().getLoanAmount()));
-                        loanDate.append(String.valueOf(" " + response.body().getLastLoan().getLoanDetails().getDate()));
-                        loanEmi.append((String.valueOf(" " + response.body().getLastLoan().getLoanDetails().getEmiAmount())));
-                        guarantorNames.append(" "+ response.body().getLastLoan().getLoanDetails().getGuarantors().get(0).getMemberName().concat(", ").concat(response.body().getLastLoan().getLoanDetails().getGuarantors().get(1).getMemberName()));
-                        loanStatus.append(" "+ response.body().getLastLoan().getLoanDetails().getLoanStatus());
+                    LastLoanDetails lastLoanDetails = response.body().getLastLoanDetails();
+                    memberName.append(String.valueOf(" "+lastLoanDetails.getMemberName()));
+                    memberId.append(String.valueOf(" "+lastLoanDetails.getMemberId()));
+                    Log.d("RAW DATA", lastLoanDetails.getLoanDetails().toString());
+                    if(lastLoanDetails.getLoanDetails() != null) {
+                        loanAmount.append(String.valueOf(" " + lastLoanDetails.getLoanDetails().getLoanAmount()));
+                        loanDate.append(String.valueOf(" " + lastLoanDetails.getLoanDetails().getDate()));
+                        loanEmi.append((String.valueOf(" " + lastLoanDetails.getLoanDetails().getEmiAmount())));
+                        guarantorNames.append(" "+ lastLoanDetails.getLoanDetails().getGuarantors().get(0).getMemberName().concat(", ").concat(lastLoanDetails.getLoanDetails().getGuarantors().get(1).getMemberName()));
+                        loanStatus.append(" "+ lastLoanDetails.getLoanDetails().getLoanStatus());
                     }
                 }
             }
@@ -180,34 +194,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<SummaryDetails> call, Throwable t) {
                 Toast.makeText(MainActivity.this, "Api Response Failed", Toast.LENGTH_SHORT).show();
+                System.out.println(t.getMessage());
             }
         });
-
-//        binding.loginButton.setOnClickListener(new View.OnClickListener() {
-
-//            @Override
-//            public void onClick(View view) {
-//                if (binding.mobileNo.getText().toString().isEmpty()){
-//                    binding.mobileNo.setError("Mobile No Required");
-//                } else {
-//                    Toast.makeText(MainActivity.this, "Login User No: "+mobileNo.getText(), Toast.LENGTH_LONG).show();
-//                    Person person = new Person();
-//                    person.setName(binding.name.getText().toString());
-//
-//                    apiInterface.insert(person).enqueue(new Callback<Person>() {
-//                        @Override
-//                        public void onResponse(Call<Person> call, Response<Person> response) {
-//                            Toast.makeText(MainActivity.this, "Succesfully Inserted", Toast.LENGTH_SHORT).show();
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<Person> call, Throwable t) {
-//                            Toast.makeText(MainActivity.this, "Insertion Failed", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//                }
-//            }
-//        });
 
         binding.showSummaryDetails.setOnClickListener(new View.OnClickListener() {
             @Override

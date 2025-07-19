@@ -3,15 +3,22 @@ package com.example.samitiapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 
+import com.example.samitiapplication.data.DatabaseHelper;
 import com.example.samitiapplication.modal.ApiInterface;
+import com.example.samitiapplication.modal.LastMemberDetails;
 import com.example.samitiapplication.modal.MemberDetail;
 import com.example.samitiapplication.modal.NewLoanDetail;
+import com.example.samitiapplication.modal.MemberDetail;
+import com.example.samitiapplication.modal.members.MemberModal;
 import com.example.samitiapplication.networking.ApiClient;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,6 +36,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import retrofit2.Call;
@@ -51,6 +59,8 @@ public class AddNewLoan extends AppCompatActivity {
 
     SessionManager sessionManager;
     NewLoanDetail newLoanDetail;
+
+    DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,18 +113,34 @@ public class AddNewLoan extends AppCompatActivity {
         Retrofit instance = ApiClient.instance();
         apiInterface = instance.create(ApiInterface.class);
 
+        databaseHelper = new DatabaseHelper(getApplicationContext());
 
-        Call<List<MemberDetail>> memberDetailCall = apiInterface.getMembersInfo("Bearer " + token);
+        Cursor cursor = databaseHelper.getAllData();
+        long totalAmountValue = 0;
+        while (cursor.moveToNext()) {
+            String installmentValue = cursor.getString(2);
+            boolean isPaid = installmentValue.equalsIgnoreCase("true") || installmentValue.equalsIgnoreCase("1");
+            if (isPaid){
+                totalAmountValue += Long.parseLong(cursor.getString(3));
+            }
+        }
 
-        memberDetailCall.enqueue(new Callback<List<MemberDetail>>() {
+        System.out.println("Total Amount: "+ totalAmountValue);
+
+        totalAmount.setText(String.valueOf(totalAmountValue));
+
+        Call<List<MemberModal>> memberDetailCall = apiInterface.getMembersInfoV2("Bearer " + token);
+
+        memberDetailCall.enqueue(new Callback<List<MemberModal>>() {
+
             @Override
-            public void onResponse(Call<List<MemberDetail>> call, Response<List<MemberDetail>> response) {
+            public void onResponse(@NonNull Call<List<MemberModal>> call, @NonNull Response<List<MemberModal>> response) {
                 if (response.isSuccessful()) {
-                    List<MemberDetail> memberList = response.body();
+                    List<MemberModal> memberList = response.body();
                     List<String> newMemberList = new ArrayList<>();
                     assert memberList != null;
-                    for (MemberDetail memberDetail : memberList) {
-                        newMemberList.add(memberDetail.getMemberId() + " " + memberDetail.getMemberName());
+                    for (MemberModal memberDetail : memberList) {
+                         newMemberList.add(memberDetail.getMemberId() + " " + memberDetail.getMemberName());
                     }
 
                     arrayAdapterItem = new ArrayAdapter<>(AddNewLoan.this, R.layout.list_item, newMemberList);
@@ -125,7 +151,7 @@ public class AddNewLoan extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<MemberDetail>> call, Throwable t) {
+            public void onFailure(Call<List<MemberModal>> call, Throwable t) {
                 Toast.makeText(AddNewLoan.this, "Something is wrong", Toast.LENGTH_SHORT).show();
 
             }

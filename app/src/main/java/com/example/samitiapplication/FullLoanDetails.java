@@ -4,28 +4,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.samitiapplication.modal.ApiInterface;
-import com.example.samitiapplication.modal.LoanDetail;
+import com.example.samitiapplication.modal.loans.LoanModal;
 import com.example.samitiapplication.modal.SettleLoan;
-import com.example.samitiapplication.modal.UserDetail;
 import com.example.samitiapplication.networking.ApiClient;
 import com.example.samitiapplication.networking.SessionManager;
-
-import org.w3c.dom.Text;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,6 +55,7 @@ public class FullLoanDetails extends AppCompatActivity {
         firstGuarantorValue = findViewById(R.id.firstGuarantorValue);
         secondGuarantorValue = findViewById(R.id.secondGuarantorValue);
         loanStatusValue = findViewById(R.id.loanStatusValue);
+        FrameLayout loading_full_loan = findViewById(R.id.loading_full_loan);
 
         sessionManager = new SessionManager(getApplicationContext());
 
@@ -70,15 +63,17 @@ public class FullLoanDetails extends AppCompatActivity {
         ApiInterface apiInterface = instance.create(ApiInterface.class);
 
         String token = sessionManager.getToken();
-        Call<LoanDetail> getLoanInfo = apiInterface.getLoanInfo(loanId, "Bearer "+token);
 
-        getLoanInfo.enqueue(new Callback<LoanDetail>() {
+        loading_full_loan.setVisibility(View.VISIBLE);
+        Call<LoanModal> getLoanInfo = apiInterface.getLoanInfo(loanId, "Bearer "+token);
+
+        getLoanInfo.enqueue(new Callback<LoanModal>() {
             @Override
-            public void onResponse(Call<LoanDetail> call, Response<LoanDetail> response) {
+            public void onResponse(@NonNull Call<LoanModal> call, @NonNull Response<LoanModal> response) {
                 if(response.body() != null) {
-                    LoanDetail loanDetail = response.body();
+                    LoanModal loanDetail = response.body();
                     memberNameValue.setText(loanDetail.getMemberDetails().getMemberName().concat(" ").concat(loanDetail.getMemberDetails().getFatherName()));
-                    loanAmountValue.setText(loanDetail.getLoanAmount());
+                    loanAmountValue.setText(String.valueOf(loanDetail.getLoanAmount()));
                     loanDateValue.setText(String.valueOf(loanDetail.getDate()));
                     totalInterestValue.setText(String.valueOf(loanDetail.getTotalInterest()));
                     emiAmountValue.setText(String.valueOf(loanDetail.getEmiAmount()));
@@ -87,14 +82,15 @@ public class FullLoanDetails extends AppCompatActivity {
                     firstGuarantorValue.setText(loanDetail.getGuarantors().get(0).getMemberName().concat(" ").concat(loanDetail.getGuarantors().get(0).getFatherName()));
                     secondGuarantorValue.setText(loanDetail.getGuarantors().get(1).getMemberName().concat(" ").concat(loanDetail.getGuarantors().get(1).getFatherName()));
                     loanStatusValue.setText(loanDetail.getLoanStatus());
+                    loading_full_loan.setVisibility(View.GONE);
                 }
 
-                Toast.makeText(FullLoanDetails.this, "Response"+response.isSuccessful(), Toast.LENGTH_SHORT ).show();
+//                Toast.makeText(FullLoanDetails.this, "Response"+response.isSuccessful(), Toast.LENGTH_SHORT ).show();
             }
 
             @Override
-            public void onFailure(Call<LoanDetail> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<LoanModal> call, @NonNull Throwable t) {
+                loading_full_loan.setVisibility(View.GONE);
             }
         });
 
@@ -105,7 +101,7 @@ public class FullLoanDetails extends AppCompatActivity {
                 System.out.println(loanStatusUpdated);
                 loanStatusUpdated.enqueue(new Callback<SettleLoan>() {
                     @Override
-                    public void onResponse(Call<SettleLoan> call, Response<SettleLoan> response) {
+                    public void onResponse(@NonNull Call<SettleLoan> call, @NonNull Response<SettleLoan> response) {
                         assert response.body() != null;
                         loanStatusValue.setText(R.string.closed);
                         Toast.makeText(FullLoanDetails.this, response.body().getMessage(), Toast.LENGTH_SHORT ).show();

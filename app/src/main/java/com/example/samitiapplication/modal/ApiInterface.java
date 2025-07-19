@@ -1,5 +1,8 @@
 package com.example.samitiapplication.modal;
 
+import com.example.samitiapplication.modal.loans.LoanModal;
+import com.example.samitiapplication.modal.members.MemberModal;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -15,6 +18,9 @@ public interface ApiInterface {
     @GET("samiti/getMembers")
     Call<List<MemberDetail>> getMembersInfo(@Header ("Authorization") String token);
 
+    @GET("samiti/getMembers")
+    Call<List<MemberModal>> getMembersInfoV2(@Header ("Authorization") String token);
+
     @GET("samiti/getSummary")
     Call<SummaryDetails> getSummary(@Header ("Authorization") String token);
 
@@ -25,10 +31,13 @@ public interface ApiInterface {
     Call<UserDetail> userRegistration(@Body UserDetail userDetails);
 
     @GET("samiti/getLoans")
-    Call<List<LoanDetail>> getLoanDetail(@Header ("Authorization") String token);
+    Call<List<LoanModal>> getLoanDetail(@Header ("Authorization") String token);
+
+//    Call<List<LoanModalWithoutMemberDetails>> getLoanDetailV2(@Header ("Authorization") String token);
+
 
     @GET("samiti/getLoans/{loanId}")
-    Call<LoanDetail> getLoanInfo(@Path("loanId") String loanId, @Header("Authorization") String token);
+    Call<LoanModal> getLoanInfo(@Path("loanId") String loanId, @Header("Authorization") String token);
 
     @POST("/samiti/updateSummary")
     Call<NewLoanDetail> addNewLoan(@Header ("Authorization") String token, @Body NewLoanDetail newLoanDetail);

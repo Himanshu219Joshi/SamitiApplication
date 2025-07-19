@@ -1,7 +1,5 @@
 package com.example.samitiapplication;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,8 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.EmojiCompatConfigurationView;
-import androidx.appcompat.widget.Toolbar;
 import androidx.emoji2.bundled.BundledEmojiCompatConfig;
 import androidx.emoji2.text.EmojiCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -23,33 +19,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.samitiapplication.MultiAdapter;
-import com.example.samitiapplication.R;
 import com.example.samitiapplication.data.DatabaseHelper;
-import com.example.samitiapplication.data.model.UserInfo;
-import com.example.samitiapplication.databinding.ActivityLoginBinding;
 import com.example.samitiapplication.modal.ApiInterface;
-import com.example.samitiapplication.modal.Employee;
-import com.example.samitiapplication.modal.MemberDetail;
+import com.example.samitiapplication.modal.LastMemberDetails;
+import com.example.samitiapplication.modal.members.MemberModal;
 import com.example.samitiapplication.networking.ApiClient;
 import com.example.samitiapplication.networking.SessionManager;
 import com.example.samitiapplication.utils.CustomDate;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
-import java.util.logging.Logger;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -59,13 +42,11 @@ import retrofit2.Retrofit;
 public class ItemFragment extends AppCompatActivity implements MonthlyPaymentAdapter.buttonClickListener {
 
     private RecyclerView recyclerView;
-    private ArrayList<MemberDetail> memberDetails = new ArrayList<>();
+    private ArrayList<MemberModal> memberDetails = new ArrayList<>();
     private MultiAdapter adapter;
-    private AppCompatButton btnGetSelected, resetDatabase;
 
     private CustomDate customDate;
     ApiInterface apiInterface;
-    RecyclerView recyclerViewItemFragment;
     DatabaseHelper db;
 
     SessionManager sessionManager;
@@ -77,8 +58,9 @@ public class ItemFragment extends AppCompatActivity implements MonthlyPaymentAda
 
         setContentView(R.layout.activity_multiple_selection);
         EmojiCompat.init(new BundledEmojiCompatConfig(this));
-        this.btnGetSelected = (AppCompatButton) findViewById(R.id.btnGetSelected);
-        resetDatabase = findViewById(R.id.resetBtn);
+        AppCompatButton btnGetSelected = (AppCompatButton) findViewById(R.id.btnGetSelected);
+        AppCompatButton resetDatabase = findViewById(R.id.resetBtn);
+
         this.recyclerView = (RecyclerView) findViewById(R.id.recyclerViewMultiSelect);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
@@ -98,10 +80,10 @@ public class ItemFragment extends AppCompatActivity implements MonthlyPaymentAda
 
         String token = sessionManager.getToken();
 
-        Call<List<MemberDetail>> call = apiInterface.getMembersInfo("Bearer " + token);
-        call.enqueue(new Callback<List<MemberDetail>>() {
+        Call<List<MemberModal>> call = apiInterface.getMembersInfoV2("Bearer " + token);
+        call.enqueue(new Callback<List<MemberModal>>() {
             @Override
-            public void onResponse(Call<List<MemberDetail>> call, @NonNull Response<List<MemberDetail>> response) {
+            public void onResponse(Call<List<MemberModal>> call, @NonNull Response<List<MemberModal>> response) {
 
                 if (!response.isSuccessful()) {
                     Toast.makeText(ItemFragment.this, "Login Sucessfull", Toast.LENGTH_SHORT).show();
@@ -122,11 +104,15 @@ public class ItemFragment extends AppCompatActivity implements MonthlyPaymentAda
                     }
                 }
 
-                memberDetails = (ArrayList<MemberDetail>) response.body();
 
+                memberDetails = (ArrayList<MemberModal>) response.body();
+
+//                System.out.println(memberDetails.get(0).get);
                 assert memberDetails != null;
-                for (MemberDetail memberDetailData : memberDetails) {
-                    boolean isPaid = paidArray.contains(Integer.parseInt(memberDetailData.getMemberId()));
+
+                memberDetails = (ArrayList<MemberModal>) memberDetails.stream().filter(item -> Objects.equals(item.getMemberStatus(), "Active")).collect(Collectors.toList());
+                for (MemberModal memberDetailData : memberDetails) {
+                    boolean isPaid = paidArray.contains(Integer.parseInt(String.valueOf(memberDetailData.getMemberId())));
                     if (isPaid) {
                         memberDetailData.setPaid(true);
                     } else {
@@ -145,7 +131,8 @@ public class ItemFragment extends AppCompatActivity implements MonthlyPaymentAda
             }
 
             @Override
-            public void onFailure(Call<List<MemberDetail>> call, Throwable t) {
+            public void onFailure(Call<List<MemberModal>> call, Throwable t) {
+                System.out.println("Error : "+t.fillInStackTrace());
                 Toast.makeText(ItemFragment.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -205,7 +192,7 @@ public class ItemFragment extends AppCompatActivity implements MonthlyPaymentAda
 
     private void createList() {
         for (int i = 0; i < memberDetails.size(); i++) {
-            MemberDetail memberDetailData = new MemberDetail();
+            MemberModal memberDetailData = new MemberModal();
             memberDetailData.setMemberName("Employee " + (i + 1));
 
             // for example to show at least one selection

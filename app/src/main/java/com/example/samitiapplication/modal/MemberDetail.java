@@ -2,7 +2,7 @@ package com.example.samitiapplication.modal;
 
 import java.io.Serializable;
 
-public class MemberDetail implements Serializable {
+public class MemberDetail {
 
     private boolean isPaid = false;
 
@@ -53,6 +53,7 @@ public class MemberDetail implements Serializable {
 
     private String memberName;
 
+
     public String getFatherName() {
         return fatherName;
     }
@@ -64,19 +65,19 @@ public class MemberDetail implements Serializable {
     private String fatherName;
 
     public String getMemberName() {
-        return memberName;
+        return this.memberName;
     }
 
     public String getLoanAmount() {
-        return loanAmount;
+        return this.loanAmount;
     }
 
     public String getInvestedMoney() {
-        return investedMoney;
+        return this.investedMoney;
     }
 
     public String getMemberId() {
-        return memberId;
+        return this.memberId;
     }
 
     public String getIdAndMemberList() {
@@ -94,13 +95,10 @@ public class MemberDetail implements Serializable {
 
     private final String memberStatus;
 
-//    public LoanDetails getLoanDetails() {
-//        return loanDetails;
-//    }
-//
-//    public void setLoanDetails(LoanDetails loanDetails) {
-//        this.loanDetails = loanDetails;
-//    }
-//
-//    private LoanDetails loanDetails;
+    public LastLoanDetailsInfo getLoanDetails() {
+        return this.loanDetails;
+    }
+
+    public LastLoanDetailsInfo loanDetails;
+
 }

@@ -12,12 +12,14 @@ import com.example.samitiapplication.data.model.UserInfo;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "SamitiDatabase.db";
+    private static final String DATABASE_NAME = "samitiDatabase.db";
 
-    private static final String TABLE_NAME = "Monthly_Installment";
-    private static final String COL1 = "Member_ID";
-    private static final String COL2 = "Member_Name";
-    private static final String COL3 = "Installment_Status";
+    private static final String TABLE_NAME = "monthly_installment";
+    private static final String COL1 = "member_id";
+    private static final String COL2 = "member_name";
+    private static final String COL3 = "installment_status";
+
+    private static final String COL4 = "emi_amount";
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 2);
@@ -26,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " ("+COL1+" INTEGER,"+COL2+" TEXT,"+ COL3 +" TEXT)");
+        db.execSQL("create table " + TABLE_NAME + " ("+COL1+" INTEGER,"+COL2+" TEXT,"+ COL3 +" TEXT,"+ COL4 +" NUMBER)");
 
     }
 
@@ -42,6 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL1, userInfo.getMemeberId());
         contentValues.put(COL2, userInfo.getMemberName());
         contentValues.put(COL3, userInfo.getInstallmentStatus());
+        contentValues.put(COL4, userInfo.getEmiAmount());
         return database.insert(TABLE_NAME, null, contentValues);
     }
 

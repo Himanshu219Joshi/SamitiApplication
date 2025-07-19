@@ -6,24 +6,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.samitiapplication.modal.LoanDetail;
-import com.example.samitiapplication.modal.MemberDetail;
+import com.example.samitiapplication.modal.loans.LoanModal;
 
 import java.util.List;
 
 public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.LoanDetailsViewHolder> {
 
-    List<LoanDetail> loans;
+    List<LoanModal> loans;
 
     private final OnLoanItemClickListener onLoanItemClickListener;
 
-    public LoanDetailsAdapter(Context context, List<LoanDetail> loans, OnLoanItemClickListener onLoanItemClickListener) {
+    public LoanDetailsAdapter(Context context, List<LoanModal> loans, OnLoanItemClickListener onLoanItemClickListener) {
         this.loans = loans;
         this.context = context;
         this.onLoanItemClickListener = onLoanItemClickListener;
@@ -40,10 +37,11 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull LoanDetailsAdapter.LoanDetailsViewHolder holder, int position) {
-        LoanDetail loanDetail = loans.get(position);
-        holder.memberId.setText(context.getString(R.string.member_id).concat(" ").concat(loanDetail.getMemberDetails().getMemberId()));
+        LoanModal loanDetail = loans.get(position);
+//        Log.d("LOAN DETAILS", loanDetail.getMemberDetails().getMemberName());
+        holder.memberId.setText(context.getString(R.string.member_id).concat(" ").concat(String.valueOf(loanDetail.getMemberDetails().getMemberId())));
         holder.memberName.setText(context.getString(R.string.member_name).concat(" ").concat(loanDetail.getMemberDetails().getMemberName()).concat(" ").concat(loanDetail.getMemberDetails().getFatherName()));
-        holder.loanAmount.setText(context.getString(R.string.loan_amount).concat(" ").concat(loanDetail.getLoanAmount()));
+        holder.loanAmount.setText(context.getString(R.string.loan_amount).concat(" ").concat(String.valueOf(loanDetail.getLoanAmount())));
         holder.loanDate.setText(context.getString(R.string.loan_date).concat(" ").concat(loanDetail.getDate()));
         holder.loanEmi.setText(context.getString(R.string.loan_emi).concat(" ").concat(String.valueOf(loanDetail.getEmiAmount())));
         holder.guarantorNames.setText(context.getString(R.string.guarantor_names).concat(" ").concat(loanDetail.getGuarantors().get(0).getMemberName()).concat(", ").concat(loanDetail.getGuarantors().get(1).getMemberName()));

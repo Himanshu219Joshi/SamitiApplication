@@ -10,15 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.samitiapplication.modal.LastMemberDetails;
 import com.example.samitiapplication.modal.MemberDetail;
+import com.example.samitiapplication.modal.members.MemberModal;
 
 import java.util.List;
 
 public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.PersonViewHolder> {
 
-    List<MemberDetail> personList;
+    List<MemberModal> personList;
 
-    public MemberAdapter(Context context, List<MemberDetail> person) {
+    public MemberAdapter(Context context, List<MemberModal> person) {
         personList = person;
         this.context = context;
     }
@@ -34,11 +36,11 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.PersonView
 
     @Override
     public void onBindViewHolder(@NonNull MemberAdapter.PersonViewHolder holder, int position) {
-        MemberDetail person = personList.get(position);
-        holder.memberId.setText(context.getString(R.string.member_id).concat(" ").concat(person.getMemberId()));
+        MemberModal person = personList.get(position);
+        holder.memberId.setText(context.getString(R.string.member_id).concat(" ").concat(String.valueOf(person.getMemberId())));
         holder.memberName.setText(context.getString(R.string.name).concat(person.getMemberName()).concat(" ").concat(person.getFatherName()));
-        holder.loanAmount.setText(context.getString(R.string.loan_amount).concat(" ").concat(person.getLoanAmount()));
-        holder.investedMoney.setText(context.getString(R.string.invested_money).concat(" ").concat(person.getInvestedMoney()));
+        holder.loanAmount.setText(context.getString(R.string.loan_amount).concat(" ").concat(String.valueOf(person.getLoanAmount())));
+        holder.investedMoney.setText(context.getString(R.string.invested_money).concat(" ").concat(String.valueOf(person.getInvestedMoney())));
         holder.memberStatus.setText(context.getString(R.string.member_status).concat(" ").concat(person.getMemberStatus()));
     }
 
