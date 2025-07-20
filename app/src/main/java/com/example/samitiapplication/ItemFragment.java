@@ -21,7 +21,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.samitiapplication.data.DatabaseHelper;
 import com.example.samitiapplication.modal.ApiInterface;
-import com.example.samitiapplication.modal.LastMemberDetails;
 import com.example.samitiapplication.modal.members.MemberModal;
 import com.example.samitiapplication.networking.ApiClient;
 import com.example.samitiapplication.networking.SessionManager;
@@ -107,7 +106,6 @@ public class ItemFragment extends AppCompatActivity implements MonthlyPaymentAda
 
                 memberDetails = (ArrayList<MemberModal>) response.body();
 
-//                System.out.println(memberDetails.get(0).get);
                 assert memberDetails != null;
 
                 memberDetails = (ArrayList<MemberModal>) memberDetails.stream().filter(item -> Objects.equals(item.getMemberStatus(), "Active")).collect(Collectors.toList());
@@ -165,7 +163,6 @@ public class ItemFragment extends AppCompatActivity implements MonthlyPaymentAda
                     Calendar calendar = Calendar.getInstance();
                     int month = calendar.get(Calendar.MONTH);
                     String monthName = customDate.getMonthNameHindi(month);
-
                     List<String> fatherArray = new ArrayList<>();
 
                     stringBuilder.append("श्री गौड़ दमावत समिति ").append(monthName).append(" 2025   \n 500/- \n\n");

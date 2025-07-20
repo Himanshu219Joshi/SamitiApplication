@@ -7,18 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.samitiapplication.data.DatabaseHelper;
 import com.example.samitiapplication.data.model.UserInfo;
-import com.example.samitiapplication.modal.LastMemberDetails;
-import com.example.samitiapplication.modal.MemberDetail;
 import com.example.samitiapplication.modal.members.MemberModal;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MultiAdapter extends RecyclerView.Adapter<MultiAdapter.MultiViewHolder> {
@@ -111,14 +109,18 @@ public class MultiAdapter extends RecyclerView.Adapter<MultiAdapter.MultiViewHol
                         memberDetail.setPaid(!memberDetail.isPaid());
                     } else {
                         userInfo = new UserInfo();
-                        long emiAmount = memberDetail.getLoanDetails() != null ? memberDetail.getLoanDetails().getEmiAmount() + fixedInstallment : fixedInstallment;
-
+                        long totalEmiAmount = memberDetail.getLoanDetails() != null ? memberDetail.getLoanDetails().getEmiAmount() + fixedInstallment : fixedInstallment;
                         userInfo.setMemeberId(Integer.parseInt(String.valueOf((memberDetail.getMemberId()))));
                         userInfo.setMemberName(memberDetail.getMemberName());
                         userInfo.setInstallmentStatus(String.valueOf(!memberDetail.isPaid()));
-                        userInfo.setEmiAmount(emiAmount);
+                        userInfo.setEmiAmount(totalEmiAmount);
                         memberDetail.setPaid(!memberDetail.isPaid());
-                        db.insetData(userInfo);
+                        if(paidMemberIds.contains(Integer.parseInt(String.valueOf(memberDetail.getMemberId())))) {
+                            System.out.println("Already Present Id"+memberDetail.getMemberId());
+                        } else {
+                            paidMemberIds.add(Integer.parseInt(String.valueOf(memberDetail.getMemberId())));
+                            db.insetData(userInfo);
+                        }
                     }
 
 //
