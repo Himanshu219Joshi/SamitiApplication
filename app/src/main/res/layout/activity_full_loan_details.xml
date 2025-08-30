@@ -172,11 +172,36 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/interestRecoveredLayout"
+            android:id="@+id/investedAmountLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             app:layout_constraintTop_toBottomOf="@id/amountRecoveredLayout"
+            tools:layout_editor_absoluteX="16dp">
+
+            <TextView
+                android:id="@+id/investedAmount"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="@string/inverted_amount" />
+
+            <TextView
+                android:id="@+id/investedAmountValue"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5sp"
+                android:text="Himanshu" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/interestRecoveredLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/investedAmountLayout"
             tools:layout_editor_absoluteX="16dp">
 
             <TextView

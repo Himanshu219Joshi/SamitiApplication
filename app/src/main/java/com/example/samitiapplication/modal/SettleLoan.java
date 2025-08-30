@@ -11,4 +11,25 @@ public class SettleLoan {
 
     String message;
 
+    public double getPartialAmount() {
+        return partialAmount;
+    }
+
+    public void setPartialAmount(double partialAmount) {
+        this.partialAmount = partialAmount;
+    }
+
+    double partialAmount;
+
+    public String getTypeOfTenure() {
+        return typeOfTenure;
+    }
+
+    public void setTypeOfTenure(String typeOfTenure) {
+        this.typeOfTenure = typeOfTenure;
+    }
+
+    String typeOfTenure;
+
+
 }

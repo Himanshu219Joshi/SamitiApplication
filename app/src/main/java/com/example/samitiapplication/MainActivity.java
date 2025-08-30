@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.FileProvider;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,16 +12,16 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -35,10 +36,10 @@ import com.example.samitiapplication.modal.Summary;
 import com.example.samitiapplication.modal.SummaryDetails;
 import com.example.samitiapplication.networking.ApiClient;
 import com.example.samitiapplication.networking.SessionManager;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.samitiapplication.utils.PdfDownloader;
 
+import java.io.File;
 import java.util.Calendar;
-import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,12 +49,18 @@ import retrofit2.Retrofit;
 public class MainActivity extends AppCompatActivity {
 
     private static final String CHANNEL_ID = "Samiti_Channel";
+    private static final int PERMISSION_REQUEST_CODE = 100;
+
+    private static final String PDF_URL = "https://www.localhost:3000/generatePdf";  // <-- replace with your REST endpoint
+
     private static final int NOTIFICATION_ID = 1;
     private static final int REQ_CODE = 11;
     ApiInterface apiInterface;
     ActivityMainBinding binding;
     SessionManager sessionManager;
     TextView totalAmount, lentAmount, balanceAmount, interestAmount, mobileNo, memberName, loanAmount, memberId, loanDate, loanEmi, guarantorNames, loanStatus, penaltyAmount;
+
+    Menu mainMenu;
 
     ActivitySummaryBinding summaryBinding;
     private RecyclerView recyclerView;
@@ -232,7 +239,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 //        MenuInflater menuInflater = inflater.inflate(R.menu.menu_items, menu);
-        getMenuInflater().inflate(R.menu.menu_items, menu);
+//        getMenuInflater().inflate(R.menu.menu_items, menu);
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_items, menu);
+        mainMenu = menu;
+        MenuItem item = menu.findItem(R.id.generate_pdf);
+        if (item != null) {
+            item.setVisible(true);
+        }
+
         return true;
     }
 
@@ -245,8 +261,60 @@ public class MainActivity extends AppCompatActivity {
             finish();
             return true;
         }
+
+        if (item.getItemId() == R.id.action_logout) {
+            Toast.makeText(MainActivity.this, "Logout Action", Toast.LENGTH_SHORT).show();
+            sessionManager.sessionLogOut();
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            finish();
+            return true;
+        }
+
+        if (item.getItemId() == R.id.generate_pdf) {
+
+            String token = sessionManager.getToken();
+
+            String pdfUrl = "https://multiply-wondrous-marmoset.ngrok-free.app/generatePdf";
+            String fileName = "Samiti Report";
+            PdfDownloader.downloadPdf(this, pdfUrl, fileName);
+
+//            File file = new File(Environment.DIRECTORY_DOWNLOADS +"/"+ fileName);
+//            Intent target = new Intent(Intent.ACTION_VIEW);
+//            target.setDataAndType(Uri.fromFile(file),"application/pdf");
+//            target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+//
+//            Intent intent = Intent.createChooser(target, "Open File");
+//            startActivity(intent);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
+
+    private void sharePdf() {
+        // Replace with the actual path to your PDF file
+        File pdfFile = new File(getExternalFilesDir(null), "your_pdf_file.pdf");
+
+        // Create a FileProvider URI
+        Uri pdfUri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", pdfFile);
+
+
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("application/pdf");
+        shareIntent.putExtra(Intent.EXTRA_STREAM, pdfUri);
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); // Important for security
+
+        startActivity(Intent.createChooser(shareIntent, "Share PDF"));
+    }
+
+//    private boolean checkPermission() {
+//        int result = ContextCompat.checkSelfPermission(this, Manifest.permission.);
+//        return result == PackageManager.PERMISSION_GRANTED;
+//    }
+
+//    private void requestPermission() {
+//        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+//    }
 
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because

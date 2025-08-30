@@ -117,10 +117,13 @@
     <string name="guarantor_two_label">Second Guarantor: </string>
     <string name="guarantor_names">Guarantor Names: </string>
     <string name="loan_status">Loan Status: </string>
+    <string name="generate_pdf">Samiti PDF</string>
 
     <string name="back">Back</string>
     <string name="settle">Settle</string>
     <string name="reset_database">Reset Database</string>
     <string name="closed">CLOSED</string>
     <string name="total">total</string>
+    <string name="enter_amount">Enter Amount</string>
+    <string name="confirm">Confirm</string>
 </resources>

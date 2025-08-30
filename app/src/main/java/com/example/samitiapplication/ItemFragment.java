@@ -29,7 +29,9 @@ import com.example.samitiapplication.utils.CustomDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -150,6 +152,7 @@ public class ItemFragment extends AppCompatActivity implements MonthlyPaymentAda
         btnGetSelected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Map<String, Integer> sharinglist =new HashMap<String, Integer>();
                 Intent intent = new Intent(Intent.ACTION_VIEW);
 //                if(intent.getPackage() != null){
 //                    startActivity(intent);
@@ -164,16 +167,63 @@ public class ItemFragment extends AppCompatActivity implements MonthlyPaymentAda
                     int month = calendar.get(Calendar.MONTH);
                     String monthName = customDate.getMonthNameHindi(month);
                     List<String> fatherArray = new ArrayList<>();
-
+//                    List<MemberModal> memberNames = adapter.getSelected().stream().filter(item -> Boolean.parseBoolean(item.getMemberName())).collect(Collectors.toList());
+                    List<MemberModal> memberNames;
+                    String[] meberInfo;
                     stringBuilder.append("श्री गौड़ दमावत समिति ").append(monthName).append(" 2025   \n 500/- \n\n");
                     for (int i = 0; i < adapter.getSelected().size(); i++) {
-                        fatherArray.add(adapter.getSelected().get(i).getFatherName());
+                        String memberName = adapter.getSelected().get(i).getMemberName();
+//                        System.out.println("Memeber Name 1"+fatherName);
+                        memberNames = adapter.getSelected().stream().filter(item -> Objects.equals(item.getMemberName(), "Bhagirath")).collect(Collectors.toList());
+                        System.out.println("Member Name 2"+memberNames);
+                        if (memberNames.isEmpty()) {
+                            sharinglist.put(memberName, 1);
+                        }
+
+//                        System.out.println("Shared List"+ sharinglist);
+                        for(int j =0; j < memberNames.size(); j++){
+                           String name = memberNames.get(j).getMemberName();
+                           String fatherNameString = memberNames.get(j).getFatherName();
+//                           System.out.println("Memeber Name 2"+name+" "+fatherNameString);
+
+//                            for (MemberModal member : memberNames) {
+//                                if (member.containsKey(member.getMemberName())) {
+//                                    map.put(num, map.get(num) + 1);
+//                                } else {
+//                                    map.put(num, 1);
+//                                }
+//                            }
+                           String[] mName = name.split(" ");
+
+                           if(sharinglist.containsKey(mName[0])) {
+                               sharinglist.put(mName[0], sharinglist.get(mName[0]) + 1);
+                           } else {
+                               sharinglist.put(mName[0], 1);
+                           }
+
+                            System.out.println("Memeber Name2"+ fatherNameString);
+//                           if(mName[0] != null) {
+//                           if(sharinglist.get(mName[0])) {
+//                               sharinglist.put(mName[0], sharinglist.getOrDefault(mName[0], 0) + 1);
+//                           } else {
+//                               sharinglist.put(mName[0], 1);
+//                           }
+
+//
+                           System.out.println("Memeber Name 3"+sharinglist);
+
+
+                        }
+
+                        fatherArray.add(adapter.getSelected().get(i).getMemberName());
                         stringBuilder.append(adapter.getSelected().get(i).getMemberId()).append(" ");
-                        System.out.println(Arrays.toString(fatherArray.toArray()));
+                        System.out.println("Father Array"+Arrays.toString(fatherArray.toArray()));
                         stringBuilder.append(adapter.getSelected().get(i).getMemberName().concat(" ").concat(adapter.getSelected().get(i).getFatherName()));
                         stringBuilder.append(adapter.getSelected().get(i).isPaid() ?" ✅ " : "");
                         stringBuilder.append("\n");
                     }
+
+                    System.out.println("Member Names");
 
                     String whatsappUrl = "http://api.whatsapp.com/send?text=" + stringBuilder;
 

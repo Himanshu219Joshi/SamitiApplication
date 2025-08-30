@@ -5,6 +5,7 @@ import com.example.samitiapplication.modal.members.MemberModal;
 
 import java.util.List;
 
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -43,7 +44,7 @@ public interface ApiInterface {
     Call<NewLoanDetail> addNewLoan(@Header ("Authorization") String token, @Body NewLoanDetail newLoanDetail);
 
     @POST("/samiti/settleLoan/{loanId}")
-    Call<SettleLoan> settleLoan(@Path("loanId") String loanId, @Header ("Authorization") String token);
+    Call<SettleLoan> settleLoan(@Path("loanId") String loanId, @Header ("Authorization") String token, @Body SettleLoan requestBody);
 
 
 }

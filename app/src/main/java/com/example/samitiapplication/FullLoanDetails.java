@@ -2,13 +2,17 @@ package com.example.samitiapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
@@ -29,7 +33,13 @@ public class FullLoanDetails extends AppCompatActivity {
     SessionManager sessionManager;
 
     TextView memberNameValue, loanAmountValue, loanDateValue, totalInterestValue, emiAmountValue,
-            interestRecoveredValue, amountRecoveredValue, firstGuarantorValue, secondGuarantorValue, loanStatusValue;
+            interestRecoveredValue, amountRecoveredValue, firstGuarantorValue, secondGuarantorValue, loanStatusValue,
+            investedAmountValue;
+
+    ApiInterface apiInterface;
+    Retrofit instance = ApiClient.instance();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +61,7 @@ public class FullLoanDetails extends AppCompatActivity {
         totalInterestValue = findViewById(R.id.totalInterestValue);
         emiAmountValue = findViewById(R.id.emiAmountValue);
         amountRecoveredValue = findViewById(R.id.amountRecoveredValue);
+        investedAmountValue = findViewById(R.id.investedAmountValue);
         interestRecoveredValue = findViewById(R.id.interestRecoveredValue);
         firstGuarantorValue = findViewById(R.id.firstGuarantorValue);
         secondGuarantorValue = findViewById(R.id.secondGuarantorValue);
@@ -58,9 +69,7 @@ public class FullLoanDetails extends AppCompatActivity {
         FrameLayout loading_full_loan = findViewById(R.id.loading_full_loan);
 
         sessionManager = new SessionManager(getApplicationContext());
-
-        Retrofit instance = ApiClient.instance();
-        ApiInterface apiInterface = instance.create(ApiInterface.class);
+        apiInterface = instance.create(ApiInterface.class);
 
         String token = sessionManager.getToken();
 
@@ -79,6 +88,7 @@ public class FullLoanDetails extends AppCompatActivity {
                     emiAmountValue.setText(String.valueOf(loanDetail.getEmiAmount()));
                     interestRecoveredValue.setText(String.valueOf(loanDetail.getInterestAccrued()));
                     amountRecoveredValue.setText(String.valueOf(loanDetail.getLoanAmountRecovered()));
+                    investedAmountValue.setText(String.valueOf(loanDetail.getMemberDetails().getInvestedMoney()));
                     firstGuarantorValue.setText(loanDetail.getGuarantors().get(0).getMemberName().concat(" ").concat(loanDetail.getGuarantors().get(0).getFatherName()));
                     secondGuarantorValue.setText(loanDetail.getGuarantors().get(1).getMemberName().concat(" ").concat(loanDetail.getGuarantors().get(1).getFatherName()));
                     loanStatusValue.setText(loanDetail.getLoanStatus());
@@ -97,21 +107,22 @@ public class FullLoanDetails extends AppCompatActivity {
         settleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Call<SettleLoan> loanStatusUpdated  = apiInterface.settleLoan(loanId,"Bearer "+token);
-                System.out.println(loanStatusUpdated);
-                loanStatusUpdated.enqueue(new Callback<SettleLoan>() {
-                    @Override
-                    public void onResponse(@NonNull Call<SettleLoan> call, @NonNull Response<SettleLoan> response) {
-                        assert response.body() != null;
-                        loanStatusValue.setText(R.string.closed);
-                        Toast.makeText(FullLoanDetails.this, response.body().getMessage(), Toast.LENGTH_SHORT ).show();
-                    }
-
-                    @Override
-                    public void onFailure(Call<SettleLoan> call, Throwable t) {
-                        Toast.makeText(FullLoanDetails.this, "Response Failed", Toast.LENGTH_SHORT ).show();
-                    }
-                });
+                showConfirmationDialog(intent);
+//                Call<SettleLoan> loanStatusUpdated  = apiInterface.settleLoan(loanId,"Bearer "+token);
+//                System.out.println(loanStatusUpdated);
+//                loanStatusUpdated.enqueue(new Callback<SettleLoan>() {
+//                    @Override
+//                    public void onResponse(@NonNull Call<SettleLoan> call, @NonNull Response<SettleLoan> response) {
+//                        assert response.body() != null;
+//                        loanStatusValue.setText(R.string.closed);
+//                        Toast.makeText(FullLoanDetails.this, response.body().getMessage(), Toast.LENGTH_SHORT ).show();
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<SettleLoan> call, Throwable t) {
+//                        Toast.makeText(FullLoanDetails.this, "Response Failed", Toast.LENGTH_SHORT ).show();
+//                    }
+//                });
 
 
             }
@@ -126,4 +137,71 @@ public class FullLoanDetails extends AppCompatActivity {
 
 
     }
+
+    private void showConfirmationDialog(Intent intent) {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View dialogView = inflater.inflate(R.layout.layout_custom_dialog, null);
+
+        EditText editText = dialogView.findViewById(R.id.partialAmountValue);
+        Button btnCancel = dialogView.findViewById(R.id.btnCancel);
+        Button btnConfirm = dialogView.findViewById(R.id.btnConfirm);
+
+        String loanId = intent.getStringExtra("loanId");
+        String token = sessionManager.getToken();
+        SettleLoan settleLoan = new SettleLoan();
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setView(dialogView)
+                .setCancelable(false)
+                .create();
+
+        CheckBox emiCheckBox = dialogView.findViewById(R.id.reduceEmi);
+        CheckBox tenureCheckBox = dialogView.findViewById(R.id.reduceTenure);
+
+
+        emiCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CheckBox clicked = (CheckBox) v;
+                tenureCheckBox.setChecked(false);
+                clicked.setChecked(true);
+            }
+        });
+
+        tenureCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CheckBox clicked = (CheckBox) v;
+                emiCheckBox.setChecked(false);
+                clicked.setChecked(true);
+            }
+        });
+
+        btnCancel.setOnClickListener(v -> alertDialog.dismiss());
+
+        btnConfirm.setOnClickListener(v -> {
+            double userInput = Double.parseDouble(editText.getText().toString().trim());
+            settleLoan.setTypeOfTenure(tenureCheckBox.isChecked() ? "reduceTenure" : "reduceEmi");
+            settleLoan.setPartialAmount(userInput);
+            Call<SettleLoan> loanStatusUpdated  = apiInterface.settleLoan(loanId,"Bearer "+token, settleLoan);
+
+            loanStatusUpdated.enqueue(new Callback<SettleLoan>() {
+                @Override
+                public void onResponse(@NonNull Call<SettleLoan> call, @NonNull Response<SettleLoan> response) {
+                    assert response.body() != null;
+
+                    alertDialog.dismiss();
+                    recreate();
+//                    Toast.makeText(FullLoanDetails.this, response.body().getMessage(), Toast.LENGTH_SHORT ).show();
+                }
+
+                @Override
+                public void onFailure(Call<SettleLoan> call, Throwable t) {
+                    Toast.makeText(FullLoanDetails.this, "Response Failed", Toast.LENGTH_SHORT ).show();
+                }
+            });
+        });
+
+        alertDialog.show();
+    }
+
 }
