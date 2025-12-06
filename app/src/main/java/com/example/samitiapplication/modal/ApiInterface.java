@@ -5,7 +5,6 @@ import com.example.samitiapplication.modal.members.MemberModal;
 
 import java.util.List;
 
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -22,6 +21,11 @@ public interface ApiInterface {
     @GET("samiti/getMembers")
     Call<List<MemberModal>> getMembersInfoV2(@Header ("Authorization") String token);
 
+    @GET("samiti/getMembers/{memberId}")
+    Call<List<MemberModal>> getMember(@Path("memberId") String memberId, @Header("Authorization") String token);
+
+    @POST("samiti/removeMember/{memberId}")
+    Call<MemberModal> removeMember(@Path("memberId") String memberId, @Header("Authorization") String token, @Body RemoveMember member);
     @GET("samiti/getSummary")
     Call<SummaryDetails> getSummary(@Header ("Authorization") String token);
 
@@ -43,8 +47,8 @@ public interface ApiInterface {
     @POST("/samiti/updateSummary")
     Call<NewLoanDetail> addNewLoan(@Header ("Authorization") String token, @Body NewLoanDetail newLoanDetail);
 
-    @POST("/samiti/settleLoan/{loanId}")
-    Call<SettleLoan> settleLoan(@Path("loanId") String loanId, @Header ("Authorization") String token, @Body SettleLoan requestBody);
+    @POST("/samiti/settleLoan/{loanId}")    
+    Call<SettleLoan> settleLoan(@Path("loanId") String loanId, @Header ("Authorization") String token, @Body SettleLoan settleLoan);
 
 
 }

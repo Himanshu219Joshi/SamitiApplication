@@ -134,6 +134,28 @@
                     android:paddingEnd="0dp" />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/recoveredAmountLabel"
+                    style="@style/TextAppearance.Material3.TitleMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/recovered_amount" />
+
+                <TextView
+                    android:id="@+id/recoveredAmount"
+                    style="@style/TextAppearance.MaterialComponents.Body1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="2dp"
+                    android:paddingEnd="0dp" />
+            </LinearLayout>
+
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

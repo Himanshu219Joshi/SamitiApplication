@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     ApiInterface apiInterface;
     ActivityMainBinding binding;
     SessionManager sessionManager;
-    TextView totalAmount, lentAmount, balanceAmount, interestAmount, mobileNo, memberName, loanAmount, memberId, loanDate, loanEmi, guarantorNames, loanStatus, penaltyAmount;
+    TextView totalAmount, lentAmount, balanceAmount, interestAmount, mobileNo, memberName, loanAmount, memberId, loanDate, loanEmi, guarantorNames, loanStatus, penaltyAmount, recoveredAmount;
 
     Menu mainMenu;
 
@@ -138,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
         balanceAmount = findViewById(R.id.balanceAmount);
         interestAmount = findViewById(R.id.interestAmount);
         penaltyAmount = findViewById(R.id.penaltyAmount);
+        recoveredAmount = findViewById(R.id.recoveredAmount);
 
         memberName = findViewById(R.id.memberName);
         loanAmount = findViewById(R.id.loanAmount);
@@ -183,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
                     balanceAmount.append(String.valueOf(" "+summaryDetails.getBalanceAmount()));
                     interestAmount.append(String.valueOf(" "+summaryDetails.getInterestAccrued()));
                     penaltyAmount.append(String.valueOf(" "+summaryDetails.getPenaltyAmount()));
+                    recoveredAmount.append(String.valueOf(" "+summaryDetails.getLoanAmountRecovered()));
 
                     LastLoanDetails lastLoanDetails = response.body().getLastLoanDetails();
                     memberName.append(String.valueOf(" "+lastLoanDetails.getMemberName()));

@@ -22,6 +22,7 @@
     <string name="total_amount_placeholder">Total Amount</string>
     <string name="balance_amount">Balance Amount:</string>
     <string name="interest_amount">Interest Amount:</string>
+    <string name="recovered_amount">Recovered Amount:</string>
     <string name="amount_recovered">Amount Recovered: </string>
     <string name="interest_recovered">Interest Recovered: </string>
     <string name="title_activity_login">LoginActivity</string>
@@ -121,6 +122,7 @@
 
     <string name="back">Back</string>
     <string name="settle">Settle</string>
+    <string name="remove_member_btn">Remove Member</string>
     <string name="reset_database">Reset Database</string>
     <string name="closed">CLOSED</string>
     <string name="total">total</string>

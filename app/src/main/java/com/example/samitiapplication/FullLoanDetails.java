@@ -108,7 +108,7 @@ public class FullLoanDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showConfirmationDialog(intent);
-//                Call<SettleLoan> loanStatusUpdated  = apiInterface.settleLoan(loanId,"Bearer "+token);
+//                Call<SettleLoan> loanStatusUpdated  = apiInterface.settleLoan(loanId,"Bearer "+token, );
 //                System.out.println(loanStatusUpdated);
 //                loanStatusUpdated.enqueue(new Callback<SettleLoan>() {
 //                    @Override

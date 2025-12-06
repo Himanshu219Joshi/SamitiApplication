@@ -6,14 +6,12 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.samitiapplication.databinding.ActivityMemberListBinding;
 import com.example.samitiapplication.modal.ApiInterface;
-import com.example.samitiapplication.modal.LastMemberDetails;
-import com.example.samitiapplication.modal.MemberDetail;
-import com.example.samitiapplication.modal.MemberDetail;
 import com.example.samitiapplication.modal.members.MemberModal;
 import com.example.samitiapplication.networking.ApiClient;
 import com.example.samitiapplication.networking.SessionManager;
@@ -25,13 +23,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class MemberActivity extends AppCompatActivity {
+public class MemberActivity extends AppCompatActivity implements MemberAdapter.OnMemberItemClickListener {
 
     ApiInterface apiInterface;
     ActivityMemberListBinding binding;
     RecyclerView recyclerView;
 
     SessionManager sessionManager;
+
+    List<MemberModal> memberDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +60,11 @@ public class MemberActivity extends AppCompatActivity {
                     return;
                 }
 
+                memberDetails = response.body();
                 List<MemberModal> personList = response.body();
+
                 System.out.println("Memeber Activity"+ personList.get(0));
-                MemberAdapter MemberAdapter = new MemberAdapter(MemberActivity.this, personList);
+                MemberAdapter MemberAdapter = new MemberAdapter(MemberActivity.this, personList, MemberActivity.this);
                 recyclerView.setLayoutManager(new LinearLayoutManager(MemberActivity.this));
                 recyclerView.addItemDecoration(new DividerItemDecoration(MemberActivity.this, LinearLayoutManager.VERTICAL));
 
@@ -74,5 +76,15 @@ public class MemberActivity extends AppCompatActivity {
                 Toast.makeText(MemberActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onMemberItemClick(int position) {
+        Toast.makeText(MemberActivity.this, "Hello Clicked "+ position, Toast.LENGTH_SHORT).show();
+        MemberModal memberDetail = memberDetails.get(position);
+        System.out.println("Name of Member: "+memberDetail.get_id());
+        Intent intent = new Intent(this, MemberRemoveActivity.class);
+        intent.putExtra("memberId", memberDetail.get_id());
+        startActivity(intent);
     }
 }

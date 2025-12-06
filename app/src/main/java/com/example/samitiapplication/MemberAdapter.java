@@ -10,8 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.samitiapplication.modal.LastMemberDetails;
-import com.example.samitiapplication.modal.MemberDetail;
 import com.example.samitiapplication.modal.members.MemberModal;
 
 import java.util.List;
@@ -20,9 +18,12 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.PersonView
 
     List<MemberModal> personList;
 
-    public MemberAdapter(Context context, List<MemberModal> person) {
+    private final OnMemberItemClickListener onMemberItemClickListener;
+
+    public MemberAdapter(Context context, List<MemberModal> person, OnMemberItemClickListener onMemberItemClickListener) {
         personList = person;
         this.context = context;
+        this.onMemberItemClickListener = onMemberItemClickListener;
     }
 
     Context context;
@@ -31,7 +32,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.PersonView
     @Override
     public MemberAdapter.PersonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.activity_member_detail, parent, false);
-        return new PersonViewHolder(view);
+        return new PersonViewHolder(view, onMemberItemClickListener);
     }
 
     @Override
@@ -49,9 +50,11 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.PersonView
         return personList.size();
     }
 
-    public static class PersonViewHolder extends RecyclerView.ViewHolder {
+    public static class PersonViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView memberId, memberName, loanAmount, investedMoney, memberStatus;
-        public PersonViewHolder(@NonNull View itemView) {
+
+        OnMemberItemClickListener onMemberItemClickListener;
+        public PersonViewHolder(@NonNull View itemView, OnMemberItemClickListener onMemberItemClickListener) {
             super(itemView);
 
             memberId = itemView.findViewById(R.id.memberId);
@@ -59,6 +62,17 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.PersonView
             loanAmount = itemView.findViewById(R.id.loanAmount);
             investedMoney = itemView.findViewById(R.id.investedMoney);
             memberStatus = itemView.findViewById(R.id.memberStatus);
+            this.onMemberItemClickListener = onMemberItemClickListener;
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            onMemberItemClickListener.onMemberItemClick(getAbsoluteAdapterPosition());
+        }
+    }
+
+    public interface OnMemberItemClickListener {
+        void onMemberItemClick(int position);
     }
 }

@@ -1,15 +1,26 @@
 package com.example.samitiapplication.modal;
 
 public class Summary {
-    public Summary(long lentAmount, long totalAmount, long balanceAmount, long interestAccrued, long penaltyAmount) {
+    public Summary(long lentAmount, long totalAmount, long balanceAmount, long interestAccrued, long penaltyAmount, long loanAmountRecovered) {
         this.lentAmount = lentAmount;
         this.totalAmount = totalAmount;
         this.balanceAmount = balanceAmount;
         this.interestAccrued = interestAccrued;
         this.penaltyAmount = penaltyAmount;
+        this.loanAmountRecovered = loanAmountRecovered;
     }
 
     private long totalAmount;
+
+    public long getLoanAmountRecovered() {
+        return loanAmountRecovered;
+    }
+
+    public void setLoanAmountRecovered(long loanAmountRecovered) {
+        this.loanAmountRecovered = loanAmountRecovered;
+    }
+
+    private long loanAmountRecovered;
 
     public long getLentAmount() {
         return lentAmount;
