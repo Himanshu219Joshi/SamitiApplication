@@ -31,14 +31,13 @@ public class ApiClient {
 
 
             retrofit = new Retrofit.Builder()
-                        .baseUrl("https://multiply-wondrous-marmoset.ngrok-free.app")
+                    .baseUrl("https://multiply-wondrous-marmoset.ngrok-free.app")
                     .addConverterFactory((GsonConverterFactory.create()))
                     .client(okHttpClient)
                     .build();
-
         }
 
-        return retrofit;
-    }
+            return retrofit;
 
+    }
 }

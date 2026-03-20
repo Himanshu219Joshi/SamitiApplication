@@ -146,7 +146,7 @@ public class FullLoanDetails extends AppCompatActivity {
         Button btnCancel = dialogView.findViewById(R.id.btnCancel);
         Button btnConfirm = dialogView.findViewById(R.id.btnConfirm);
 
-        String loanId = intent.getStringExtra("loanId");
+        String loanId = getIntent().getStringExtra("loanId");
         String token = sessionManager.getToken();
         SettleLoan settleLoan = new SettleLoan();
         AlertDialog alertDialog = new AlertDialog.Builder(this)

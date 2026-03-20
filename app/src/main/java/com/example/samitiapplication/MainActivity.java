@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     .setContentTitle("Notfication")
                     .setContentText("This is testing of notification").setAutoCancel(true)
                      .setStyle(inboxStyle)
+                     .setStyle(inboxStyle)
                      .setContentIntent(pendingIntent)
                     .build();
             }

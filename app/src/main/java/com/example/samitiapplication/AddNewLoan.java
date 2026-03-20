@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 
 import com.example.samitiapplication.data.DatabaseHelper;
+import com.example.samitiapplication.databinding.ActivityAppLayoutBinding;
 import com.example.samitiapplication.modal.ApiInterface;
 import com.example.samitiapplication.modal.LastMemberDetails;
 import com.example.samitiapplication.modal.MemberDetail;
@@ -47,7 +48,8 @@ import retrofit2.Retrofit;
 public class AddNewLoan extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
-    private ActivityAddNewLoanBinding binding;
+    private ActivityAppLayoutBinding binding;
+
 
     ApiInterface apiInterface;
 
@@ -66,7 +68,7 @@ public class AddNewLoan extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         newLoanDetail = new NewLoanDetail();
-        binding = ActivityAddNewLoanBinding.inflate(getLayoutInflater());
+        binding = ActivityAppLayoutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         autoCompleteTextView = findViewById(R.id.memberIdAutoCompleteTextView);

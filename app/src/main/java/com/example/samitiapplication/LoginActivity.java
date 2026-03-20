@@ -79,7 +79,10 @@ public class LoginActivity extends AppCompatActivity {
                        sessionManager.setToken(tokenValue);
                     }
                     if (tokenValue != null) {
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        finish();
                     } else {
                         loadingProgressBar.setVisibility(View.GONE);
                         Toast.makeText(LoginActivity.this, "User is invalid", Toast.LENGTH_LONG).show();

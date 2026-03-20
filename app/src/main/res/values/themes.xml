@@ -6,4 +6,15 @@
     </style>
 
     <style name="Theme.SamitiApplication" parent="Base.Theme.SamitiApplication" />
+
+    <style name="Theme.Samiti" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        ...
+        <!-- This targets the text inside the dropdown list -->
+        <item name="android:dropDownItemStyle">@style/MyDropDownItemStyle</item>
+    </style>
+
+    <style name="MyDropDownItemStyle2" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/primaryColor</item>
+    </style>
 </resources>

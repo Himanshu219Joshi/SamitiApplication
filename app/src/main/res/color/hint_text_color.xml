@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Color of the floating label when the field is focused -->
+    <item android:color="@color/primaryColor" android:state_focused="true" />
+    <!-- Color of the hint/placeholder when the field is idle -->
+    <item android:color="#757575" /> <!-- A refined Medium Gray -->
+</selector>

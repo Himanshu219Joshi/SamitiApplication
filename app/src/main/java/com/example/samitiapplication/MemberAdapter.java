@@ -1,6 +1,5 @@
 package com.example.samitiapplication;
 
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,22 +15,31 @@ import java.util.List;
 
 public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.PersonViewHolder> {
 
-    List<MemberModal> personList;
-
+    private List<MemberModal> personList;
+    private Context context;
+    // 1. Define the listener at the adapter level
     private final OnMemberItemClickListener onMemberItemClickListener;
 
-    public MemberAdapter(Context context, List<MemberModal> person, OnMemberItemClickListener onMemberItemClickListener) {
-        personList = person;
+    public MemberAdapter(Context context, List<MemberModal> person, OnMemberItemClickListener listener) {
+        this.personList = person;
         this.context = context;
-        this.onMemberItemClickListener = onMemberItemClickListener;
+        this.onMemberItemClickListener = listener; // 2. Assign the listener here
     }
 
-    Context context;
+    public void setFilteredList(List<MemberModal> filteredList) {
+        this.personList = filteredList;
+        notifyDataSetChanged();
+    }
+
+    public MemberModal getMemberAt(int position) {
+        return personList.get(position);
+    }
 
     @NonNull
     @Override
     public MemberAdapter.PersonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.activity_member_detail, parent, false);
+        // 3. Pass the listener to the ViewHolder
         return new PersonViewHolder(view, onMemberItemClickListener);
     }
 
@@ -47,28 +55,31 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.PersonView
 
     @Override
     public int getItemCount() {
-        return personList.size();
+        return personList != null ? personList.size() : 0;
     }
 
     public static class PersonViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView memberId, memberName, loanAmount, investedMoney, memberStatus;
-
         OnMemberItemClickListener onMemberItemClickListener;
-        public PersonViewHolder(@NonNull View itemView, OnMemberItemClickListener onMemberItemClickListener) {
-            super(itemView);
 
+        public PersonViewHolder(@NonNull View itemView, OnMemberItemClickListener listener) {
+            super(itemView);
             memberId = itemView.findViewById(R.id.memberId);
             memberName = itemView.findViewById(R.id.memberName);
             loanAmount = itemView.findViewById(R.id.loanAmount);
             investedMoney = itemView.findViewById(R.id.investedMoney);
             memberStatus = itemView.findViewById(R.id.memberStatus);
-            this.onMemberItemClickListener = onMemberItemClickListener;
+
+            // 4. Correctly assign the listener passed from the adapter
+            this.onMemberItemClickListener = listener;
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            onMemberItemClickListener.onMemberItemClick(getAbsoluteAdapterPosition());
+            if (onMemberItemClickListener != null) {
+                onMemberItemClickListener.onMemberItemClick(getAbsoluteAdapterPosition());
+            }
         }
     }
 
