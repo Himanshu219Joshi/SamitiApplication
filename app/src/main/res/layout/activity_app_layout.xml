@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".AddNewLoan">
+    android:layout_height="match_parent">
 
     <include layout="@layout/activity_app_bar" />
 
@@ -34,29 +33,41 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginTop="20dp"
             android:hint="@string/member_id_hint"
-            android:orientation="vertical"
+            app:boxStrokeColor="@color/input_border_color"
+            app:hintTextColor="@color/primaryColor"
+            android:textColorHint="#757575"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
             app:layout_constraintTop_toBottomOf="@id/activity_title">
 
             <AutoCompleteTextView
                 android:id="@+id/memberIdAutoCompleteTextView"
-                style="@style/Base.Theme.SamitiApplication"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
+                android:padding="16dp"
                 android:textColor="@color/textPrimaryColor" />
-
         </com.google.android.material.textfield.TextInputLayout>
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/firstGuarantorTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:hint="@string/guarantor_one"
-            android:orientation="vertical"
+            android:layout_marginTop="12dp"
+            android:hint="@string/guarantor_two"
+            app:boxStrokeColor="@color/input_border_color"
+            app:hintTextColor="@color/primaryColor"
+            android:textColorHint="#757575"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
             app:layout_constraintTop_toBottomOf="@id/memberIdTextLayout">
 
             <AutoCompleteTextView
@@ -64,48 +75,82 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
+                android:padding="16dp"
                 android:textColor="@color/textPrimaryColor" />
-
         </com.google.android.material.textfield.TextInputLayout>
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/firstGuarantorTextLayout"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="16dp"-->
+<!--            android:hint="@string/guarantor_one"-->
+<!--            app:boxStrokeColor="@color/input_border_color"-->
+<!--            app:hintTextColor="@color/primaryColor"-->
+<!--            android:textColorHint="#757575"-->
+<!--            app:boxCornerRadiusTopStart="8dp"-->
+<!--            app:boxCornerRadiusTopEnd="8dp"-->
+<!--            app:boxCornerRadiusBottomStart="8dp"-->
+<!--            app:boxCornerRadiusBottomEnd="8dp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/memberIdTextLayout">-->
+
+<!--            <AutoCompleteTextView-->
+<!--                android:id="@+id/firstGuarantorTextView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:inputType="none"-->
+<!--                android:padding="16dp"-->
+<!--                android:textColor="@color/textPrimaryColor" />-->
+
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/secondGuarantorTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginTop="12dp"
             android:hint="@string/guarantor_two"
-            android:orientation="vertical"
+            app:boxStrokeColor="@color/input_border_color"
+            app:hintTextColor="@color/primaryColor"
+            android:textColorHint="#757575"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
             app:layout_constraintTop_toBottomOf="@id/firstGuarantorTextLayout">
 
             <AutoCompleteTextView
                 android:id="@+id/secondGuarantorTextView"
-                style="@style/Base.Theme.SamitiApplication"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
+                android:padding="16dp"
                 android:textColor="@color/textPrimaryColor" />
-
         </com.google.android.material.textfield.TextInputLayout>
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/totalAmountTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginTop="12dp"
             android:hint="@string/total_amount_placeholder"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/secondGuarantorTextLayout"
-            tools:layout_editor_absoluteX="16dp">
+            app:boxStrokeColor="@color/input_border_color"
+            app:hintTextColor="@color/primaryColor"
+            android:textColorHint="#757575"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:layout_constraintTop_toBottomOf="@id/secondGuarantorTextLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/totalAmountTextField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:textColor="@color/textPrimaryColor" />
-
+                android:inputType="numberDecimal"
+                android:textColor="@android:color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -113,20 +158,23 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginTop="12dp"
             android:hint="@string/loan_amount_placeholder"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/totalAmountTextLayout"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp">
+            app:boxStrokeColor="@color/input_border_color"
+            app:hintTextColor="@color/primaryColor"
+            android:textColorHint="#757575"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:layout_constraintTop_toBottomOf="@id/totalAmountTextLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/loanAmountTextField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:textColor="@color/textPrimaryColor" />
-
+                android:inputType="numberDecimal"
+                android:textColor="@android:color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -134,82 +182,81 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginTop="12dp"
             android:hint="@string/penalty_amount"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/loanAmountTextLayout"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp">
+            app:boxStrokeColor="@color/input_border_color"
+            app:hintTextColor="@color/primaryColor"
+            android:textColorHint="#757575"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:layout_constraintTop_toBottomOf="@id/loanAmountTextLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/penaltyAmountTextField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:textColor="@color/textPrimaryColor" />
-
+                android:inputType="numberDecimal"
+                android:textColor="@android:color/black" />
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/loanDateTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:hint="@string/loan_date_placeholder"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/penaltyAmountTextLayout"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp">
+            android:layout_marginTop="12dp"
+            android:hint="Loan Date (DD/MM/YYYY)"
+            app:boxStrokeColor="@color/input_border_color"
+            app:hintTextColor="@color/primaryColor"
+            android:textColorHint="#757575"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            app:layout_constraintTop_toBottomOf="@id/penaltyAmountTextLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/loanDateTextField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textColor="@color/textPrimaryColor" />
-
+                android:inputType="date"
+                android:textColor="@android:color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
         <LinearLayout
-            style="@style/Theme.AppCompat.Light.NoActionBar"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:orientation="horizontal"
-            android:layout_marginTop="40dp"
-            android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@+id/loanDateTextLayout"
-            app:layout_constraintStart_toEndOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/loanDateTextLayout">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/submitBtn"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/primaryColor"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:text="@string/add_loan"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                app:cornerRadius="8dp"
                 android:backgroundTint="@color/primaryColor"
-                android:textColor="#FFFFFF"
-                android:text="@string/submit"
-                android:layout_weight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                app:layout_constraintTop_toBottomOf="parent"/>
+                android:textColor="@android:color/white" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/cancelBtn"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/card_color"
-                android:backgroundTint="@color/card_color"
-                android:textColor="#FFFFFF"
-                android:text="@string/cancel"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
                 android:layout_weight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/submitBtn"
-                />
+                android:layout_marginStart="8dp"
+                android:text="@string/cancel"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                app:cornerRadius="8dp"
+                android:backgroundTint="@android:color/darker_gray"
+                android:textColor="@android:color/white" />
         </LinearLayout>
 
         <FrameLayout
