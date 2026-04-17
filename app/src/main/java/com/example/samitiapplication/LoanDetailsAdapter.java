@@ -49,21 +49,21 @@ public class LoanDetailsAdapter extends RecyclerView.Adapter<LoanDetailsAdapter.
         LoanModal loanDetail = loans.get(position);
 
         if (loanDetail.getMemberDetails() != null) {
-            holder.memberId.setText(context.getString(R.string.member_id).concat(" ").concat(String.valueOf(loanDetail.getMemberDetails().getMemberId())));
-            holder.memberName.setText(context.getString(R.string.member_name).concat(" ").concat(loanDetail.getMemberDetails().getMemberName()).concat(" ").concat(loanDetail.getMemberDetails().getFatherName()));
+            holder.memberId.setText(String.valueOf(loanDetail.getMemberDetails().getMemberId()));
+            holder.memberName.setText(" ".concat(loanDetail.getMemberDetails().getMemberName()).concat(" ").concat(loanDetail.getMemberDetails().getFatherName()));
         }
 
-        holder.loanAmount.setText(context.getString(R.string.loan_amount).concat(" ").concat(String.valueOf(loanDetail.getLoanAmount())));
-        holder.loanDate.setText(context.getString(R.string.loan_date).concat(" ").concat(loanDetail.getDate()));
-        holder.loanEmi.setText(context.getString(R.string.loan_emi).concat(" ").concat(String.valueOf(loanDetail.getEmiAmount())));
+        holder.loanAmount.setText(" ".concat(String.valueOf(loanDetail.getLoanAmount())));
+        holder.loanDate.setText(" ".concat(loanDetail.getDate()));
+        holder.loanEmi.setText(" ".concat(String.valueOf(loanDetail.getEmiAmount())));
 
         if (loanDetail.getGuarantors() != null && loanDetail.getGuarantors().size() >= 2) {
-            holder.guarantorNames.setText(context.getString(R.string.guarantor_names).concat(" ")
+            holder.guarantorNames.setText(" "
                     .concat(loanDetail.getGuarantors().get(0).getMemberName()).concat(", ")
                     .concat(loanDetail.getGuarantors().get(1).getMemberName()));
         }
 
-        holder.loanStatus.setText(context.getString(R.string.loan_status).concat(" ").concat(loanDetail.getLoanStatus()));
+        holder.loanStatus.setText(" ".concat(loanDetail.getLoanStatus()));
     }
 
     @Override

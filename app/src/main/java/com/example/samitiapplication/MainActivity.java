@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -65,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
     TextView totalAmount, lentAmount, balanceAmount, interestAmount, mobileNo, memberName, loanAmount, memberId, loanDate, loanEmi, guarantorNames, loanStatus, penaltyAmount, recoveredAmount;
 
     Menu mainMenu;
+
+    SwipeRefreshLayout swipeRefreshLayout;
+
+    String token;
 
     ActivitySummaryBinding summaryBinding;
     private RecyclerView recyclerView;
@@ -153,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
         interestAmount = findViewById(R.id.interestAmount);
         penaltyAmount = findViewById(R.id.penaltyAmount);
         recoveredAmount = findViewById(R.id.recoveredAmount);
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
 
         memberName = findViewById(R.id.memberName);
         loanAmount = findViewById(R.id.loanAmount);
@@ -260,9 +266,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshDashboardData();
+            }
+        });
+
 
     }
 
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        // This runs every time the user returns to this screen
+//        refreshDashboardData();
+//    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 //        MenuInflater menuInflater = inflater.inflate(R.menu.menu_items, menu);
@@ -359,6 +378,55 @@ public class MainActivity extends AppCompatActivity {
         } else {
 
         }
+    }
+
+    private void refreshDashboardData() {
+        // Show a loading indicator if you have one (optional)
+        // progressDialog.show();
+
+        // Call your Summary API
+        // Assuming you are using Retrofit or Volley as seen in your previous code
+        String token = sessionManager.getToken();
+        Call<SummaryDetails> summaryDetails = apiInterface.getSummary("Bearer "+token);
+
+
+        summaryDetails.enqueue(new Callback<SummaryDetails>() {
+            @Override
+            public void onResponse(@NonNull Call<SummaryDetails> call,@NonNull Response<SummaryDetails> response) {
+                if(response.body() != null ) {
+                    Summary summaryDetails = response.body().getSummary();
+                    System.out.println("Response BOdy::::"+response.body());
+                    totalAmount.setText(String.valueOf(" "+response.body().getSummary().getTotalAmount()));
+                    lentAmount.setText(String.valueOf(" "+summaryDetails.getLentAmount()));
+                    balanceAmount.setText(String.valueOf(" "+summaryDetails.getBalanceAmount()));
+                    interestAmount.setText(String.valueOf(" "+summaryDetails.getInterestAccrued()));
+                    penaltyAmount.setText(String.valueOf(" "+summaryDetails.getPenaltyAmount()));
+                    recoveredAmount.setText(String.valueOf(" "+summaryDetails.getLoanAmountRecovered()));
+
+                    LastLoanDetails lastLoanDetails = response.body().getLastLoanDetails();
+                    memberName.setText(String.valueOf(" "+lastLoanDetails.getMemberName()));
+                    memberId.setText(String.valueOf(" "+lastLoanDetails.getMemberId()));
+                    Log.d("RAW DATA", lastLoanDetails.getLoanDetails().toString());
+                    if(lastLoanDetails.getLoanDetails() != null) {
+                        loanAmount.setText(String.valueOf(" " + lastLoanDetails.getLoanDetails().getLoanAmount()));
+                        loanDate.setText(String.valueOf(" " + lastLoanDetails.getLoanDetails().getDate()));
+                        loanEmi.setText((String.valueOf(" " + lastLoanDetails.getLoanDetails().getEmiAmount())));
+                        guarantorNames.setText(" "+ lastLoanDetails.getLoanDetails().getGuarantors().get(0).getMemberName().concat(", ").concat(lastLoanDetails.getLoanDetails().getGuarantors().get(1).getMemberName()));
+                        loanStatus.setText(" "+ lastLoanDetails.getLoanDetails().getLoanStatus());
+                    }
+                }
+                swipeRefreshLayout.setRefreshing(false);
+            }
+
+            @Override
+            public void onFailure(Call<SummaryDetails> call, Throwable t) {
+                Toast.makeText(MainActivity.this, "Api Response Failed", Toast.LENGTH_SHORT).show();
+                System.out.println(t.getMessage());
+            }
+        });
+
+        // You can also call your Loan List API here to keep everything fresh
+        // callLoanListApi();
     }
 
 }
