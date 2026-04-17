@@ -65,6 +65,13 @@ public class MemberRemoveActivity extends AppCompatActivity {
         instance = ApiClient.instance();
 
         String token = sessionManager.getToken();
+
+        if(sessionManager.isAdmin()){
+            removeBtn.setVisibility(View.VISIBLE);
+        } else {
+            removeBtn.setVisibility(View.GONE);
+        }
+
         apiInterface = instance.create(ApiInterface.class);
         Call<List<MemberModal>> getMemberInfo = apiInterface.getMember(memberId,"Bearer "+token);
 

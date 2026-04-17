@@ -73,6 +73,13 @@ public class FullLoanDetails extends AppCompatActivity {
 
         String token = sessionManager.getToken();
 
+        if (sessionManager.isAdmin()) {
+            settleBtn.setVisibility(View.VISIBLE);
+        } else {
+            settleBtn.setVisibility(View.GONE);
+        }
+
+
         loading_full_loan.setVisibility(View.VISIBLE);
         Call<LoanModal> getLoanInfo = apiInterface.getLoanInfo(loanId, "Bearer "+token);
 

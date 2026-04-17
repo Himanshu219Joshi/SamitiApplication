@@ -12,6 +12,14 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
+        // Inside onCreate of your first activity
+    com.google.firebase.messaging.FirebaseMessaging.getInstance().subscribeToTopic("broadcast")
+            .addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    android.util.Log.d("FCM", "Device subscribed to global broadcast");
+                }
+            });
+
         setContentView(R.layout.activity_splash_screen);
         new Handler().postDelayed(new Runnable() {
             @Override

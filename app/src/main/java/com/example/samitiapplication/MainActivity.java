@@ -24,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,9 @@ import com.example.samitiapplication.modal.SummaryDetails;
 import com.example.samitiapplication.networking.ApiClient;
 import com.example.samitiapplication.networking.SessionManager;
 import com.example.samitiapplication.utils.PdfDownloader;
+import com.example.samitiapplication.utils.PermissionManager;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
 import java.util.Calendar;
@@ -74,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        sessionManager = new SessionManager(getApplicationContext());
         Drawable drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.rupees_sign_primary, null);
 
         BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
@@ -82,6 +87,14 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.header_appbar);
         setSupportActionBar(toolbar);
+
+        // Add this in onCreate
+        com.google.firebase.messaging.FirebaseMessaging.getInstance().subscribeToTopic("loans")
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Log.d("FCM", "Subscribed to loan notifications");
+                    }
+                });
 
         Intent intentNotify = new Intent(getApplicationContext(), MainActivity.class);
         intentNotify.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -148,6 +161,17 @@ public class MainActivity extends AppCompatActivity {
         loanEmi = findViewById(R.id.loanEmi);
         guarantorNames = findViewById(R.id.guarantorNames);
         loanStatus = findViewById(R.id.loanStatus);
+
+        FloatingActionButton addLoanFab = findViewById(R.id.addNewLoan);
+        FloatingActionButton monthlyInstallment = findViewById(R.id.monthlyInstallment);
+        if (sessionManager.isAdmin()) {
+            addLoanFab.setVisibility(View.VISIBLE);
+            monthlyInstallment.setVisibility(View.VISIBLE);
+        } else {
+            addLoanFab.setVisibility(View.GONE);
+            monthlyInstallment.setVisibility(View.GONE);
+        }
+
 
 //        binding.notifyBtn.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -221,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, LoanDetailActivity.class));
             }
         });
-
+//
         binding.addNewLoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

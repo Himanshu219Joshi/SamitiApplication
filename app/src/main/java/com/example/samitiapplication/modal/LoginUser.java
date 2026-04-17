@@ -18,4 +18,8 @@ public class LoginUser {
     }
 
     String token;
+
+    String role; // "admin" or "member"
+
+    public String getRole() { return role; }
 }
