@@ -1,9 +1,11 @@
 package com.example.samitiapplication;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import com.example.samitiapplication.data.DatabaseHelper;
@@ -17,23 +19,29 @@ import com.example.samitiapplication.modal.members.MemberModal;
 import com.example.samitiapplication.networking.ApiClient;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.navigation.ui.AppBarConfiguration;
 
 import com.example.samitiapplication.databinding.ActivityAddNewLoanBinding;
 import com.example.samitiapplication.networking.SessionManager;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -50,6 +58,9 @@ public class AddNewLoan extends AppCompatActivity {
     private AppBarConfiguration appBarConfiguration;
     private ActivityAppLayoutBinding binding;
 
+//    private ActivityAddNewLoanBinding binding;
+
+
 
     ApiInterface apiInterface;
 
@@ -64,12 +75,17 @@ public class AddNewLoan extends AppCompatActivity {
 
     DatabaseHelper databaseHelper;
 
+    FloatingActionButton fabAddPenalty;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         newLoanDetail = new NewLoanDetail();
         binding = ActivityAppLayoutBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        fabAddPenalty = findViewById(R.id.fabAddPenalty);
+
 
         autoCompleteTextView = findViewById(R.id.memberIdAutoCompleteTextView);
         autoCompleteTextView2 = findViewById(R.id.firstGuarantorTextView);
@@ -80,6 +96,23 @@ public class AddNewLoan extends AppCompatActivity {
         TextInputEditText loanDate = findViewById(R.id.loanDateTextField);
         Button submitBtn = findViewById(R.id.submitBtn);
         Button cancelBtn = findViewById(R.id.cancelBtn);
+
+        fabAddPenalty.setOnClickListener(v -> {
+            AddPenalty dialog = new AddPenalty();
+            dialog.show(getSupportFragmentManager(), "AddPenaltyDialog");
+        });
+
+//        if (fabAddPenalty != null) {
+//            fabAddPenalty.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    showPenaltyDialog();
+//                }
+//            });
+//        } else {
+//            // This log will tell you if the ID is still not being found
+//            Log.e("AddNewLoan", "FAB not found in layout!");
+//        }
 
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -200,6 +233,59 @@ public class AddNewLoan extends AppCompatActivity {
                 startActivity(new Intent(AddNewLoan.this, MainActivity.class));
             }
         });
+    }
+
+    private void showPenaltyDialog() {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View dialogView = inflater.inflate(R.layout.dialog_add_penalty, null);
+
+
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setView(dialogView)
+                .setCancelable(false)
+                .create();
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable());
+
+        // Initialize Dialog Views
+//        Spinner spinnerMember = view.findViewById(R.id.spinnerMember);
+//        EditText etAmount = view.findViewById(R.id.etPenaltyAmount);
+//        EditText etDate = view.findViewById(R.id.etPenaltyDate);
+//        Button btnAdd = view.findViewById(R.id.btnAddPenalty);
+        Button btnCancel = dialogView.findViewById(R.id.btnCancel);
+
+//        // 1. Setup Spinner (Assuming you have a list of member names)
+//        List<String> memberNames = new ArrayList<>(); // Get this from your API/Database
+//        memberNames.add("Select Member");
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, memberNames);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinnerMember.setAdapter(adapter);
+//
+//        // 2. Setup DatePicker
+//        etDate.setOnClickListener(v -> {
+//            Calendar c = Calendar.getInstance();
+//            new DatePickerDialog(this, (view1, year, month, day) -> {
+//                etDate.setText(day + "/" + (month + 1) + "/" + year);
+//            }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH)).show();
+//        });
+
+        // 3. Add Button Logic
+//        btnAdd.setOnClickListener(v -> {
+//            String amount = etAmount.getText().toString();
+//            String date = etDate.getText().toString();
+//            String selectedMember = spinnerMember.getSelectedItem().toString();
+//
+//            if (amount.isEmpty() || date.isEmpty() || selectedMember.equals("Select Member")) {
+//                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+//            } else {
+//                // CALL YOUR API HERE to save penalty
+////                savePenaltyToApi(selectedMember, amount, date);
+//                dialog.dismiss();
+//            }
+//        });
+//
+        btnCancel.setOnClickListener(v -> alertDialog.dismiss());
+
+        alertDialog.show();
     }
 }
 

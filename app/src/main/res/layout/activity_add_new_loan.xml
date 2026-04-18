@@ -168,43 +168,43 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            style="?android:attr/buttonBarStyle"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="40dp"
-            android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/loanStatusLayout"
-            app:layout_constraintStart_toEndOf="parent">
+<!--        <LinearLayout-->
+<!--            style="?android:attr/buttonBarStyle"-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginTop="40dp"-->
+<!--            android:gravity="center"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/loanDateTextLayout"-->
+<!--            app:layout_constraintStart_toEndOf="parent">-->
 
-            <Button
-                android:id="@+id/settleBtn"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="#FFFFFF"
-                android:background="@color/primaryColor"
-                android:text="@string/settle"
-                app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="parent" />
+<!--            <Button-->
+<!--                android:id="@+id/settleBtn"-->
+<!--                style="?android:attr/buttonBarButtonStyle"-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:background="@color/primaryColor"-->
+<!--                android:text="@string/settle"-->
+<!--                app:layout_constraintTop_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="parent" />-->
 
-            <Button
-                android:id="@+id/backBtn"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/card_color"
-                android:textColor="#FFFFFF"
-                android:text="@string/back"
-                android:layout_weight="1"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/settleBtn"
-                />
-        </LinearLayout>
+<!--            <Button-->
+<!--                android:id="@+id/backBtn"-->
+<!--                style="?android:attr/buttonBarButtonStyle"-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@color/card_color"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:text="@string/back"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                app:layout_constraintTop_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@id/settleBtn"-->
+<!--                />-->
+<!--        </LinearLayout>-->
 
         <LinearLayout
             style="?android:attr/buttonBarStyle"
@@ -244,6 +244,7 @@
 
         </LinearLayout>
 
+
         <ProgressBar
             android:id="@+id/loading"
             android:layout_width="wrap_content"
@@ -257,7 +258,9 @@
             app:layout_constraintStart_toStartOf="@+id/loanAmountTextLayout"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.3" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

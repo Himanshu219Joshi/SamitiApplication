@@ -280,4 +280,15 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddPenalty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/add_new_loan"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:backgroundTint="@color/primaryColor"
+        android:layout_marginBottom="72dp"
+        android:contentDescription="@string/todo" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
