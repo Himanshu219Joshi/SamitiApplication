@@ -3,18 +3,18 @@ package com.example.samitiapplication.modal;
 public class AddPenaltyDetail {
 
     public double getPenaltyAmount() {
-        return PenaltyAmount;
+        return penaltyAmount;
     }
 
     public void setPenaltyAmount(double penaltyAmount) {
-        PenaltyAmount = penaltyAmount;
+        this.penaltyAmount = penaltyAmount;
     }
 
-    public String getMemberId() {
+    public int getMemberId() {
         return memberId;
     }
 
-    public void setMemberId(String memberId) {
+    public void setMemberId(int memberId) {
         this.memberId = memberId;
     }
 
@@ -26,8 +26,29 @@ public class AddPenaltyDetail {
         this.date = date;
     }
 
-    private double PenaltyAmount;
-    private String memberId;
+    private int memberId;
+
+    private double penaltyAmount;
+
+    public String getPenaltyDate() {
+        return penaltyDate;
+    }
+
+    public void setPenaltyDate(String penaltyDate) {
+        this.penaltyDate = penaltyDate;
+    }
+
+    public int getNumberOfDays() {
+        return numberOfDays;
+    }
+
+    public void setNumberOfDays(int numberOfDays) {
+        this.numberOfDays = numberOfDays;
+    }
+
+    private String penaltyDate;
 
     private String date;
+
+    private int numberOfDays;
 }

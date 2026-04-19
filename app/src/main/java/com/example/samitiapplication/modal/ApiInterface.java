@@ -51,4 +51,6 @@ public interface ApiInterface {
     Call<SettleLoan> settleLoan(@Path("loanId") String loanId, @Header ("Authorization") String token, @Body SettleLoan settleLoan);
 
 
+    @POST("/samiti/addPenalty/{memberId}")
+    Call<AddPenaltyDetail> addPenaltyInfo(@Path("memberId") int memberId, @Header ("Authorization") String token, @Body AddPenaltyDetail addPenaltyDetail);
 }

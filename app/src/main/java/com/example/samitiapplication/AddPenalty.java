@@ -34,7 +34,7 @@ public class AddPenalty extends DialogFragment {
     private ApiInterface apiInterface;
     private AutoCompleteTextView autoCompleteTextView;
     private SessionManager sessionManager;
-    private EditText etPenaltyDate, etPenaltyAmount;
+    private EditText etPenaltyDate, etPenaltyAmount, etPenaltyDays;
     private Button btnAdd, btnCancel;
 
     private AddPenaltyDetail addPenaltyDetail;
@@ -49,6 +49,7 @@ public class AddPenalty extends DialogFragment {
         autoCompleteTextView = view.findViewById(R.id.memberIdDropdown);
         etPenaltyDate = view.findViewById(R.id.penaltyDateField);
         etPenaltyAmount = view.findViewById(R.id.penaltyAmountField);
+        etPenaltyDays = view.findViewById(R.id.penaltyDays);
         btnAdd = view.findViewById(R.id.btnAddPenalty);
         btnCancel = view.findViewById(R.id.btnCancel);
 
@@ -63,10 +64,33 @@ public class AddPenalty extends DialogFragment {
         addPenaltyDetail = new AddPenaltyDetail();
 
         btnAdd.setOnClickListener(v -> {
-            // Add your logic to save penalty here
-            addPenaltyDetail.setMemberId(String.valueOf(autoCompleteTextView.getText()));
+            // Add your logic to save penalty her
+            addPenaltyDetail.setMemberId(Integer.parseInt(String.valueOf(autoCompleteTextView.getText()).split(" ")[0]));
             addPenaltyDetail.setPenaltyAmount(Double.parseDouble(String.valueOf(etPenaltyAmount.getText())));
-            addPenaltyDetail.setDate(String.valueOf(etPenaltyDate.getText()));
+            addPenaltyDetail.setPenaltyDate(String.valueOf(etPenaltyDate.getText()));
+            addPenaltyDetail.setNumberOfDays(Integer.parseInt(String.valueOf(etPenaltyDays.getText())));
+
+            System.out.println("Penalty Info"+ addPenaltyDetail);
+
+
+            String token = sessionManager.getToken();
+            Call<AddPenaltyDetail> call = apiInterface.addPenaltyInfo(addPenaltyDetail.getMemberId(),"Bearer " + token, addPenaltyDetail);
+
+
+            call.enqueue(new Callback<AddPenaltyDetail>() {
+                @Override
+                public void onResponse(Call<AddPenaltyDetail> call, Response<AddPenaltyDetail> response) {
+                    if(response.isSuccessful()){
+                        Toast.makeText(requireContext(), response.code(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<AddPenaltyDetail> call, Throwable t) {
+                    Toast.makeText(requireContext(), "Failed to load members", Toast.LENGTH_SHORT).show();
+                }
+            });
+
 
             System.out.println("Penalty MemberId "+ addPenaltyDetail.getMemberId());
             System.out.println("Penalty Amount "+addPenaltyDetail.getPenaltyAmount());
@@ -78,8 +102,10 @@ public class AddPenalty extends DialogFragment {
     }
 
     private void setupMemberDropdown() {
+
         String token = sessionManager.getToken();
         Call<List<MemberModal>> call = apiInterface.getMembersInfoV2("Bearer " + token);
+
 
         call.enqueue(new Callback<List<MemberModal>>() {
             @Override
