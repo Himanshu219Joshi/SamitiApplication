@@ -94,6 +94,7 @@ public class AddNewLoan extends AppCompatActivity {
         TextInputEditText loanAmount = findViewById(R.id.loanAmountTextField);
         TextInputEditText penaltyAmount = findViewById(R.id.penaltyAmountTextField);
         TextInputEditText loanDate = findViewById(R.id.loanDateTextField);
+        TextInputEditText loanTenure = findViewById(R.id.loanTenureTextField);
         Button submitBtn = findViewById(R.id.submitBtn);
         Button cancelBtn = findViewById(R.id.cancelBtn);
 
@@ -200,13 +201,17 @@ public class AddNewLoan extends AppCompatActivity {
                     newLoanDetail.setLoanDate(String.valueOf(loanDate.getText()));
                     newLoanDetail.setLoanAmount(Long.parseLong(String.valueOf(loanAmount.getText())));
                     newLoanDetail.setTotalAmount(Long.parseLong(String.valueOf(totalAmount.getText())));
-                    newLoanDetail.setPenaltyAmount(Long.parseLong(String.valueOf(penaltyAmount.getText())));
+                    if(!String.valueOf(penaltyAmount.getText()).isEmpty()) {
+                        newLoanDetail.setPenaltyAmount(Long.parseLong(String.valueOf(penaltyAmount.getText())));
+                    }
+                    newLoanDetail.setLoanTenure(Integer.parseInt(String.valueOf(loanTenure.getText())));
 
                 } catch (Exception e) {
                     System.out.println(e);
                 }
 
                 System.out.println("Loan Details");
+                System.out.println(Integer.parseInt(String.valueOf(loanTenure.getText())));
                 System.out.println(String.valueOf(loanDate.getText()));
                 System.out.println(newLoanDetail.getLoanAmount());
                 System.out.println(newLoanDetail.getEmiAmount());

@@ -97,6 +97,31 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/interestEarnedLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@id/investedAmountLayout"
+            tools:layout_editor_absoluteX="16dp">
+
+            <TextView
+                android:id="@+id/interestEarned"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:text="@string/interest_earned" />
+
+            <TextView
+                android:id="@+id/interestEarnedValue"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5sp"
+                android:text="Himanshu" />
+        </LinearLayout>
+
+        <LinearLayout
             style="?android:attr/buttonBarStyle"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -118,19 +143,19 @@
                 app:layout_constraintStart_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="parent" />
 
-<!--            <Button-->
-<!--                android:id="@+id/backBtn"-->
-<!--                style="?android:attr/buttonBarButtonStyle"-->
-<!--                android:layout_width="fill_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="10dp"-->
-<!--                android:layout_marginEnd="10dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:background="@color/card_color"-->
-<!--                android:text="@string/back"-->
-<!--                android:textColor="#1B1919"-->
-<!--                app:layout_constraintStart_toEndOf="@id/settleBtn"-->
-<!--                app:layout_constraintTop_toBottomOf="parent" />-->
+            <Button
+                android:id="@+id/backBtn"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:background="@color/card_color"
+                android:text="@string/back"
+                android:textColor="#FFFFFF"
+                app:layout_constraintStart_toEndOf="@id/settleBtn"
+                app:layout_constraintTop_toBottomOf="parent" />
         </LinearLayout>
 
         <FrameLayout

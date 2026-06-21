@@ -3,6 +3,16 @@ package com.example.samitiapplication.modal;
 public class NewLoanDetail {
     private long totalAmount;
 
+    public int getLoanTenure() {
+        return loanTenure;
+    }
+
+    public void setLoanTenure(int loanTenure) {
+        this.loanTenure = loanTenure;
+    }
+
+    private int loanTenure;
+
     private String loanDate;
     public int getFirstGuarantor() {
         return firstGuarantor;
@@ -50,7 +60,7 @@ public class NewLoanDetail {
         this.penaltyAmount = penaltyAmount;
     }
 
-    private long penaltyAmount;
+    private long penaltyAmount = 0;
     private int memberId;
 
     public String getLoanStatus() {

@@ -195,10 +195,11 @@ public class FullLoanDetails extends AppCompatActivity {
                 @Override
                 public void onResponse(@NonNull Call<SettleLoan> call, @NonNull Response<SettleLoan> response) {
                     assert response.body() != null;
-
+//                    System.out.println(response.body().getMessage());
+//                    Toast.makeText(FullLoanDetails.this, response.body().getMessage(), Toast.LENGTH_SHORT ).show();
                     alertDialog.dismiss();
                     recreate();
-//                    Toast.makeText(FullLoanDetails.this, response.body().getMessage(), Toast.LENGTH_SHORT ).show();
+
                 }
 
                 @Override

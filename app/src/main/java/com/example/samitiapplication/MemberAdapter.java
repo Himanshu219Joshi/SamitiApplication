@@ -51,6 +51,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.PersonView
         holder.loanAmount.setText(context.getString(R.string.loan_amount).concat(" ").concat(String.valueOf(person.getLoanAmount())));
         holder.investedMoney.setText(context.getString(R.string.invested_money).concat(" ").concat(String.valueOf(person.getInvestedMoney())));
         holder.memberStatus.setText(context.getString(R.string.member_status).concat(" ").concat(person.getMemberStatus()));
+        holder.interestEarned.setText(context.getString(R.string.interest_earned).concat(" ").concat(String.valueOf(person.getInterestEarned())));
     }
 
     @Override
@@ -59,7 +60,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.PersonView
     }
 
     public static class PersonViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView memberId, memberName, loanAmount, investedMoney, memberStatus;
+        TextView memberId, memberName, loanAmount, investedMoney, memberStatus, interestEarned;
         OnMemberItemClickListener onMemberItemClickListener;
 
         public PersonViewHolder(@NonNull View itemView, OnMemberItemClickListener listener) {
@@ -69,6 +70,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.PersonView
             loanAmount = itemView.findViewById(R.id.loanAmount);
             investedMoney = itemView.findViewById(R.id.investedMoney);
             memberStatus = itemView.findViewById(R.id.memberStatus);
+            interestEarned = itemView.findViewById(R.id.interestEarned);
 
             // 4. Correctly assign the listener passed from the adapter
             this.onMemberItemClickListener = listener;

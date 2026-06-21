@@ -25,7 +25,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,8 +38,6 @@ import com.example.samitiapplication.modal.SummaryDetails;
 import com.example.samitiapplication.networking.ApiClient;
 import com.example.samitiapplication.networking.SessionManager;
 import com.example.samitiapplication.utils.PdfDownloader;
-import com.example.samitiapplication.utils.PermissionManager;
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
@@ -255,7 +252,7 @@ public class MainActivity extends AppCompatActivity {
         binding.addNewLoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, AddNewLoan.class));
+                startActivity(new Intent(MainActivity.this, UserView.class));
             }
         });
 

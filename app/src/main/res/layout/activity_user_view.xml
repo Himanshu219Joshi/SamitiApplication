@@ -1,0 +1,831 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F7FA">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F4F7FA"
+        app:elevation="0dp">
+
+        <include layout="@layout/activity_app_bar" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+   <!-- Main Content Area -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <!-- Add your other UI elements here -->
+            <!-- Section Title -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/baseline_account_circle_24"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tvWelcome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Welcome,"
+                    android:textSize="12sp"
+                    android:textColor="#757575" />
+
+                <TextView
+                    android:id="@+id/tvMemberName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="John Doe"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:text="My Overview"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- My Overview Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <!-- Invested Amount Box -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="#EFF4EF"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <!-- Part 1: Icon and Label -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <!-- Icon Box -->
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:layout_marginBottom="8dp"
+                                app:cardBackgroundColor="#BAD9AD"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="0dp"
+                                app:strokeWidth="0dp">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:padding="6dp"
+                                    android:src="@drawable/investment"
+                                    app:tint="#2E7D32" />
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Invested Amount"
+                                android:textColor="#2B9451"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- Part 2: Big Amount -->
+                        <TextView
+                            android:id="@+id/tvInvestedAmount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="₹50,000"
+                            android:textColor="#1B5E20"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <!-- Part 3: Total Investment, Line, and Percentage -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Total Investment"
+                                    android:textColor="#4CAF50"
+                                    android:textSize="9sp" />
+
+                                <TextView
+                                    android:id="@+id/tvInvestedPercentage"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="75%"
+                                    android:textColor="#1B5E20"
+                                    android:textSize="9sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <!-- The "Moving Line" (ProgressBar) -->
+                            <ProgressBar
+                                android:id="@+id/pbInvested"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="4dp"
+                                android:layout_marginTop="4dp"
+                                android:progress="75"
+                                android:progressTint="#2E7D32"
+                                android:secondaryProgress="100"
+                                android:secondaryProgressTint="#C8E6C9" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+
+                <!-- Loan Taken Box -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="4dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="#E3F2FD"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <!-- Part 1: Icon and Label -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <!-- Icon Box -->
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:layout_marginBottom="8dp"
+                                app:cardBackgroundColor="#AFC9E1"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="0dp"
+                                app:strokeWidth="0dp">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:padding="6dp"
+                                    android:src="@drawable/loan_taken"
+                                    app:tint="#4E65D4" />
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Loan Taken"
+                                android:textColor="#435287"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <!-- Part 2: Big Amount -->
+                        <TextView
+                            android:id="@+id/tvLoanTakenAmount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="₹10,000"
+                            android:textColor="#0D47A1"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <!-- Part 3: Total Loan, Line, and Percentage -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Total Loan"
+                                    android:textColor="#0D47A1"
+                                    android:textSize="9sp" />
+
+                                <TextView
+                                    android:id="@+id/tvLoanPercentage"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="20%"
+                                    android:textColor="#0D47A1"
+                                    android:textSize="9sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <ProgressBar
+                                android:id="@+id/pbLoan"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="4dp"
+                                android:layout_marginTop="4dp"
+                                android:progress="20"
+                                android:progressTint="#0D47A1"
+                                android:secondaryProgress="100"
+                                android:secondaryProgressTint="#0D47A1" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Interest Earned Box -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="#EFD6FF"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <!-- Part 1: Icon and Label -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <!-- Icon Box -->
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:layout_marginBottom="8dp"
+                                app:cardBackgroundColor="#B79AC7"
+                                app:cardCornerRadius="8dp"
+                                app:cardElevation="0dp"
+                                app:strokeWidth="0dp">
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:padding="6dp"
+                                    android:src="@drawable/interest_earn"
+                                    app:tint="#1F0249" />
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Interest Earned"
+                                android:textColor="#BC57C7"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- Part 2: Big Amount -->
+                        <TextView
+                            android:id="@+id/tvInterestEarnedAmount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="₹2,500"
+                            android:textColor="#4C1D75"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <!-- Part 3: Total Interest, Line, and Percentage -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Interest Earned"
+                                    android:textColor="#BC57C7"
+                                    android:textSize="9sp" />
+
+                                <TextView
+                                    android:id="@+id/tvInterestPercentage"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="10%"
+                                    android:textColor="#BC57C7"
+                                    android:textSize="9sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <ProgressBar
+                                android:id="@+id/pbInterest"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="4dp"
+                                android:layout_marginTop="4dp"
+                                android:progress="10"
+                                android:progressTint="#04000B"
+                                android:secondaryProgress="100"
+                                android:secondaryProgressTint="#04000B" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+
+
+            <!-- My Loans Section -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#DDDDDD"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Root Header -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="My Loans"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/tvViewAllLoans"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:text="View All"
+                            android:textColor="#1976D2"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+
+
+                    <!-- Detailed Personal Loan Card -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        app:cardBackgroundColor="#FFFFFF"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="0dp"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp"
+                            android:layout_marginBottom="16dp">
+
+                            <!-- Row 1: Header (Icon, Title, Status) -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity=""
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.card.MaterialCardView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:cardBackgroundColor="#F5F5F5"
+                                    app:cardCornerRadius="20dp"
+                                    app:cardElevation="0dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:padding="10dp"
+                                        android:src="@android:drawable/ic_menu_myplaces"
+                                        app:tint="#424242" />
+
+                                </com.google.android.material.card.MaterialCardView>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Personal Loan"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="ID: #PL-8829"
+                                        android:textColor="#757575"
+                                        android:textSize="11sp" />
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="#E8F5E9"
+                                    android:paddingHorizontal="10dp"
+                                    android:paddingVertical="4dp"
+                                    android:text="Active"
+                                    android:textColor="#2E7D32"
+                                    android:textSize="11sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#DDDDDD" />
+
+                            <!-- Row 2: Loan Amount, Outstanding, Interest -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:orientation="horizontal"
+                                app:strokeWidth="1dp"
+                                >
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Loan Amount"
+                                        android:textColor="#757575"
+                                        android:textSize="11sp" />
+                                    <TextView
+                                        android:id="@+id/tvLoanAmount"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="₹1,00,000"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Outstanding"
+                                        android:textColor="#757575"
+                                        android:textSize="11sp" />
+                                    <TextView
+                                        android:id="@+id/tvOutstandingAmount"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="₹45,000"
+                                        android:textColor="#C62828"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.8"
+                                    android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Interest Paid"
+                                        android:textColor="#757575"
+                                        android:textSize="11sp" />
+                                    <TextView
+                                        android:id="@+id/interestPaidAmount"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="12% p.a."
+                                        android:textColor="@android:color/black"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#DDDDDD" />
+                            <!-- Row 3 & 4: EMI Amount and Next Due Date -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="EMI Amount"
+                                        android:textColor="#757575"
+                                        android:textSize="11sp" />
+                                    <TextView
+                                        android:id="@+id/tvEmiValue"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="₹5,400"
+                                        android:textColor="#1976D2"
+                                        android:textSize="15sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="end"
+                                    android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Next Due Date"
+                                        android:textColor="#757575"
+                                        android:textSize="11sp" />
+                                    <TextView
+                                        android:id="@+id/tvDueDateValue"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="15 July 2024"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="15sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <!-- Row 5: Progress Bar -->
+                            <ProgressBar
+                                android:id="@+id/pbLoanProgress"
+                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="6dp"
+                                android:layout_marginTop="16dp"
+                                android:progress="55"
+                                android:progressTint="#1976D2"
+                                android:secondaryProgress="100"
+                                android:secondaryProgressTint="#E3F2FD" />
+
+                            <!-- Row 6: Percentage Paid and Tenure -->
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp">
+                                <TextView
+                                    android:id="@+id/tvPercentagePaid"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="55% Paid"
+                                    android:textColor="#1976D2"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/tvTenureValue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:text="Tenure: 12/24 Months"
+                                    android:textColor="#757575"
+                                    android:textSize="10sp" />
+                            </RelativeLayout>
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Root Box: My Family Member Section -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#DDDDDD"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Header: Title and Add Link -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="My Family Member"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvAddFamilyMember"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:text="Add Family Member"
+                            android:textColor="#1976D2"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <!-- Child Row: Family Member 1 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="8dp">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:padding="2dp"
+                            android:src="@drawable/baseline_account_circle_24"
+                            app:shapeAppearanceOverlay="@style/CircleShape"
+                            app:strokeColor="#DDDDDD"
+                            app:strokeWidth="1dp" />
+
+                        <!-- Name -->
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:text="John Doe (Father)"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@android:drawable/ic_media_play"
+                            android:rotation="0"
+                            app:tint="#757575" />
+                    </LinearLayout>
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="4dp"
+                        android:background="#EEEEEE" />
+
+                    <!-- Child Row: Family Member 2 (Placeholder) -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="8dp">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:padding="2dp"
+                            android:src="@drawable/baseline_account_circle_24"
+                            app:shapeAppearanceOverlay="@style/CircleShape"
+                            app:strokeColor="#DDDDDD"
+                            app:strokeWidth="1dp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:layout_weight="1"
+                            android:text="Jane Doe (Mother)"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@android:drawable/ic_media_play"
+                            app:tint="#757575" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

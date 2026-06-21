@@ -96,7 +96,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:hint="Loan Date (DD/MM/YYYY)"
+        android:hint="Penalty Date (DD/MM/YYYY)"
         app:boxStrokeColor="@color/input_border_color"
         app:hintTextColor="@color/primaryColor"
         android:textColorHint="#757575"

@@ -18,6 +18,16 @@ public class LoanModalWithoutMemberDetails {
 
     private long totalInterest;
 
+    public long getLoanTenure() {
+        return loanTenure;
+    }
+
+    public void setLoanTenure(long loanTenure) {
+        this.loanTenure = loanTenure;
+    }
+
+    private long loanTenure;
+
     private List<Gurantors> guarantors;
 
     public String getLoanStatus() {

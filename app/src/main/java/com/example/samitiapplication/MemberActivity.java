@@ -66,7 +66,7 @@ public class MemberActivity extends AppCompatActivity implements MemberAdapter.O
             MemberModal clickedMember = memberAdapter.getMemberAt(position);
 
             // Opens the Remove/Detail Activity
-            Intent intent = new Intent(MemberActivity.this, MemberRemoveActivity.class);
+            Intent intent = new Intent(MemberActivity.this, UserView.class);
             intent.putExtra("memberId", clickedMember.get_id());
             startActivity(intent);
         }

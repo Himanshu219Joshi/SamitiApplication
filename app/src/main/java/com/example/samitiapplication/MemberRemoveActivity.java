@@ -34,10 +34,10 @@ public class MemberRemoveActivity extends AppCompatActivity {
 
 
     SessionManager sessionManager;
-    TextView memberName, investedMoney, loanAmount;
+    TextView memberName, investedMoney, loanAmount, interestEarned;
     
     RemoveMember removeMember;
-    Button removeBtn;
+    Button removeBtn, backBtn;
     ApiInterface apiInterface;
 
     Retrofit instance;
@@ -56,7 +56,9 @@ public class MemberRemoveActivity extends AppCompatActivity {
        memberName = findViewById(R.id.memberNameValue);
        investedMoney = findViewById(R.id.investedAmountValue);
        loanAmount = findViewById(R.id.loanAmountValue);
+       interestEarned = findViewById(R.id.interestEarnedValue);
        removeBtn = findViewById(R.id.removeMemberBtn);
+       backBtn = findViewById(R.id.backBtn);
 
        removeMember = new RemoveMember();
 
@@ -84,7 +86,9 @@ public class MemberRemoveActivity extends AppCompatActivity {
                     memberName.setText(memberDetail.get(0).getMemberName());
                     investedMoney.setText(String.valueOf(memberDetail.get(0).getInvestedMoney()));
                     loanAmount.setText(String.valueOf(memberDetail.get(0).getLoanAmount()));
+                    interestEarned.setText(String.valueOf(memberDetail.get(0).getInterestEarned()));
                     removeMember.setAmount(memberDetail.get(0).getInvestedMoney());
+
                     
                 }
 
@@ -116,6 +120,13 @@ public class MemberRemoveActivity extends AppCompatActivity {
                         Toast.makeText(MemberRemoveActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+            }
+        });
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              finish();
             }
         });
     }

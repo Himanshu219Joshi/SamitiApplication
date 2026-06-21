@@ -94,4 +94,14 @@ public class MemberModal {
     private long loanAmount;
     private long investedMoney;
     private String memberStatus;
+
+    public long getInterestEarned() {
+        return interestEarned;
+    }
+
+    public void setInterestEarned(long interestEarned) {
+        this.interestEarned = interestEarned;
+    }
+
+    private long interestEarned;
 }

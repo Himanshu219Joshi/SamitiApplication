@@ -130,4 +130,6 @@
     <string name="confirm">Confirm</string>
     <string name="add_loan">Add Loan</string>
     <string name="add">Add</string>
+    <string name="loan_tenure">Loan Tenure</string>
+    <string name="interest_earned">Interest Earned:</string>
 </resources>

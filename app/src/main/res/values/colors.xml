@@ -13,4 +13,25 @@
     <color name="buttonTextSecondaryColor">#808080</color>
     <color name="textBlackColor">#000000</color>
     <color name="mtrl_textinput_default_box_stroke_color">#000000</color>
+
+<!--    User View Colors-->
+    <color name="primary">#4E65D4</color>
+    <color name="primaryVariant">#6F91EF</color>
+    <color name="secondary">#B05AE6</color>
+
+    <color name="success">#2B9451</color>
+    <color name="successLight">#EAF7EE</color>
+
+    <color name="loanBlue">#4E65D4</color>
+    <color name="loanBlueLight">#EEF4FF</color>
+
+    <color name="interestPurple">#9C4DFF</color>
+    <color name="interestPurpleLight">#F5EEFF</color>
+
+    <color name="background">#F9F9FC</color>
+    <color name="surface">#FFFFFF</color>
+
+    <color name="textPrimary">#0F1011</color>
+    <color name="textSecondary">#61646C</color>
+    <color name="divider">#E5E7EB</color>
 </resources>

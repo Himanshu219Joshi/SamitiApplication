@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dashboard / Main Activity -->
+    <string name="dashboard_title">डैशबोर्ड अवलोकन</string>
+    <string name="real_time_stats">वास्तविक समय ऋण आंकड़े</string>
+    <string name="financial_summary">वित्तीय सारांश</string>
+    <string name="view_all">सभी देखें</string>
+    <string name="recent_loan">हालिया ऋण</string>
+    <string name="view_full_history">पूरा इतिहास देखें</string>
+    <string name="new_loan_btn">नया ऋण</string>
+
+    <!-- Registration / Login -->
+    <string name="first_name">पहला नाम</string>
+    <string name="last_name">अंतिम नाम</string>
+    <string name="mobileNo">मोबाइल नंबर</string>
+    <string name="password">पासवर्ड</string>
+    <string name="aadhaar_number">आधार नंबर</string>
+    <string name="login">लॉगिन</string>
+
+    <!-- Loan Details -->
+    <string name="member_id_hint">सदस्य आईडी चुनें</string>
+    <string name="loan_amount">ऋण राशि</string>
+    <string name="loan_date">ऋण की तारीख</string>
+    <string name="loan_emi">ईएमआई (EMI) राशि</string>
+    <string name="guarantor_one">प्रथम जामिन (Guarantor)</string>
+    <string name="guarantor_two">द्वितीय जामिन (Guarantor)</string>
+    <string name="loan_status">स्थिति</string>
+    <string name="settle">चुक्ता करें</string>
+    <string name="back">वापस</string>
+</resources>
