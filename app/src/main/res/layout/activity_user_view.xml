@@ -137,7 +137,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="₹50,000"
+                            android:text="0"
                             android:textColor="#1B5E20"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -248,7 +248,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="₹10,000"
+                            android:text="0"
                             android:textColor="#0D47A1"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -354,7 +354,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="₹2,500"
+                            android:text="0"
                             android:textColor="#4C1D75"
                             android:textSize="18sp"
                             android:textStyle="bold" />
@@ -552,7 +552,7 @@
                                         android:id="@+id/tvLoanAmount"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="₹1,00,000"
+                                        android:text="0"
                                         android:textColor="@android:color/black"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
@@ -573,7 +573,7 @@
                                         android:id="@+id/tvOutstandingAmount"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="₹45,000"
+                                        android:text="0"
                                         android:textColor="#C62828"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
@@ -594,7 +594,7 @@
                                         android:id="@+id/interestPaidAmount"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="12% p.a."
+                                        android:text="0"
                                         android:textColor="@android:color/black"
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
@@ -627,7 +627,7 @@
                                         android:id="@+id/tvEmiValue"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="₹5,400"
+                                        android:text="₹0"
                                         android:textColor="#1976D2"
                                         android:textSize="15sp"
                                         android:textStyle="bold" />
@@ -649,7 +649,7 @@
                                         android:id="@+id/tvDueDateValue"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="15 July 2024"
+                                        android:text="NA"
                                         android:textColor="@android:color/black"
                                         android:textSize="15sp"
                                         android:textStyle="bold" />
@@ -677,7 +677,7 @@
                                     android:id="@+id/tvPercentagePaid"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="55% Paid"
+                                    android:text="0% Paid"
                                     android:textColor="#1976D2"
                                     android:textSize="10sp"
                                     android:textStyle="bold" />
@@ -686,7 +686,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentEnd="true"
-                                    android:text="Tenure: 12/24 Months"
+                                    android:text="Tenure: 0 Months"
                                     android:textColor="#757575"
                                     android:textSize="10sp" />
                             </RelativeLayout>

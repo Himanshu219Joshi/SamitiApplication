@@ -91,7 +91,7 @@ public class MemberModal {
     private long memberId;
     private String memberName;
     private String fatherName;
-    private long loanAmount;
+    private long loanAmount = 0;
     private long investedMoney;
     private String memberStatus;
 

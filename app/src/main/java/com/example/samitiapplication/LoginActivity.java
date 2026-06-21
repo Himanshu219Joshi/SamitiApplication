@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         checkAndRequestPermissions();
 
+
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -91,10 +92,17 @@ public class LoginActivity extends AppCompatActivity {
                     if (tokenValue != null) {
                         assert response.body() != null;
                         sessionManager.setRole(role);
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-                        finish();
+                        if (role.equals("admin")){
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Intent intent = new Intent(LoginActivity.this, UserView.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            finish();
+                        }
                     } else {
                         loadingProgressBar.setVisibility(View.GONE);
                         Toast.makeText(LoginActivity.this, "User is invalid", Toast.LENGTH_LONG).show();

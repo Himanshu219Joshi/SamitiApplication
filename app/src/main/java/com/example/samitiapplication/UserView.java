@@ -79,17 +79,19 @@ public class UserView extends AppCompatActivity {
                     tvInvestedAmount.setText(String.valueOf(memberDetail.get(0).getInvestedMoney()));
                     tvLoanTakenAmount.setText(String.valueOf(memberDetail.get(0).getLoanAmount()));
                     tvInterestEarnedAmount.setText(String.valueOf(memberDetail.get(0).getInterestEarned()));
-                    tvLoanAmount.setText(String.valueOf(memberDetail.get(0).getLoanAmount()));
-                    tvEmiValue.setText(String.valueOf(memberDetail.get(0).getLoanDetails().getEmiAmount()));
-                    tvDueDateValue.setText(String.valueOf(utils.getNextDueDate()));
-                    tvInterestPaidAmount.setText(String.valueOf(memberDetail.get(0).getLoanDetails().getInterestAccrued()));
-                    tvTenureValue.setText(String.valueOf(memberDetail.get(0).getLoanDetails().getLoanTenure()));
+                    if(memberDetail.get(0).getLoanAmount() > 0) {
+                        tvLoanAmount.setText(String.valueOf(memberDetail.get(0).getLoanAmount()));
+                        tvEmiValue.setText(String.valueOf(memberDetail.get(0).getLoanDetails().getEmiAmount()));
+                        tvDueDateValue.setText(String.valueOf(utils.getNextDueDate()));
+                        tvInterestPaidAmount.setText(String.valueOf(memberDetail.get(0).getLoanDetails().getInterestAccrued()));
+                        tvTenureValue.setText(String.valueOf("Tenure: " + memberDetail.get(0).getLoanDetails().getLoanTenure()).concat(" Months"));
 
-                    String percentagePaid = String.valueOf(utils.getPercentagePaid(memberDetail.get(0).getLoanDetails().getLoanAmount(),memberDetail.get(0).getLoanDetails().getLoanAmountRecovered()));
-                    String outStandingAmount = String.valueOf(utils.getOutstandingAmount(memberDetail.get(0).getLoanDetails().getLoanAmount(),memberDetail.get(0).getLoanDetails().getLoanAmountRecovered()));
-                    tvPercentagePaid.setText(percentagePaid);
-                    pbLoanProgress.setProgress(Integer.parseInt(percentagePaid));
-                    tvOutstandingAmount.setText(String.valueOf(outStandingAmount));
+                        String percentagePaid = String.valueOf(utils.getPercentagePaid(memberDetail.get(0).getLoanDetails().getLoanAmount(), memberDetail.get(0).getLoanDetails().getLoanAmountRecovered()));
+                        String outStandingAmount = String.valueOf(utils.getOutstandingAmount(memberDetail.get(0).getLoanDetails().getLoanAmount(), memberDetail.get(0).getLoanDetails().getLoanAmountRecovered()));
+                        tvPercentagePaid.setText(percentagePaid.concat("% Paid"));
+                        pbLoanProgress.setProgress(Integer.parseInt(percentagePaid));
+                        tvOutstandingAmount.setText(String.valueOf(outStandingAmount));
+                    }
 
 
 
