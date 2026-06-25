@@ -9,6 +9,8 @@
     <color name="reject_btn">#cd1c18</color>
     <color name="primaryColor">#FF5722</color>
     <color name="secondoryColor">#FF5722</color>
+    <color name="icon_color">#FF5722</color>
+    <color name="icon_background_color">#FDDCD2</color>
     <color name="buttonTextPrimaryColor">#FFFFFF</color>
     <color name="buttonTextSecondaryColor">#808080</color>
     <color name="textBlackColor">#000000</color>
@@ -34,4 +36,14 @@
     <color name="textPrimary">#0F1011</color>
     <color name="textSecondary">#61646C</color>
     <color name="divider">#E5E7EB</color>
+
+
+<!--    New Main Screen Colors-->
+
+<!--    <color name="primaryOrange">#FF6B00</color>-->
+<!--    <color name="background">#F5F5F5</color>-->
+<!--    <color name="cardWhite">#FFFFFF</color>-->
+<!--    <color name="lightOrange">#FFF4EE</color>-->
+<!--    <color name="textPrimary">#222222</color>-->
+<!--    <color name="textSecondary">#666666</color>-->
 </resources>

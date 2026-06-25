@@ -252,7 +252,14 @@ public class MainActivity extends AppCompatActivity {
         binding.addNewLoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, UserView.class));
+                startActivity(new Intent(MainActivity.this, AddNewLoan.class));
+            }
+        });
+
+        binding.addNewFunctionality.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, NewMainActivity.class));
             }
         });
 

@@ -8,21 +8,29 @@
     <string name="submit">Submit</string>
     <string name="login">Login</string>
     <string name="title_activity_app_bar">AppBar</string>
-    <string name="member_name">Member Name:</string>
+    <string name="member_name">Member Name:</string>\
+    <string name="member_name_label">Member Name</string>
     <string name="loan_amount">Loan Amount:</string>
     <string name="loan_amount_placeholder">Loan Amount</string>
+    <string name="loan_amount_label">Loan Amount</string>
     <string name="penalty_amount">Penalty Amount</string>
     <string name="penalty_amount_label">Penalty Amount:</string>
     <string name="inverted_amount">Invested Amount:</string>
     <string name="member_status">Member Status: </string>
     <string name="loan_date">Loan Date:</string>
+    <string name="loan_date_label">Loan Date</string>
     <string name="loan_date_placeholder">Loan Date (MM/DD/YYYY)</string>
     <string name="loan_emi">Loan EMI: </string>
+    <string name="loan_emi_label">Loan EMI</string>
     <string name="total_amount">Total Amount:</string>
     <string name="total_amount_placeholder">Total Amount</string>
+    <string name="total_amount_label">Total Amount</string>
     <string name="balance_amount">Balance Amount:</string>
+    <string name="balance_amount_label">Balance Amount</string>
     <string name="interest_amount">Interest Amount:</string>
+    <string name="interest_amount_label">Interest Amount</string>
     <string name="recovered_amount">Recovered Amount:</string>
+    <string name="recovered_amount_label">Recovered Amount</string>
     <string name="amount_recovered">Amount Recovered: </string>
     <string name="interest_recovered">Interest Recovered: </string>
     <string name="title_activity_login">LoginActivity</string>
@@ -38,6 +46,7 @@
     <string name="login_failed">Login failed</string>
     <string name="member_id">Member Id: </string>
     <string name="member_id_hint">Member Id </string>
+    <string name="member_id_label">Member Id</string>
     <string name="name">"Name: "</string>
     <string name="invested_money">Invested Money: </string>
     <string name="first_name">First Name</string>
@@ -50,6 +59,7 @@
     <string name="title_registartion">Registration Activity</string>
     <string name="view_detailed_summary">View Details</string>
     <string name="last_loan_details">Last Loan</string>
+    <string name="last_loan_label">Last Loan</string>
     <string name="last_loan_view_details">View Details</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -117,7 +127,9 @@
     <string name="guarantor_one_label">First Guarantor: </string>
     <string name="guarantor_two_label">Second Guarantor: </string>
     <string name="guarantor_names">Guarantor Names: </string>
+    <string name="guarantor_names_label">Guarantor Names</string>
     <string name="loan_status">Loan Status: </string>
+    <string name="loan_status_label">Loan Status</string>
     <string name="generate_pdf">Samiti PDF</string>
 
     <string name="back">Back</string>
@@ -132,4 +144,6 @@
     <string name="add">Add</string>
     <string name="loan_tenure">Loan Tenure</string>
     <string name="interest_earned">Interest Earned:</string>
+    <string name="interest_earned_label">Interest Earned</string>
+    <string name="active">Active</string>
 </resources>

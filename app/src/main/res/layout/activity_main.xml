@@ -112,6 +112,18 @@
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addNewFunctionality"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/add_new_loan"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/fab_margin"
+        android:backgroundTint="@color/primaryColor"
+        android:layout_marginBottom="175dp"
+        android:contentDescription="@string/todo" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addNewLoan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

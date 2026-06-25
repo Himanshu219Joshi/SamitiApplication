@@ -61,7 +61,16 @@
             android:exported="false"
             android:label="User View"
             android:theme="@style/Theme.SamitiApplication" />
-
+        <activity
+            android:name=".NewMainActivity"
+            android:exported="false"
+            android:label="New Main Activity"
+            android:theme="@style/Theme.SamitiApplication" />
+        <activity
+            android:name=".NewMemberActivity"
+            android:exported="false"
+            android:label="New Main Activity"
+            android:theme="@style/Theme.SamitiApplication" />
         <activity
             android:name=".ItemFragment"
             android:exported="false"
