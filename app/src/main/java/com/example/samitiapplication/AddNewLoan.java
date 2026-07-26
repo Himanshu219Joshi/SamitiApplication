@@ -200,22 +200,21 @@ public class AddNewLoan extends AppCompatActivity {
                 try {
                     newLoanDetail.setLoanDate(String.valueOf(loanDate.getText()));
                     newLoanDetail.setLoanAmount(Long.parseLong(String.valueOf(loanAmount.getText())));
-                    newLoanDetail.setTotalAmount(Long.parseLong(String.valueOf(totalAmount.getText())));
+                    newLoanDetail.setLoanTenure(Long.parseLong(String.valueOf(loanTenure.getText())));
                     if(!String.valueOf(penaltyAmount.getText()).isEmpty()) {
                         newLoanDetail.setPenaltyAmount(Long.parseLong(String.valueOf(penaltyAmount.getText())));
                     }
-                    newLoanDetail.setLoanTenure(Integer.parseInt(String.valueOf(loanTenure.getText())));
-
+                    newLoanDetail.setTotalAmount(Long.parseLong(String.valueOf(totalAmount.getText())));
                 } catch (Exception e) {
                     System.out.println(e);
                 }
 
                 System.out.println("Loan Details");
                 System.out.println(Integer.parseInt(String.valueOf(loanTenure.getText())));
-                System.out.println(String.valueOf(loanDate.getText()));
+                System.out.println(String.valueOf(newLoanDetail.getLoanTenure()));
                 System.out.println(newLoanDetail.getLoanAmount());
                 System.out.println(newLoanDetail.getEmiAmount());
-                Call<NewLoanDetail> addNewLoan = apiInterface.addNewLoan("Bearer " + token, newLoanDetail);
+                Call<NewLoanDetail> addNewLoan = apiInterface.addNewLoan("Bearer " + token,"application/json", newLoanDetail);
 
                 addNewLoan.enqueue(new Callback<NewLoanDetail>() {
                     @Override

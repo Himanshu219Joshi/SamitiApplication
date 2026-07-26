@@ -28,11 +28,17 @@ public class Utils {
             }
             double percentage = (recoveredAmount / totalAmount) * 100;
 
+            System.out.println("Recovered Amount inside Percetnage Function "+ recoveredAmount);
+            System.out.println("Recovered Amount inside Percetnage Function "+ totalAmount);
+
+
             // Return as an integer for the ProgressBar
             return (int) Math.round(percentage);
         }
 
         public long getOutstandingAmount(long loanAmount, long loanAmountRecovered){
+            System.out.println(" Outstanding Function Loan Amount: "+loanAmount);
+            System.out.println(" Outstanding Function LoanAmountRecovered Amount: "+loanAmount);
             return Math.round(loanAmount - loanAmountRecovered);
         }
 }

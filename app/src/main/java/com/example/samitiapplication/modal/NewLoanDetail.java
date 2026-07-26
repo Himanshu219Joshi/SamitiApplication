@@ -3,15 +3,15 @@ package com.example.samitiapplication.modal;
 public class NewLoanDetail {
     private long totalAmount;
 
-    public int getLoanTenure() {
+    public long getLoanTenure() {
         return loanTenure;
     }
 
-    public void setLoanTenure(int loanTenure) {
+    public void setLoanTenure(long loanTenure) {
         this.loanTenure = loanTenure;
     }
 
-    private int loanTenure;
+    private long loanTenure;
 
     private String loanDate;
     public int getFirstGuarantor() {

@@ -36,7 +36,8 @@
             android:theme="@style/Theme.SamitiApplication" />
         <activity
             android:name=".RegistrationActivity"
-            android:exported="false"
+            android:exported="true"
+            android:theme="@style/Theme.SamitiApplication"
             />
         <activity
             android:name=".MainActivity"

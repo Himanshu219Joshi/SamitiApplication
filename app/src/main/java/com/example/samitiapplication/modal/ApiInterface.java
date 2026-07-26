@@ -45,7 +45,7 @@ public interface ApiInterface {
     Call<LoanModal> getLoanInfo(@Path("loanId") String loanId, @Header("Authorization") String token);
 
     @POST("/samiti/updateSummary")
-    Call<NewLoanDetail> addNewLoan(@Header ("Authorization") String token, @Body NewLoanDetail newLoanDetail);
+    Call<NewLoanDetail> addNewLoan(@Header ("Authorization") String token, @Header("Content-Type") String contentType, @Body NewLoanDetail newLoanDetail);
 
     @POST("/samiti/settleLoan/{loanId}")    
     Call<SettleLoan> settleLoan(@Path("loanId") String loanId, @Header ("Authorization") String token, @Body SettleLoan settleLoan);

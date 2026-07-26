@@ -16,17 +16,17 @@
         android:background="@android:color/white"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/activity_title"
-            style="@style/TextAppearance.MaterialComponents.Headline5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="@string/user_registration"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:textColor="@color/primaryColor"
-            app:layout_constraintTop_toTopOf="parent" />
+<!--        <TextView-->
+<!--            android:id="@+id/activity_title"-->
+<!--            style="@style/TextAppearance.MaterialComponents.Headline5"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            android:text="@string/user_registration"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@color/primaryColor"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
         <!-- First Name -->
         <com.google.android.material.textfield.TextInputLayout
@@ -149,6 +149,40 @@
                 android:inputType="number"/>
         </com.google.android.material.textfield.TextInputLayout>
         <!-- Buttons Container -->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="32dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/aadhaarNumberTextLayout">-->
+
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                android:id="@+id/submitBtn"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="55dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                android:text="@string/submit"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textSize="16sp"-->
+<!--                app:cornerRadius="8dp"-->
+<!--                android:backgroundTint="@color/primaryColor"-->
+<!--                android:textColor="@android:color/white" />-->
+
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                android:id="@+id/cancelBtn"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="55dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:text="@string/cancel"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textSize="16sp"-->
+<!--                app:cornerRadius="8dp"-->
+<!--                android:backgroundTint="@android:color/darker_gray"-->
+<!--                android:textColor="@android:color/white" />-->
+<!--        </LinearLayout>-->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -165,7 +199,7 @@
                 android:text="@string/submit"
                 android:textAllCaps="false"
                 android:textSize="16sp"
-                app:cornerRadius="8dp"
+                app:cornerRadius="0dp"
                 android:backgroundTint="@color/primaryColor"
                 android:textColor="@android:color/white" />
 
@@ -178,10 +212,11 @@
                 android:text="@string/cancel"
                 android:textAllCaps="false"
                 android:textSize="16sp"
-                app:cornerRadius="8dp"
+                app:cornerRadius="0dp"
                 android:backgroundTint="@android:color/darker_gray"
                 android:textColor="@android:color/white" />
         </LinearLayout>
+
 
         <ProgressBar
             android:id="@+id/loading"

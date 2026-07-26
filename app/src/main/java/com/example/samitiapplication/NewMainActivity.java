@@ -75,21 +75,21 @@ public class NewMainActivity extends AppCompatActivity {
                 if(response.body() != null ) {
                     Summary summaryDetails = response.body().getSummary();
                     System.out.println("Response BOdy::::"+response.body());
-                    totalAmount.setText(String.valueOf(response.body().getSummary().getTotalAmount()));
-                    lentAmount.setText(String.valueOf(summaryDetails.getLentAmount()));
-                    balanceAmount.setText(String.valueOf(summaryDetails.getBalanceAmount()));
-                    interestAmount.setText(String.valueOf(summaryDetails.getInterestAccrued()));
-                    penaltyAmount.setText(String.valueOf(summaryDetails.getPenaltyAmount()));
-                    recoveredAmount.setText(String.valueOf(summaryDetails.getLoanAmountRecovered()));
+                    totalAmount.setText(String.valueOf("₹ "+response.body().getSummary().getTotalAmount()));
+                    lentAmount.setText(String.valueOf("₹ "+summaryDetails.getLentAmount()));
+                    balanceAmount.setText(String.valueOf("₹ "+summaryDetails.getBalanceAmount()));
+                    interestAmount.setText(String.valueOf("₹ "+summaryDetails.getInterestAccrued()));
+                    penaltyAmount.setText(String.valueOf("₹ "+summaryDetails.getPenaltyAmount()));
+                    recoveredAmount.setText(String.valueOf("₹ "+summaryDetails.getLoanAmountRecovered()));
 
                     LastLoanDetails lastLoanDetails = response.body().getLastLoanDetails();
                     memberName.setText(String.valueOf(lastLoanDetails.getMemberName()));
                     memberId.setText(String.valueOf(lastLoanDetails.getMemberId()));
                     Log.d("RAW DATA", lastLoanDetails.getLoanDetails().toString());
                     if(lastLoanDetails.getLoanDetails() != null) {
-                        loanAmount.setText(String.valueOf(lastLoanDetails.getLoanDetails().getLoanAmount()));
+                        loanAmount.setText(String.valueOf("₹ "+lastLoanDetails.getLoanDetails().getLoanAmount()));
                         loanDate.setText(String.valueOf(lastLoanDetails.getLoanDetails().getDate()));
-                        loanEmi.setText((String.valueOf(lastLoanDetails.getLoanDetails().getEmiAmount())));
+                        loanEmi.setText((String.valueOf("₹ "+lastLoanDetails.getLoanDetails().getEmiAmount())));
                         guarantorNames.setText(lastLoanDetails.getLoanDetails().getGuarantors().get(0).getMemberName().concat(", ").concat(lastLoanDetails.getLoanDetails().getGuarantors().get(1).getMemberName()));
 //                        loanStatus.setText(" "+ lastLoanDetails.getLoanDetails().getLoanStatus());
                     }

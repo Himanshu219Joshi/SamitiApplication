@@ -76,7 +76,7 @@ public class UserView extends AppCompatActivity {
                     List<MemberModal> memberDetail = response.body();
                     System.out.println("Member Name"+memberDetail.get(0).getMemberName());
                     tvMemberName.setText(String.valueOf(memberDetail.get(0).getMemberName().concat(" ").concat(memberDetail.get(0).getFatherName())));
-                    tvInvestedAmount.setText(String.valueOf(memberDetail.get(0).getInvestedMoney()));
+                    tvInvestedAmount.setText(String.valueOf("₹ "+memberDetail.get(0).getInvestedMoney()));
                     tvLoanTakenAmount.setText(String.valueOf(memberDetail.get(0).getLoanAmount()));
                     tvInterestEarnedAmount.setText(String.valueOf(memberDetail.get(0).getInterestEarned()));
                     if(memberDetail.get(0).getLoanAmount() > 0) {
@@ -88,6 +88,9 @@ public class UserView extends AppCompatActivity {
 
                         String percentagePaid = String.valueOf(utils.getPercentagePaid(memberDetail.get(0).getLoanDetails().getLoanAmount(), memberDetail.get(0).getLoanDetails().getLoanAmountRecovered()));
                         String outStandingAmount = String.valueOf(utils.getOutstandingAmount(memberDetail.get(0).getLoanDetails().getLoanAmount(), memberDetail.get(0).getLoanDetails().getLoanAmountRecovered()));
+
+                        System.out.println("Percentage Paid: "+ percentagePaid);
+                        System.out.println("Outstanding Amount: "+ outStandingAmount);
                         tvPercentagePaid.setText(percentagePaid.concat("% Paid"));
                         pbLoanProgress.setProgress(Integer.parseInt(percentagePaid));
                         tvOutstandingAmount.setText(String.valueOf(outStandingAmount));
