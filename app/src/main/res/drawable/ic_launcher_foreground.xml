@@ -5,12 +5,7 @@
     android:viewportHeight="24"
     android:tint="#000000"
     android:autoMirrored="true">
-  <group android:scaleX="0.4872"
-      android:scaleY="0.3872"
-      android:translateX="6.1536"
-      android:translateY="6.1536">
-    <path
+  <path
         android:fillColor="@android:color/white"
         android:pathData="M6.23,20.23l1.77,1.77l10,-10l-10,-10l-1.77,1.77l8.23,8.23z"/>
-  </group>
 </vector>

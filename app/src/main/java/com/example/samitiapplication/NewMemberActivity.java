@@ -2,7 +2,6 @@ package com.example.samitiapplication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,11 +11,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.samitiapplication.MemberAdapter;
 import com.example.samitiapplication.modal.ApiInterface;
 import com.example.samitiapplication.modal.members.MemberModal;
 import com.example.samitiapplication.networking.ApiClient;
@@ -37,6 +34,8 @@ public class NewMemberActivity extends AppCompatActivity implements NewMemberAda
     NewMemberAdapter memberAdapter;
     SessionManager sessionManager;
 
+    TextView totalMembers;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +51,11 @@ public class NewMemberActivity extends AppCompatActivity implements NewMemberAda
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        // --- COLOR SYNC WITH MAIN ACTIVITY ---
+        totalMembers = findViewById(R.id.totalMembers);
+        totalMembers.setText(String.valueOf(42));
+
+
         recyclerView = findViewById(R.id.memberRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -66,7 +70,7 @@ public class NewMemberActivity extends AppCompatActivity implements NewMemberAda
             MemberModal clickedMember = memberAdapter.getMemberAt(position);
 
             // Opens the Remove/Detail Activity
-            Intent intent = new Intent(NewMemberActivity.this, UserView.class);
+            Intent intent = new Intent(NewMemberActivity.this, NewMemberView.class);
             intent.putExtra("memberId", clickedMember.get_id());
             startActivity(intent);
         }
@@ -85,12 +89,13 @@ public class NewMemberActivity extends AppCompatActivity implements NewMemberAda
 
         String token = sessionManager.getToken();
         Call<List<MemberModal>> call = apiInterface.getMembersInfoV2("Bearer " + token);
-
+        TextView activeMembers = findViewById(R.id.activeMembers);
         call.enqueue(new Callback<List<MemberModal>>() {
             @Override
             public void onResponse(@NonNull Call<List<MemberModal>> call, @NonNull Response<List<MemberModal>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     memberList = response.body();
+                    activeMembers.setText(String.valueOf(memberList.size()));
                     memberAdapter = new NewMemberAdapter(NewMemberActivity.this, memberList, NewMemberActivity.this);
                     recyclerView.setAdapter(memberAdapter);
                 } else {

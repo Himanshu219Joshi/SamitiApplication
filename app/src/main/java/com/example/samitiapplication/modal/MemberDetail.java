@@ -1,10 +1,30 @@
 package com.example.samitiapplication.modal;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class MemberDetail {
 
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    private String _id;
     private boolean isPaid = false;
+
+    public List<MemberDetail> getFamilyMemberInfo() {
+        return familyMemberInfo;
+    }
+
+    public void setFamilyMemberInfo(List<MemberDetail> familyMemberInfo) {
+        this.familyMemberInfo = familyMemberInfo;
+    }
+
+    private List<MemberDetail> familyMemberInfo;
 
     public boolean isNotPaid() {
         return isNotPaid;

@@ -94,11 +94,11 @@
                                 android:textStyle="bold" />
 
                             <ImageView
-                                android:layout_width="32dp"
-                                android:layout_height="32dp"
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
                                 android:paddingTop="4dp"
                                 android:src="@drawable/ic_launcher_foreground"
-                                app:tint="#FF6B00" /> <!-- Removed paddingTop="4dp" -->
+                                app:tint="#FF6B00" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -156,8 +156,8 @@
                                 android:textStyle="bold" />
 
                             <ImageView
-                                android:layout_width="32dp"
-                                android:layout_height="32dp"
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
                                 android:paddingTop="4dp"
                                 android:src="@drawable/ic_launcher_foreground"
                                 app:tint="#FF6B00" /> <!-- Removed paddingTop="4dp" -->
@@ -215,28 +215,28 @@
 
     <!-- ADD LOAN FAB -->
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabLoan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="90dp"
-        android:src="@drawable/add_new_loan"
-        android:tint="@android:color/white"
-        app:backgroundTint="#FF6B00"/>
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/fabLoan"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="bottom|end"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:layout_marginBottom="90dp"-->
+<!--        android:src="@drawable/add_new_loan"-->
+<!--        android:tint="@android:color/white"-->
+<!--        app:backgroundTint="#FF6B00"/>-->
 
-    <!-- PAYMENT FAB -->
+<!--    &lt;!&ndash; PAYMENT FAB &ndash;&gt;-->
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabPayment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="20dp"
-        android:src="@drawable/payment_icon"
-        android:tint="@android:color/white"
-        app:backgroundTint="#FF6B00"/>
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/fabPayment"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="bottom|end"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:layout_marginBottom="20dp"-->
+<!--        android:src="@drawable/payment_icon"-->
+<!--        android:tint="@android:color/white"-->
+<!--        app:backgroundTint="#FF6B00"/>-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,9 +1,22 @@
 package com.example.samitiapplication.modal.members;
 
+import com.example.samitiapplication.modal.MemberDetail;
 import com.example.samitiapplication.modal.loans.LoanModal;
 import com.example.samitiapplication.modal.loans.LoanModalWithoutMemberDetails;
 
+import java.util.List;
+
 public class MemberModal {
+
+    public List<MemberDetail> getFamilyMembersInfo() {
+        return familyMembersInfo;
+    }
+
+    public void setFamilyMembersInfo(List<MemberDetail> familyMembersInfo) {
+        this.familyMembersInfo = familyMembersInfo;
+    }
+
+    private List<MemberDetail> familyMembersInfo;
     private boolean isPaid = false;
 
     public boolean isNotPaid() {

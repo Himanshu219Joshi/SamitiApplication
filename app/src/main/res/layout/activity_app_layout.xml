@@ -7,6 +7,9 @@
 
     <include layout="@layout/activity_app_bar" />
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:theme="@style/Base.Theme.SamitiApplication"
@@ -60,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:hint="@string/guarantor_two"
+            android:hint="@string/guarantor_one"
             app:boxStrokeColor="@color/input_border_color"
             app:hintTextColor="@color/primaryColor"
             android:textColorHint="#757575"
@@ -304,6 +307,7 @@
         </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

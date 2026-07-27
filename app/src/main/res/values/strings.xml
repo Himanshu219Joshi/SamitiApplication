@@ -146,4 +146,6 @@
     <string name="interest_earned">Interest Earned:</string>
     <string name="interest_earned_label">Interest Earned</string>
     <string name="active">Active</string>
+    <string name="total_members">Total Members</string>
+    <string name="active_members">Active Members</string>
 </resources>

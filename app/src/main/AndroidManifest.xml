@@ -58,7 +58,7 @@
             android:label="@string/title_activity_member"
             android:theme="@style/Theme.SamitiApplication" />
         <activity
-            android:name=".UserView"
+            android:name=".NewMemberView"
             android:exported="false"
             android:label="User View"
             android:theme="@style/Theme.SamitiApplication" />
