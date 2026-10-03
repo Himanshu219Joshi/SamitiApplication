@@ -117,4 +117,14 @@ public class MemberModal {
     }
 
     private long interestEarned;
+
+    public MemberSummary getMemberSummary() {
+        return memberSummary;
+    }
+
+    public void setMemberSummary(MemberSummary memberSummary) {
+        this.memberSummary = memberSummary;
+    }
+
+    private MemberSummary memberSummary;
 }

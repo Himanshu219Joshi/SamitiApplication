@@ -39,7 +39,20 @@ public class UserDetail {
 
     String firstName;
     String lastName;
+
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    String middleName;
     String mobileNumber;
+    String hash_key;
+    String created_on;
+
 
     public String getAadharNumber() {
         return aadharNumber;
@@ -50,8 +63,6 @@ public class UserDetail {
     }
 
     String aadharNumber;;
-    String hash_key;
-    String created_on;
 
     public String getAadhaarNumber() {
         return aadhaarNumber;

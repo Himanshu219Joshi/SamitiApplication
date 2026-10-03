@@ -13,6 +13,16 @@ public class LoginUser {
     String mobileNumber;
     String password;
 
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
+
+    String memberId;
+
     public String getToken() {
         return token;
     }

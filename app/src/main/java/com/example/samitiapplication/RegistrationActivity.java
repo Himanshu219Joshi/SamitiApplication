@@ -41,6 +41,7 @@ public class RegistrationActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         EditText firstNameEditText = findViewById(R.id.firstNameTextField);
+        EditText middleNameEditText = findViewById(R.id.middleNameTextField);
         EditText lastNameEditText =  findViewById(R.id.lastNameTextField);
         EditText mobileNumberEditText =  findViewById(R.id.mobileNoTextField);
         EditText passwordEditText =  findViewById(R.id.passwordTextField);;
@@ -64,6 +65,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 Retrofit instance = ApiClient.instance();
                 userDetail = new UserDetail();
                 userDetail.setFirstName(firstNameEditText.getText().toString());
+                userDetail.setMiddleName(middleNameEditText.getText().toString());
                 userDetail.setLastName(lastNameEditText.getText().toString());
                 userDetail.setMobileNumber(mobileNumberEditText.getText().toString());
                 userDetail.setPassword(passwordEditText.getText().toString());

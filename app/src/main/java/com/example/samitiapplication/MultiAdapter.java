@@ -124,7 +124,7 @@ public class MultiAdapter extends RecyclerView.Adapter<MultiAdapter.MultiViewHol
                     }
 
 //
-                    paidTickIcon.setVisibility(memberDetail.isPaid() ? View.VISIBLE : View.GONE);
+//                    paidTickIcon.setVisibility(memberDetail.isPaid() ? View.VISIBLE : View.GONE);
                     notifyItemChanged(getAbsoluteAdapterPosition());
                 }
             });

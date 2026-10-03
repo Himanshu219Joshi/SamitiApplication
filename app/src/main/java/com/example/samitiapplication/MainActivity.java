@@ -123,29 +123,29 @@ public class MainActivity extends AppCompatActivity {
                 .setSummaryText("Big Content Summary");
 
 
-
-        Notification notification;
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ) {
-             notification = new Notification.Builder(this)
-                     .setSmallIcon(R.drawable.rupees_sign_primary)
-                    .setContentTitle("Notfication")
-                    .setContentText("This is testing of notification")
-                    .setChannelId(CHANNEL_ID)
-                     .setStyle(inboxStyle)
-                     .setContentIntent(pendingIntent)
-                     .setAutoCancel(true)
-                    .build();
-             nm.createNotificationChannel(new NotificationChannel(CHANNEL_ID, "Samiti_Notification", NotificationManager.IMPORTANCE_HIGH));
-        } else {
-             notification = new Notification.Builder(this)
-                    .setSmallIcon(R.drawable.rupees_sign_primary)
-                    .setContentTitle("Notfication")
-                    .setContentText("This is testing of notification").setAutoCancel(true)
-                     .setStyle(inboxStyle)
-                     .setStyle(inboxStyle)
-                     .setContentIntent(pendingIntent)
-                    .build();
-            }
+//
+//        Notification notification;
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ) {
+//             notification = new Notification.Builder(this)
+//                     .setSmallIcon(R.drawable.rupees_sign_primary)
+//                    .setContentTitle("Notfication")
+//                    .setContentText("This is testing of notification")
+//                    .setChannelId(CHANNEL_ID)
+//                     .setStyle(inboxStyle)
+//                     .setContentIntent(pendingIntent)
+//                     .setAutoCancel(true)
+//                    .build();
+//             nm.createNotificationChannel(new NotificationChannel(CHANNEL_ID, "Samiti_Notification", NotificationManager.IMPORTANCE_HIGH));
+//        } else {
+//             notification = new Notification.Builder(this)
+//                    .setSmallIcon(R.drawable.rupees_sign_primary)
+//                    .setContentTitle("Notfication")
+//                    .setContentText("This is testing of notification").setAutoCancel(true)
+//                     .setStyle(inboxStyle)
+//                     .setStyle(inboxStyle)
+//                     .setContentIntent(pendingIntent)
+//                    .build();
+//            }
 
 
         mobileNo = findViewById(R.id.mobileNo);
@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
 
         int dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
         if(dayOfMonth == 15) {
-            nm.notify(NOTIFICATION_ID, notification);
+//            nm.notify(NOTIFICATION_ID, notification);
         }
 //            }
 //        });

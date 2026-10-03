@@ -72,6 +72,10 @@
             android:exported="false"
             android:label="New Main Activity"
             android:theme="@style/Theme.SamitiApplication" />
+        <activity android:name=".ViewAllLoans"
+            android:exported="false"
+            android:label="View All Loans"
+            android:theme="@style/Theme.SamitiApplication" />
         <activity
             android:name=".ItemFragment"
             android:exported="false"

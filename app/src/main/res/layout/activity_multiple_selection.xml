@@ -44,6 +44,12 @@
             android:textColor="@android:color/white" />
 
     </LinearLayout>
+    <CheckBox
+        android:id="@+id/selectAllCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_all"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewMultiSelect"

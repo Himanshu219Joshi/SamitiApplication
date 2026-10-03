@@ -1,6 +1,7 @@
 package com.example.samitiapplication;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
 import android.Manifest;
@@ -42,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         checkAndRequestPermissions();
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
 
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
@@ -96,7 +98,10 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         } else {
+                            String memberId = response.body().getMemberId();
                             Intent intent = new Intent(LoginActivity.this, NewMemberView.class);
+                            System.out.println("MemberId :::"+response.body().toString());
+                            intent.putExtra("memberId", response.body().getMemberId());
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             finish();
